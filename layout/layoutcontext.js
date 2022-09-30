@@ -17,9 +17,6 @@ function LayoutProvider({ children }) {
         mobileTopbarMenuActive: false,
     });
 
-    let menuClick = false;
-    let mobileTopbarMenuClick = false;
-
     useEffect(() => {
         if (layoutConfig.mobileMenuActive) {
             addClass(document.body, "body-overflow-hidden");
@@ -65,16 +62,6 @@ function LayoutProvider({ children }) {
                 mobileMenuActive: false,
             }));
         }
-
-        if (!mobileTopbarMenuClick) {
-            setLayoutConfig((prevState) => ({
-                ...prevState,
-                mobileTopbarMenuActive: false,
-            }));
-        }
-
-        mobileTopbarMenuClick = false;
-        menuClick = false;
     };
 
     const onToggleMenuClick = (event) => {
@@ -114,11 +101,9 @@ function LayoutProvider({ children }) {
     };
 
     const onMobileTopbarMenuClick = (event) => {
-        mobileTopbarMenuClick = true;
-
         setLayoutConfig((prevState) => ({
             ...prevState,
-            mobileMenuActive: !prevState.mobileMenuActive,
+            mobileTopbarMenuActive: !prevState.mobileTopbarMenuActive,
         }));
         event.preventDefault();
     };
