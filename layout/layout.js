@@ -20,20 +20,17 @@ function Layout({ children }) {
     const containerRef = useRef();
     const sideBarRef = useRef();
 
-    const [bindTopbarDocumentClickListener, unbindTopbarDocumentClickListener] = useEventListener({
-        target: containerRef,
-        type: "click",
-        listener: onWrapperClick,
-    });
-    const [bindSidebarDocumentClickListener, unbindSidebarDocumentClickListener] = useEventListener({
+    const [bindDocumentClickSidebarListener, unbindDocumentClickSidebarListener] = useEventListener({
         target: sideBarRef,
         type: "click",
-        listener: onSidebarClick,
+        listener: (event) => {
+            const isOutsideClicked = !(sideBarRef.current.isSameNode(event.target) || sideBarRef.current.contains(event.target));
+            if (isOutsideClicked) onSidebarClick();
+        },
     });
 
     useEffect(() => {
-        bindTopbarDocumentClickListener();
-        bindSidebarDocumentClickListener();
+        bindDocumentClickSidebarListener();
     }, [layoutConfig.overlayMenuActive]);
 
     const containerClass = classNames("layout-wrapper", {

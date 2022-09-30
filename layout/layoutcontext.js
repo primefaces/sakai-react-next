@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PrimeReact from "primereact/api";
 
 export const LayoutContext = React.createContext();
@@ -16,6 +16,9 @@ function LayoutProvider({ children }) {
         mobileMenuActive: false,
         mobileTopbarMenuActive: false,
     });
+
+    let menuClick = false;
+    let mobileTopbarMenuClick = false;
 
     useEffect(() => {
         if (layoutConfig.mobileMenuActive) {
@@ -62,6 +65,16 @@ function LayoutProvider({ children }) {
                 mobileMenuActive: false,
             }));
         }
+
+        if (!mobileTopbarMenuClick) {
+            setLayoutConfig((prevState) => ({
+                ...prevState,
+                mobileTopbarMenuActive: false,
+            }));
+        }
+
+        mobileTopbarMenuClick = false;
+        menuClick = false;
     };
 
     const onToggleMenuClick = (event) => {
@@ -101,9 +114,11 @@ function LayoutProvider({ children }) {
     };
 
     const onMobileTopbarMenuClick = (event) => {
+        mobileTopbarMenuClick = true;
+
         setLayoutConfig((prevState) => ({
             ...prevState,
-            mobileTopbarMenuActive: !prevState.mobileTopbarMenuActive,
+            mobileMenuActive: !prevState.mobileMenuActive,
         }));
         event.preventDefault();
     };
