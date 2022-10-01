@@ -15,17 +15,23 @@ import { useEventListener } from "primereact/hooks";
 function Layout({ children }) {
     const { layoutState, layoutConfig, onWrapperClick, onSidebarClick } = useContext(LayoutContext);
     const copyTooltipRef = useRef();
+    const containerRef = useRef();
+    const topbarRef = useRef();
+    const mobileTopbarRef = useRef();
+    const sidebarRef = useRef();
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
     PrimeReact.ripple = true;
-    const containerRef = useRef();
-    const sideBarRef = useRef();
 
     const [bindDocumentClickSidebarListener, unbindDocumentClickSidebarListener] = useEventListener({
-        target: sideBarRef,
+        target: containerRef,
         type: "click",
         listener: (event) => {
-            const isOutsideClicked = !(sideBarRef.current.isSameNode(event.target) || sideBarRef.current.contains(event.target));
-            if (isOutsideClicked) onSidebarClick();
+            const sidebarClicked = sidebarRef.current.isSameNode(event.target) || sidebarRef.current.contains(event.target);
+            const topbarClicked = topbarRef.current.isSameNode(event.target) || topbarRef.current.contains(event.target);
+            const mobileTopbarClicked = mobileTopbarRef.current.isSameNode(event.target) || mobileTopbarRef.current.contains(event.target);
+            const isOutsideClicked = !(sidebarClicked || topbarClicked || mobileTopbarClicked);
+            if (!isOutsideClicked) onSidebarClick();
+            onWrapperClick();
         },
     });
 
@@ -60,9 +66,9 @@ function Layout({ children }) {
                 <div ref={containerRef} className={containerClass}>
                     <Tooltip ref={copyTooltipRef} target=".block-action-copy" position="bottom" content="Copied to clipboard" event="focus" />
 
-                    <AppTopbar />
+                    <AppTopbar topbarRef={topbarRef} mobileTopbarRef={mobileTopbarRef} />
 
-                    <div ref={sideBarRef} className="layout-sidebar">
+                    <div ref={sidebarRef} className="layout-sidebar">
                         <AppMenu />
                     </div>
 

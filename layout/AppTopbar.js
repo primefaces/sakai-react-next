@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { LayoutContext } from "./layoutcontext";
 import getConfig from "next/config";
 
-export default function AppTopbar() {
+export default function AppTopbar(props) {
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
     const { onToggleMenuClick, layoutState, layoutConfig, onMobileTopbarMenuClick, onMobileSubTopbarMenuClick } = useContext(LayoutContext);
     return (
@@ -18,11 +18,11 @@ export default function AppTopbar() {
                 </a>
             </Link>
 
-            <button type="button" className="p-link  layout-menu-button layout-topbar-button" onClick={onToggleMenuClick}>
+            <button ref={props.topbarRef} type="button" className="p-link  layout-menu-button layout-topbar-button" onClick={onToggleMenuClick}>
                 <i className="pi pi-bars" />
             </button>
 
-            <button type="button" className="p-link layout-topbar-menu-button layout-topbar-button" onClick={onMobileTopbarMenuClick}>
+            <button ref={props.mobileTopbarRef} type="button" className="p-link layout-topbar-menu-button layout-topbar-button" onClick={onMobileTopbarMenuClick}>
                 <i className="pi pi-ellipsis-v" />
             </button>
 

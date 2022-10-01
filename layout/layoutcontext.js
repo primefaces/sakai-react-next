@@ -57,7 +57,7 @@ function LayoutProvider({ children }) {
         }));
     };
 
-    const onWrapperClick = (event) => {
+    const onWrapperClick = () => {
         if (!menuClick) {
             setLayoutConfig((prevState) => ({
                 ...prevState,
@@ -118,7 +118,7 @@ function LayoutProvider({ children }) {
 
         setLayoutConfig((prevState) => ({
             ...prevState,
-            mobileMenuActive: !prevState.mobileMenuActive,
+            mobileTopbarMenuActive: !prevState.mobileTopbarMenuActive,
         }));
         event.preventDefault();
     };
