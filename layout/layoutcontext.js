@@ -66,7 +66,7 @@ function LayoutProvider({ children }) {
             }));
         }
 
-        if (!mobileTopbarMenuClick) {
+        if (!mobileTopbarMenuClick && !menuClick) {
             setLayoutConfig((prevState) => ({
                 ...prevState,
                 mobileTopbarMenuActive: false,
