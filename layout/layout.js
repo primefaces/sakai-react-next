@@ -13,7 +13,7 @@ import { LayoutContext } from "./layoutcontext";
 import classNames from "classnames";
 import { useEventListener } from "primereact/hooks";
 function Layout({ children }) {
-    const { layoutState, layoutConfig, onWrapperClick, onSidebarClick } = useContext(LayoutContext);
+    const { layoutState, layoutConfig, hideMenu, hideProfileMenu } = useContext(LayoutContext);
     const copyTooltipRef = useRef();
     const containerRef = useRef();
     const topbarRef = useRef();
@@ -29,9 +29,10 @@ function Layout({ children }) {
             const sidebarClicked = sidebarRef.current.isSameNode(event.target) || sidebarRef.current.contains(event.target);
             const topbarClicked = topbarRef.current.isSameNode(event.target) || topbarRef.current.contains(event.target);
             const mobileTopbarClicked = mobileTopbarRef.current.isSameNode(event.target) || mobileTopbarRef.current.contains(event.target);
-            const isOutsideClicked = !(sidebarClicked || topbarClicked || mobileTopbarClicked);
-            if (!isOutsideClicked) onSidebarClick();
-            onWrapperClick();
+            const isOutsideClicked = !(sidebarClicked || topbarClicked);
+            const isMobileTopbarMenuOutsideClicked = !mobileTopbarClicked;
+            if (isOutsideClicked) hideMenu();
+            if (isMobileTopbarMenuOutsideClicked) hideProfileMenu();
         },
     });
 

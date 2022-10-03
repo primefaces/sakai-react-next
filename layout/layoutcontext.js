@@ -17,9 +17,6 @@ function LayoutProvider({ children }) {
         mobileTopbarMenuActive: false,
     });
 
-    let menuClick = false;
-    let mobileTopbarMenuClick = false;
-
     useEffect(() => {
         if (layoutConfig.mobileMenuActive) {
             addClass(document.body, "body-overflow-hidden");
@@ -57,29 +54,22 @@ function LayoutProvider({ children }) {
         }));
     };
 
-    const onWrapperClick = () => {
-        if (!menuClick) {
-            setLayoutConfig((prevState) => ({
-                ...prevState,
-                overlayMenuActive: false,
-                mobileMenuActive: false,
-            }));
-        }
+    const hideMenu = () => {
+        setLayoutConfig((prevState) => ({
+            ...prevState,
+            overlayMenuActive: false,
+            mobileMenuActive: false,
+        }));
+    };
 
-        if (!mobileTopbarMenuClick) {
-            setLayoutConfig((prevState) => ({
-                ...prevState,
-                mobileTopbarMenuActive: false,
-            }));
-        }
-
-        mobileTopbarMenuClick = false;
-        menuClick = false;
+    const hideProfileMenu = () => {
+        setLayoutConfig((prevState) => ({
+            ...prevState,
+            mobileTopbarMenuActive: false,
+        }));
     };
 
     const onToggleMenuClick = (event) => {
-        menuClick = true;
-
         if (isDesktop()) {
             if (layoutState.layoutMode === "overlay") {
                 if (layoutConfig.mobileMenuActive === true) {
@@ -109,13 +99,7 @@ function LayoutProvider({ children }) {
         event.preventDefault();
     };
 
-    const onSidebarClick = () => {
-        menuClick = true;
-    };
-
     const onMobileTopbarMenuClick = (event) => {
-        mobileTopbarMenuClick = true;
-
         setLayoutConfig((prevState) => ({
             ...prevState,
             mobileTopbarMenuActive: !prevState.mobileTopbarMenuActive,
@@ -124,7 +108,10 @@ function LayoutProvider({ children }) {
     };
 
     const onMobileSubTopbarMenuClick = (event) => {
-        mobileTopbarMenuClick = true;
+        setLayoutConfig((prevState) => ({
+            ...prevState,
+            mobileTopbarMenuActive: true,
+        }));
 
         event.preventDefault();
     };
@@ -157,13 +144,13 @@ function LayoutProvider({ children }) {
         setLayoutConfig,
         layoutState,
         setLayoutState,
+        hideMenu,
+        hideProfileMenu,
         onInputStyleChange,
         onRipple,
         onLayoutModeChange,
         onColorModeChange,
-        onWrapperClick,
         onToggleMenuClick,
-        onSidebarClick,
         onMobileTopbarMenuClick,
         onMobileSubTopbarMenuClick,
         onMenuItemClick,
