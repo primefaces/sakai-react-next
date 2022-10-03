@@ -1,33 +1,33 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
-import { Menu } from "primereact/menu";
-import { Button } from "primereact/button";
-import { Chart } from "primereact/chart";
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
-import { ProductService } from "../demo/service/ProductService";
-import { LayoutContext } from "../layout/layoutcontext";
-import getConfig from "next/config";
+import React, { useState, useEffect, useRef, useContext } from 'react';
+import { Menu } from 'primereact/menu';
+import { Button } from 'primereact/button';
+import { Chart } from 'primereact/chart';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
+import { ProductService } from '../demo/service/ProductService';
+import { LayoutContext } from '../layout/layoutcontext';
+import getConfig from 'next/config';
 
 const lineData = {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
     datasets: [
         {
-            label: "First Dataset",
+            label: 'First Dataset',
             data: [65, 59, 80, 81, 56, 55, 40],
             fill: false,
-            backgroundColor: "#2f4860",
-            borderColor: "#2f4860",
-            tension: 0.4,
+            backgroundColor: '#2f4860',
+            borderColor: '#2f4860',
+            tension: 0.4
         },
         {
-            label: "Second Dataset",
+            label: 'Second Dataset',
             data: [28, 48, 40, 19, 86, 27, 90],
             fill: false,
-            backgroundColor: "#00bb7e",
-            borderColor: "#00bb7e",
-            tension: 0.4,
-        },
-    ],
+            backgroundColor: '#00bb7e',
+            borderColor: '#00bb7e',
+            tension: 0.4
+        }
+    ]
 };
 
 const Dashboard = () => {
@@ -43,28 +43,28 @@ const Dashboard = () => {
             plugins: {
                 legend: {
                     labels: {
-                        color: "#495057",
-                    },
-                },
+                        color: '#495057'
+                    }
+                }
             },
             scales: {
                 x: {
                     ticks: {
-                        color: "#495057",
+                        color: '#495057'
                     },
                     grid: {
-                        color: "#ebedef",
-                    },
+                        color: '#ebedef'
+                    }
                 },
                 y: {
                     ticks: {
-                        color: "#495057",
+                        color: '#495057'
                     },
                     grid: {
-                        color: "#ebedef",
-                    },
-                },
-            },
+                        color: '#ebedef'
+                    }
+                }
+            }
         };
 
         setLineOptions(lineOptions);
@@ -75,28 +75,28 @@ const Dashboard = () => {
             plugins: {
                 legend: {
                     labels: {
-                        color: "#ebedef",
-                    },
-                },
+                        color: '#ebedef'
+                    }
+                }
             },
             scales: {
                 x: {
                     ticks: {
-                        color: "#ebedef",
+                        color: '#ebedef'
                     },
                     grid: {
-                        color: "rgba(160, 167, 181, .3)",
-                    },
+                        color: 'rgba(160, 167, 181, .3)'
+                    }
                 },
                 y: {
                     ticks: {
-                        color: "#ebedef",
+                        color: '#ebedef'
                     },
                     grid: {
-                        color: "rgba(160, 167, 181, .3)",
-                    },
-                },
-            },
+                        color: 'rgba(160, 167, 181, .3)'
+                    }
+                }
+            }
         };
 
         setLineOptions(lineOptions);
@@ -108,7 +108,7 @@ const Dashboard = () => {
     }, []);
 
     useEffect(() => {
-        if (layoutState.layoutColorMode === "light") {
+        if (layoutState.layoutColorMode === 'light') {
             applyLightTheme();
         } else {
             applyDarkTheme();
@@ -116,7 +116,7 @@ const Dashboard = () => {
     }, [layoutState.layoutColorMode]);
 
     const formatCurrency = (value) => {
-        return value.toLocaleString("en-US", { style: "currency", currency: "USD" });
+        return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
     };
 
     return (
@@ -128,7 +128,7 @@ const Dashboard = () => {
                             <span className="block text-500 font-medium mb-3">Orders</span>
                             <div className="text-900 font-medium text-xl">152</div>
                         </div>
-                        <div className="flex align-items-center justify-content-center bg-blue-100 border-round" style={{ width: "2.5rem", height: "2.5rem" }}>
+                        <div className="flex align-items-center justify-content-center bg-blue-100 border-round" style={{ width: '2.5rem', height: '2.5rem' }}>
                             <i className="pi pi-shopping-cart text-blue-500 text-xl" />
                         </div>
                     </div>
@@ -143,7 +143,7 @@ const Dashboard = () => {
                             <span className="block text-500 font-medium mb-3">Revenue</span>
                             <div className="text-900 font-medium text-xl">$2.100</div>
                         </div>
-                        <div className="flex align-items-center justify-content-center bg-orange-100 border-round" style={{ width: "2.5rem", height: "2.5rem" }}>
+                        <div className="flex align-items-center justify-content-center bg-orange-100 border-round" style={{ width: '2.5rem', height: '2.5rem' }}>
                             <i className="pi pi-map-marker text-orange-500 text-xl" />
                         </div>
                     </div>
@@ -158,7 +158,7 @@ const Dashboard = () => {
                             <span className="block text-500 font-medium mb-3">Customers</span>
                             <div className="text-900 font-medium text-xl">28441</div>
                         </div>
-                        <div className="flex align-items-center justify-content-center bg-cyan-100 border-round" style={{ width: "2.5rem", height: "2.5rem" }}>
+                        <div className="flex align-items-center justify-content-center bg-cyan-100 border-round" style={{ width: '2.5rem', height: '2.5rem' }}>
                             <i className="pi pi-inbox text-cyan-500 text-xl" />
                         </div>
                     </div>
@@ -173,7 +173,7 @@ const Dashboard = () => {
                             <span className="block text-500 font-medium mb-3">Comments</span>
                             <div className="text-900 font-medium text-xl">152 Unread</div>
                         </div>
-                        <div className="flex align-items-center justify-content-center bg-purple-100 border-round" style={{ width: "2.5rem", height: "2.5rem" }}>
+                        <div className="flex align-items-center justify-content-center bg-purple-100 border-round" style={{ width: '2.5rem', height: '2.5rem' }}>
                             <i className="pi pi-comment text-purple-500 text-xl" />
                         </div>
                     </div>
@@ -187,11 +187,11 @@ const Dashboard = () => {
                     <h5>Recent Sales</h5>
                     <DataTable value={products} rows={5} paginator responsiveLayout="scroll">
                         <Column header="Image" body={(data) => <img className="shadow-2" src={`${contextPath}/demo/images/product/${data.image}`} alt={data.image} width="50" />} />
-                        <Column field="name" header="Name" sortable style={{ width: "35%" }} />
-                        <Column field="price" header="Price" sortable style={{ width: "35%" }} body={(data) => formatCurrency(data.price)} />
+                        <Column field="name" header="Name" sortable style={{ width: '35%' }} />
+                        <Column field="price" header="Price" sortable style={{ width: '35%' }} body={(data) => formatCurrency(data.price)} />
                         <Column
                             header="View"
-                            style={{ width: "15%" }}
+                            style={{ width: '15%' }}
                             body={() => (
                                 <>
                                     <Button icon="pi pi-search" type="button" className="p-button-text" />
@@ -209,8 +209,8 @@ const Dashboard = () => {
                                 ref={menu1}
                                 popup
                                 model={[
-                                    { label: "Add New", icon: "pi pi-fw pi-plus" },
-                                    { label: "Remove", icon: "pi pi-fw pi-minus" },
+                                    { label: 'Add New', icon: 'pi pi-fw pi-plus' },
+                                    { label: 'Remove', icon: 'pi pi-fw pi-minus' }
                                 ]}
                             />
                         </div>
@@ -222,8 +222,8 @@ const Dashboard = () => {
                                 <div className="mt-1 text-600">Clothing</div>
                             </div>
                             <div className="mt-2 md:mt-0 flex align-items-center">
-                                <div className="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" style={{ height: "8px" }}>
-                                    <div className="bg-orange-500 h-full" style={{ width: "50%" }} />
+                                <div className="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" style={{ height: '8px' }}>
+                                    <div className="bg-orange-500 h-full" style={{ width: '50%' }} />
                                 </div>
                                 <span className="text-orange-500 ml-3 font-medium">%50</span>
                             </div>
@@ -234,8 +234,8 @@ const Dashboard = () => {
                                 <div className="mt-1 text-600">Accessories</div>
                             </div>
                             <div className="mt-2 md:mt-0 ml-0 md:ml-8 flex align-items-center">
-                                <div className="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" style={{ height: "8px" }}>
-                                    <div className="bg-cyan-500 h-full" style={{ width: "16%" }} />
+                                <div className="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" style={{ height: '8px' }}>
+                                    <div className="bg-cyan-500 h-full" style={{ width: '16%' }} />
                                 </div>
                                 <span className="text-cyan-500 ml-3 font-medium">%16</span>
                             </div>
@@ -246,8 +246,8 @@ const Dashboard = () => {
                                 <div className="mt-1 text-600">Accessories</div>
                             </div>
                             <div className="mt-2 md:mt-0 ml-0 md:ml-8 flex align-items-center">
-                                <div className="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" style={{ height: "8px" }}>
-                                    <div className="bg-pink-500 h-full" style={{ width: "67%" }} />
+                                <div className="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" style={{ height: '8px' }}>
+                                    <div className="bg-pink-500 h-full" style={{ width: '67%' }} />
                                 </div>
                                 <span className="text-pink-500 ml-3 font-medium">%67</span>
                             </div>
@@ -258,8 +258,8 @@ const Dashboard = () => {
                                 <div className="mt-1 text-600">Office</div>
                             </div>
                             <div className="mt-2 md:mt-0 ml-0 md:ml-8 flex align-items-center">
-                                <div className="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" style={{ height: "8px" }}>
-                                    <div className="bg-green-500 h-full" style={{ width: "35%" }} />
+                                <div className="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" style={{ height: '8px' }}>
+                                    <div className="bg-green-500 h-full" style={{ width: '35%' }} />
                                 </div>
                                 <span className="text-green-500 ml-3 font-medium">%35</span>
                             </div>
@@ -270,8 +270,8 @@ const Dashboard = () => {
                                 <div className="mt-1 text-600">Accessories</div>
                             </div>
                             <div className="mt-2 md:mt-0 ml-0 md:ml-8 flex align-items-center">
-                                <div className="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" style={{ height: "8px" }}>
-                                    <div className="bg-purple-500 h-full" style={{ width: "75%" }} />
+                                <div className="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" style={{ height: '8px' }}>
+                                    <div className="bg-purple-500 h-full" style={{ width: '75%' }} />
                                 </div>
                                 <span className="text-purple-500 ml-3 font-medium">%75</span>
                             </div>
@@ -282,8 +282,8 @@ const Dashboard = () => {
                                 <div className="mt-1 text-600">Clothing</div>
                             </div>
                             <div className="mt-2 md:mt-0 ml-0 md:ml-8 flex align-items-center">
-                                <div className="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" style={{ height: "8px" }}>
-                                    <div className="bg-teal-500 h-full" style={{ width: "40%" }} />
+                                <div className="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" style={{ height: '8px' }}>
+                                    <div className="bg-teal-500 h-full" style={{ width: '40%' }} />
                                 </div>
                                 <span className="text-teal-500 ml-3 font-medium">%40</span>
                             </div>
@@ -307,8 +307,8 @@ const Dashboard = () => {
                                 ref={menu2}
                                 popup
                                 model={[
-                                    { label: "Add New", icon: "pi pi-fw pi-plus" },
-                                    { label: "Remove", icon: "pi pi-fw pi-minus" },
+                                    { label: 'Add New', icon: 'pi pi-fw pi-plus' },
+                                    { label: 'Remove', icon: 'pi pi-fw pi-minus' }
                                 ]}
                             />
                         </div>
@@ -323,7 +323,7 @@ const Dashboard = () => {
                             <span className="text-900 line-height-3">
                                 Richard Jones
                                 <span className="text-700">
-                                    {" "}
+                                    {' '}
                                     has purchased a blue t-shirt for <span className="text-blue-500">79$</span>
                                 </span>
                             </span>
@@ -347,7 +347,7 @@ const Dashboard = () => {
                             <span className="text-900 line-height-3">
                                 Keyser Wick
                                 <span className="text-700">
-                                    {" "}
+                                    {' '}
                                     has purchased a black jacket for <span className="text-blue-500">59$</span>
                                 </span>
                             </span>
@@ -365,7 +365,7 @@ const Dashboard = () => {
                 </div>
                 <div
                     className="px-4 py-5 shadow-2 flex flex-column md:flex-row md:align-items-center justify-content-between mb-3"
-                    style={{ borderRadius: "1rem", background: "linear-gradient(0deg, rgba(0, 123, 255, 0.5), rgba(0, 123, 255, 0.5)), linear-gradient(92.54deg, #1C80CF 47.88%, #FFFFFF 100.01%)" }}
+                    style={{ borderRadius: '1rem', background: 'linear-gradient(0deg, rgba(0, 123, 255, 0.5), rgba(0, 123, 255, 0.5)), linear-gradient(92.54deg, #1C80CF 47.88%, #FFFFFF 100.01%)' }}
                 >
                     <div>
                         <div className="text-blue-100 font-medium text-xl mt-2 mb-3">TAKE THE NEXT STEP</div>

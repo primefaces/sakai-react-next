@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { Button } from "primereact/button";
-import { Chip } from "primereact/chip";
-import { InputText } from "primereact/inputtext";
-import { Checkbox } from "primereact/checkbox";
-import BlockViewer from "../../demo/components/BlockViewer";
-import getConfig from "next/config";
+import React, { useState } from 'react';
+import { Button } from 'primereact/button';
+import { Chip } from 'primereact/chip';
+import { InputText } from 'primereact/inputtext';
+import { Checkbox } from 'primereact/checkbox';
+import BlockViewer from '../../demo/components/BlockViewer';
+import getConfig from 'next/config';
 
 const BlocksDemo = () => {
     const [checked, setChecked] = useState(false);
@@ -434,7 +434,7 @@ const BlocksDemo = () => {
                         </section>
                     </div>
                     <div className="col-12 md:col-6 overflow-hidden">
-                        <img src={`${contextPath}/demo/images/blocks/hero/hero-1.png`} alt="hero-1" className="md:ml-auto block md:h-full" style={{ clipPath: "polygon(8% 0, 100% 0%, 100% 100%, 0 100%)" }} />
+                        <img src={`${contextPath}/demo/images/blocks/hero/hero-1.png`} alt="hero-1" className="md:ml-auto block md:h-full" style={{ clipPath: 'polygon(8% 0, 100% 0%, 100% 100%, 0 100%)' }} />
                     </div>
                 </div>
             </BlockViewer>
@@ -448,42 +448,42 @@ const BlocksDemo = () => {
                     <div className="text-700 text-sm mb-6">Ac turpis egestas maecenas pharetra convallis posuere morbi leo urna.</div>
                     <div className="grid">
                         <div className="col-12 md:col-4 mb-4 px-5">
-                            <span className="p-3 shadow-2 mb-3 inline-block surface-card" style={{ borderRadius: "10px" }}>
+                            <span className="p-3 shadow-2 mb-3 inline-block surface-card" style={{ borderRadius: '10px' }}>
                                 <i className="pi pi-desktop text-4xl text-blue-500"></i>
                             </span>
                             <div className="text-900 mb-3 font-medium">Built for Developers</div>
                             <span className="text-700 text-sm line-height-3">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
                         </div>
                         <div className="col-12 md:col-4 mb-4 px-5">
-                            <span className="p-3 shadow-2 mb-3 inline-block surface-card" style={{ borderRadius: "10px" }}>
+                            <span className="p-3 shadow-2 mb-3 inline-block surface-card" style={{ borderRadius: '10px' }}>
                                 <i className="pi pi-lock text-4xl text-blue-500"></i>
                             </span>
                             <div className="text-900 mb-3 font-medium">End-to-End Encryption</div>
                             <span className="text-700 text-sm line-height-3">Risus nec feugiat in fermentum posuere urna nec. Posuere sollicitudin aliquam ultrices sagittis.</span>
                         </div>
                         <div className="col-12 md:col-4 mb-4 px-5">
-                            <span className="p-3 shadow-2 mb-3 inline-block surface-card" style={{ borderRadius: "10px" }}>
+                            <span className="p-3 shadow-2 mb-3 inline-block surface-card" style={{ borderRadius: '10px' }}>
                                 <i className="pi pi-check-circle text-4xl text-blue-500"></i>
                             </span>
                             <div className="text-900 mb-3 font-medium">Easy to Use</div>
                             <span className="text-700 text-sm line-height-3">Ornare suspendisse sed nisi lacus sed viverra tellus. Neque volutpat ac tincidunt vitae semper.</span>
                         </div>
                         <div className="col-12 md:col-4 mb-4 px-5">
-                            <span className="p-3 shadow-2 mb-3 inline-block surface-card" style={{ borderRadius: "10px" }}>
+                            <span className="p-3 shadow-2 mb-3 inline-block surface-card" style={{ borderRadius: '10px' }}>
                                 <i className="pi pi-globe text-4xl text-blue-500"></i>
                             </span>
                             <div className="text-900 mb-3 font-medium">Fast & Global Support</div>
                             <span className="text-700 text-sm line-height-3">Fermentum et sollicitudin ac orci phasellus egestas tellus rutrum tellus.</span>
                         </div>
                         <div className="col-12 md:col-4 mb-4 px-5">
-                            <span className="p-3 shadow-2 mb-3 inline-block surface-card" style={{ borderRadius: "10px" }}>
+                            <span className="p-3 shadow-2 mb-3 inline-block surface-card" style={{ borderRadius: '10px' }}>
                                 <i className="pi pi-github text-4xl text-blue-500"></i>
                             </span>
                             <div className="text-900 mb-3 font-medium">Open Source</div>
                             <span className="text-700 text-sm line-height-3">Nec tincidunt praesent semper feugiat. Sed adipiscing diam donec adipiscing tristique risus nec feugiat. </span>
                         </div>
                         <div className="col-12 md:col-4 md:mb-4 mb-0 px-3">
-                            <span className="p-3 shadow-2 mb-3 inline-block surface-card" style={{ borderRadius: "10px" }}>
+                            <span className="p-3 shadow-2 mb-3 inline-block surface-card" style={{ borderRadius: '10px' }}>
                                 <i className="pi pi-shield text-4xl text-blue-500"></i>
                             </span>
                             <div className="text-900 mb-3 font-medium">Trusted Securitty</div>
@@ -501,7 +501,7 @@ const BlocksDemo = () => {
                     <div className="grid">
                         <div className="col-12 lg:col-4">
                             <div className="p-3 h-full">
-                                <div className="shadow-2 p-3 h-full flex flex-column surface-card" style={{ borderRadius: "6px" }}>
+                                <div className="shadow-2 p-3 h-full flex flex-column surface-card" style={{ borderRadius: '6px' }}>
                                     <div className="text-900 font-medium text-xl mb-2">Basic</div>
                                     <div className="text-600">Plan description</div>
                                     <hr className="my-3 mx-0 border-top-1 border-none surface-border" />
@@ -532,7 +532,7 @@ const BlocksDemo = () => {
 
                         <div className="col-12 lg:col-4">
                             <div className="p-3 h-full">
-                                <div className="shadow-2 p-3 h-full flex flex-column surface-card" style={{ borderRadius: "6px" }}>
+                                <div className="shadow-2 p-3 h-full flex flex-column surface-card" style={{ borderRadius: '6px' }}>
                                     <div className="text-900 font-medium text-xl mb-2">Premium</div>
                                     <div className="text-600">Plan description</div>
                                     <hr className="my-3 mx-0 border-top-1 border-none surface-border" />
@@ -567,7 +567,7 @@ const BlocksDemo = () => {
 
                         <div className="col-12 lg:col-4">
                             <div className="p-3 h-full">
-                                <div className="shadow-2 p-3 flex flex-column surface-card" style={{ borderRadius: "6px" }}>
+                                <div className="shadow-2 p-3 flex flex-column surface-card" style={{ borderRadius: '6px' }}>
                                     <div className="text-900 font-medium text-xl mb-2">Enterprise</div>
                                     <div className="text-600">Plan description</div>
                                     <hr className="my-3 mx-0 border-top-1 border-none surface-border" />
@@ -629,7 +629,7 @@ const BlocksDemo = () => {
                     <div className="font-bold mr-8">
                         <span role="img" aria-label="fire">
                             🔥
-                        </span>{" "}
+                        </span>{' '}
                         Hot Deals!
                     </div>
                     <div className="align-items-center hidden lg:flex">
@@ -638,7 +638,10 @@ const BlocksDemo = () => {
                     <button className="p-link flex align-items-center ml-2 mr-8">
                         <span className="underline font-bold">Learn More</span>
                     </button>
-                    <button className="p-ripple p-link flex align-items-center no-underline justify-content-center border-circle text-gray-50 hover:bg-bluegray-700 cursor-pointer transition-colors transition-duration-150 p-ripple" style={{ width: "2rem", height: "2rem" }}>
+                    <button
+                        className="p-ripple p-link flex align-items-center no-underline justify-content-center border-circle text-gray-50 hover:bg-bluegray-700 cursor-pointer transition-colors transition-duration-150 p-ripple"
+                        style={{ width: '2rem', height: '2rem' }}
+                    >
                         <i className="pi pi-times"></i>
                     </button>
                 </div>
@@ -693,7 +696,7 @@ const BlocksDemo = () => {
                                         <span className="block text-500 font-medium mb-3">Orders</span>
                                         <div className="text-900 font-medium text-xl">152</div>
                                     </div>
-                                    <div className="flex align-items-center justify-content-center bg-blue-100 border-round" style={{ width: "2.5rem", height: "2.5rem" }}>
+                                    <div className="flex align-items-center justify-content-center bg-blue-100 border-round" style={{ width: '2.5rem', height: '2.5rem' }}>
                                         <i className="pi pi-shopping-cart text-blue-500 text-xl"></i>
                                     </div>
                                 </div>
@@ -708,7 +711,7 @@ const BlocksDemo = () => {
                                         <span className="block text-500 font-medium mb-3">Revenue</span>
                                         <div className="text-900 font-medium text-xl">$2.100</div>
                                     </div>
-                                    <div className="flex align-items-center justify-content-center bg-orange-100 border-round" style={{ width: "2.5rem", height: "2.5rem" }}>
+                                    <div className="flex align-items-center justify-content-center bg-orange-100 border-round" style={{ width: '2.5rem', height: '2.5rem' }}>
                                         <i className="pi pi-map-marker text-orange-500 text-xl"></i>
                                     </div>
                                 </div>
@@ -723,7 +726,7 @@ const BlocksDemo = () => {
                                         <span className="block text-500 font-medium mb-3">Customers</span>
                                         <div className="text-900 font-medium text-xl">28441</div>
                                     </div>
-                                    <div className="flex align-items-center justify-content-center bg-cyan-100 border-round" style={{ width: "2.5rem", height: "2.5rem" }}>
+                                    <div className="flex align-items-center justify-content-center bg-cyan-100 border-round" style={{ width: '2.5rem', height: '2.5rem' }}>
                                         <i className="pi pi-inbox text-cyan-500 text-xl"></i>
                                     </div>
                                 </div>
@@ -738,7 +741,7 @@ const BlocksDemo = () => {
                                         <span className="block text-500 font-medium mb-3">Comments</span>
                                         <div className="text-900 font-medium text-xl">152 Unread</div>
                                     </div>
-                                    <div className="flex align-items-center justify-content-center bg-purple-100 border-round" style={{ width: "2.5rem", height: "2.5rem" }}>
+                                    <div className="flex align-items-center justify-content-center bg-purple-100 border-round" style={{ width: '2.5rem', height: '2.5rem' }}>
                                         <i className="pi pi-comment text-purple-500 text-xl"></i>
                                     </div>
                                 </div>
@@ -835,7 +838,7 @@ const BlocksDemo = () => {
                 <div className="surface-card p-4 shadow-2 border-round">
                     <div className="text-3xl font-medium text-900 mb-3">Card Title</div>
                     <div className="font-medium text-500 mb-3">Vivamus id nisl interdum, blandit augue sit amet, eleifend mi.</div>
-                    <div style={{ height: "150px" }} className="border-2 border-dashed surface-border"></div>
+                    <div style={{ height: '150px' }} className="border-2 border-dashed surface-border"></div>
                 </div>
             </BlockViewer>
         </>

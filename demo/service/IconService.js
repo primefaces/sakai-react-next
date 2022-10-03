@@ -1,4 +1,4 @@
-import getConfig from "next/config";
+import getConfig from 'next/config';
 
 export class IconService {
     constructor() {
@@ -8,7 +8,7 @@ export class IconService {
     }
 
     getIcons() {
-        return fetch(this.contextPath + "/demo/data/icons.json", { headers: { "Cache-Control": "no-cache" } })
+        return fetch(this.contextPath + '/demo/data/icons.json', { headers: { 'Cache-Control': 'no-cache' } })
             .then((res) => res.json())
             .then((d) => d.icons);
     }

@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { classNames } from "primereact/utils";
-import { FilterMatchMode, FilterOperator } from "primereact/api";
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
-import { Dropdown } from "primereact/dropdown";
-import { InputNumber } from "primereact/inputnumber";
-import { Button } from "primereact/button";
-import { ProgressBar } from "primereact/progressbar";
-import { Calendar } from "primereact/calendar";
-import { MultiSelect } from "primereact/multiselect";
-import { Slider } from "primereact/slider";
-import { TriStateCheckbox } from "primereact/tristatecheckbox";
-import { ToggleButton } from "primereact/togglebutton";
-import { Rating } from "primereact/rating";
-import { CustomerService } from "../../demo/service/CustomerService";
-import { ProductService } from "../../demo/service/ProductService";
-import getConfig from "next/config";
+import React, { useState, useEffect } from 'react';
+import { classNames } from 'primereact/utils';
+import { FilterMatchMode, FilterOperator } from 'primereact/api';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
+import { Dropdown } from 'primereact/dropdown';
+import { InputNumber } from 'primereact/inputnumber';
+import { Button } from 'primereact/button';
+import { ProgressBar } from 'primereact/progressbar';
+import { Calendar } from 'primereact/calendar';
+import { MultiSelect } from 'primereact/multiselect';
+import { Slider } from 'primereact/slider';
+import { TriStateCheckbox } from 'primereact/tristatecheckbox';
+import { ToggleButton } from 'primereact/togglebutton';
+import { Rating } from 'primereact/rating';
+import { CustomerService } from '../../demo/service/CustomerService';
+import { ProductService } from '../../demo/service/ProductService';
+import getConfig from 'next/config';
 
 const TableDemo = () => {
     const [customers1, setCustomers1] = useState(null);
@@ -30,19 +30,19 @@ const TableDemo = () => {
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
 
     const representatives = [
-        { name: "Amy Elsner", image: "amyelsner.png" },
-        { name: "Anna Fali", image: "annafali.png" },
-        { name: "Asiya Javayant", image: "asiyajavayant.png" },
-        { name: "Bernardo Dominic", image: "bernardodominic.png" },
-        { name: "Elwin Sharvill", image: "elwinsharvill.png" },
-        { name: "Ioni Bowcher", image: "ionibowcher.png" },
-        { name: "Ivan Magalhaes", image: "ivanmagalhaes.png" },
-        { name: "Onyama Limba", image: "onyamalimba.png" },
-        { name: "Stephen Shaw", image: "stephenshaw.png" },
-        { name: "XuXue Feng", image: "xuxuefeng.png" },
+        { name: 'Amy Elsner', image: 'amyelsner.png' },
+        { name: 'Anna Fali', image: 'annafali.png' },
+        { name: 'Asiya Javayant', image: 'asiyajavayant.png' },
+        { name: 'Bernardo Dominic', image: 'bernardodominic.png' },
+        { name: 'Elwin Sharvill', image: 'elwinsharvill.png' },
+        { name: 'Ioni Bowcher', image: 'ionibowcher.png' },
+        { name: 'Ivan Magalhaes', image: 'ivanmagalhaes.png' },
+        { name: 'Onyama Limba', image: 'onyamalimba.png' },
+        { name: 'Stephen Shaw', image: 'stephenshaw.png' },
+        { name: 'XuXue Feng', image: 'xuxuefeng.png' }
     ];
 
-    const statuses = ["unqualified", "qualified", "new", "negotiation", "renewal", "proposal"];
+    const statuses = ['unqualified', 'qualified', 'new', 'negotiation', 'renewal', 'proposal'];
 
     const customerService = new CustomerService();
     const productService = new ProductService();
@@ -80,28 +80,28 @@ const TableDemo = () => {
     };
 
     const formatDate = (value) => {
-        return value.toLocaleDateString("en-US", {
-            day: "2-digit",
-            month: "2-digit",
-            year: "numeric",
+        return value.toLocaleDateString('en-US', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
         });
     };
 
     const formatCurrency = (value) => {
-        return value.toLocaleString("en-US", { style: "currency", currency: "USD" });
+        return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
     };
 
     const initFilters1 = () => {
         setFilters1({
             global: { value: null, matchMode: FilterMatchMode.CONTAINS },
             name: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
-            "country.name": { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+            'country.name': { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
             representative: { value: null, matchMode: FilterMatchMode.IN },
             date: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.DATE_IS }] },
             balance: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
             status: { operator: FilterOperator.OR, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
             activity: { value: null, matchMode: FilterMatchMode.BETWEEN },
-            verified: { value: null, matchMode: FilterMatchMode.EQUALS },
+            verified: { value: null, matchMode: FilterMatchMode.EQUALS }
         });
     };
 
@@ -109,7 +109,7 @@ const TableDemo = () => {
         return (
             <React.Fragment>
                 <img alt="flag" src={`${contextPath}/demo/images/flags/flag_placeholder.png`} className={`flag flag-${rowData.country.code}`} width={30} />
-                <span style={{ marginLeft: ".5em", verticalAlign: "middle" }} className="image-text">
+                <span style={{ marginLeft: '.5em', verticalAlign: 'middle' }} className="image-text">
                     {rowData.country.name}
                 </span>
             </React.Fragment>
@@ -128,8 +128,14 @@ const TableDemo = () => {
         const representative = rowData.representative;
         return (
             <React.Fragment>
-                <img alt={representative.name} src={`${contextPath}/demo/images/avatar/${representative.image}`} onError={(e) => (e.target.src = "https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png")} width={32} style={{ verticalAlign: "middle" }} />
-                <span style={{ marginLeft: ".5em", verticalAlign: "middle" }} className="image-text">
+                <img
+                    alt={representative.name}
+                    src={`${contextPath}/demo/images/avatar/${representative.image}`}
+                    onError={(e) => (e.target.src = 'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png')}
+                    width={32}
+                    style={{ verticalAlign: 'middle' }}
+                />
+                <span style={{ marginLeft: '.5em', verticalAlign: 'middle' }} className="image-text">
                     {representative.name}
                 </span>
             </React.Fragment>
@@ -148,8 +154,8 @@ const TableDemo = () => {
     const representativesItemTemplate = (option) => {
         return (
             <div className="p-multiselect-representative-option">
-                <img alt={option.name} src={`${contextPath}/demo/images/avatar/${option.image}`} width={32} style={{ verticalAlign: "middle" }} />
-                <span style={{ marginLeft: ".5em", verticalAlign: "middle" }} className="image-text">
+                <img alt={option.name} src={`${contextPath}/demo/images/avatar/${option.image}`} width={32} style={{ verticalAlign: 'middle' }} />
+                <span style={{ marginLeft: '.5em', verticalAlign: 'middle' }} className="image-text">
                     {option.name}
                 </span>
             </div>
@@ -185,7 +191,7 @@ const TableDemo = () => {
     };
 
     const activityBodyTemplate = (rowData) => {
-        return <ProgressBar value={rowData.activity} showValue={false} style={{ height: ".5rem" }}></ProgressBar>;
+        return <ProgressBar value={rowData.activity} showValue={false} style={{ height: '.5rem' }}></ProgressBar>;
     };
 
     const activityFilterTemplate = (options) => {
@@ -201,7 +207,7 @@ const TableDemo = () => {
     };
 
     const verifiedBodyTemplate = (rowData) => {
-        return <i className={classNames("pi", { "text-green-500 pi-check-circle": rowData.verified, "text-pink-500 pi-times-circle": !rowData.verified })}></i>;
+        return <i className={classNames('pi', { 'text-green-500 pi-check-circle': rowData.verified, 'text-pink-500 pi-times-circle': !rowData.verified })}></i>;
     };
 
     const verifiedFilterTemplate = (options) => {
@@ -232,7 +238,7 @@ const TableDemo = () => {
     };
 
     const imageBodyTemplate = (rowData) => {
-        return <img src={`${contextPath}/demo/images/product/${rowData.image}`} onError={(e) => (e.target.src = "https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png")} alt={rowData.image} className="shadow-2" width={100} />;
+        return <img src={`${contextPath}/demo/images/product/${rowData.image}`} onError={(e) => (e.target.src = 'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png')} alt={rowData.image} className="shadow-2" width={100} />;
     };
 
     const priceBodyTemplate = (rowData) => {
@@ -257,7 +263,7 @@ const TableDemo = () => {
                     <Column field="date" header="Date" sortable></Column>
                     <Column field="amount" header="Amount" body={amountBodyTemplate} sortable></Column>
                     <Column field="status" header="Status" body={statusOrderBodyTemplate} sortable></Column>
-                    <Column headerStyle={{ width: "4rem" }} body={searchBodyTemplate}></Column>
+                    <Column headerStyle={{ width: '4rem' }} body={searchBodyTemplate}></Column>
                 </DataTable>
             </div>
         );
@@ -273,7 +279,7 @@ const TableDemo = () => {
     const headerTemplate = (data) => {
         return (
             <React.Fragment>
-                <img alt={data.representative.name} src={`demo/images/avatar/${data.representative.image}`} width="32" style={{ verticalAlign: "middle" }} />
+                <img alt={data.representative.name} src={`demo/images/avatar/${data.representative.image}`} width="32" style={{ verticalAlign: 'middle' }} />
                 <span className="image-text font-bold">{data.representative.name}</span>
             </React.Fragment>
         );
@@ -282,7 +288,7 @@ const TableDemo = () => {
     const footerTemplate = (data) => {
         return (
             <React.Fragment>
-                <td colSpan="4" style={{ textAlign: "right" }} className="text-bold pr-6">
+                <td colSpan="4" style={{ textAlign: 'right' }} className="text-bold pr-6">
                     Total Customers
                 </td>
                 <td>{calculateCustomerTotal(data.representative.name)}</td>
@@ -309,15 +315,36 @@ const TableDemo = () => {
             <div className="col-12">
                 <div className="card">
                     <h5>Filter Menu</h5>
-                    <DataTable value={customers1} paginator className="p-datatable-gridlines" showGridlines rows={10} dataKey="id" filters={filters1} filterDisplay="menu" loading={loading1} responsiveLayout="scroll" emptyMessage="No customers found.">
-                        <Column field="name" header="Name" filter filterPlaceholder="Search by name" style={{ minWidth: "12rem" }} />
-                        <Column header="Country" filterField="country.name" style={{ minWidth: "12rem" }} body={countryBodyTemplate} filter filterPlaceholder="Search by country" filterClear={filterClearTemplate} filterApply={filterApplyTemplate} />
-                        <Column header="Agent" filterField="representative" showFilterMatchModes={false} filterMenuStyle={{ width: "14rem" }} style={{ minWidth: "14rem" }} body={representativeBodyTemplate} filter filterElement={representativeFilterTemplate} />
-                        <Column header="Date" filterField="date" dataType="date" style={{ minWidth: "10rem" }} body={dateBodyTemplate} filter filterElement={dateFilterTemplate} />
-                        <Column header="Balance" filterField="balance" dataType="numeric" style={{ minWidth: "10rem" }} body={balanceBodyTemplate} filter filterElement={balanceFilterTemplate} />
-                        <Column field="status" header="Status" filterMenuStyle={{ width: "14rem" }} style={{ minWidth: "12rem" }} body={statusBodyTemplate} filter filterElement={statusFilterTemplate} />
-                        <Column field="activity" header="Activity" showFilterMatchModes={false} style={{ minWidth: "12rem" }} body={activityBodyTemplate} filter filterElement={activityFilterTemplate} />
-                        <Column field="verified" header="Verified" dataType="boolean" bodyClassName="text-center" style={{ minWidth: "8rem" }} body={verifiedBodyTemplate} filter filterElement={verifiedFilterTemplate} />
+                    <DataTable
+                        value={customers1}
+                        paginator
+                        className="p-datatable-gridlines"
+                        showGridlines
+                        rows={10}
+                        dataKey="id"
+                        filters={filters1}
+                        filterDisplay="menu"
+                        loading={loading1}
+                        responsiveLayout="scroll"
+                        emptyMessage="No customers found."
+                    >
+                        <Column field="name" header="Name" filter filterPlaceholder="Search by name" style={{ minWidth: '12rem' }} />
+                        <Column header="Country" filterField="country.name" style={{ minWidth: '12rem' }} body={countryBodyTemplate} filter filterPlaceholder="Search by country" filterClear={filterClearTemplate} filterApply={filterApplyTemplate} />
+                        <Column
+                            header="Agent"
+                            filterField="representative"
+                            showFilterMatchModes={false}
+                            filterMenuStyle={{ width: '14rem' }}
+                            style={{ minWidth: '14rem' }}
+                            body={representativeBodyTemplate}
+                            filter
+                            filterElement={representativeFilterTemplate}
+                        />
+                        <Column header="Date" filterField="date" dataType="date" style={{ minWidth: '10rem' }} body={dateBodyTemplate} filter filterElement={dateFilterTemplate} />
+                        <Column header="Balance" filterField="balance" dataType="numeric" style={{ minWidth: '10rem' }} body={balanceBodyTemplate} filter filterElement={balanceFilterTemplate} />
+                        <Column field="status" header="Status" filterMenuStyle={{ width: '14rem' }} style={{ minWidth: '12rem' }} body={statusBodyTemplate} filter filterElement={statusFilterTemplate} />
+                        <Column field="activity" header="Activity" showFilterMatchModes={false} style={{ minWidth: '12rem' }} body={activityBodyTemplate} filter filterElement={activityFilterTemplate} />
+                        <Column field="verified" header="Verified" dataType="boolean" bodyClassName="text-center" style={{ minWidth: '8rem' }} body={verifiedBodyTemplate} filter filterElement={verifiedFilterTemplate} />
                     </DataTable>
                 </div>
             </div>
@@ -325,19 +352,19 @@ const TableDemo = () => {
             <div className="col-12">
                 <div className="card">
                     <h5>Frozen Columns</h5>
-                    <ToggleButton checked={idFrozen} onChange={(e) => setIdFrozen(e.value)} onIcon="pi pi-lock" offIcon="pi pi-lock-open" onLabel="Unfreeze Id" offLabel="Freeze Id" style={{ width: "10rem" }} />
+                    <ToggleButton checked={idFrozen} onChange={(e) => setIdFrozen(e.value)} onIcon="pi pi-lock" offIcon="pi pi-lock-open" onLabel="Unfreeze Id" offLabel="Freeze Id" style={{ width: '10rem' }} />
 
                     <DataTable value={customers2} scrollable scrollHeight="400px" loading={loading2} scrollDirection="both" className="mt-3">
-                        <Column field="name" header="Name" style={{ flexGrow: 1, flexBasis: "160px" }} frozen></Column>
-                        <Column field="id" header="Id" style={{ flexGrow: 1, flexBasis: "100px" }} frozen={idFrozen} alignFrozen="left"></Column>
-                        <Column field="name" header="Name" style={{ flexGrow: 1, flexBasis: "200px" }}></Column>
-                        <Column field="country.name" header="Country" style={{ flexGrow: 1, flexBasis: "200px" }} body={countryBodyTemplate}></Column>
-                        <Column field="date" header="Date" style={{ flexGrow: 1, flexBasis: "200px" }} body={dateBodyTemplate}></Column>
-                        <Column field="company" header="Company" style={{ flexGrow: 1, flexBasis: "200px" }}></Column>
-                        <Column field="status" header="Status" style={{ flexGrow: 1, flexBasis: "200px" }} body={statusBodyTemplate}></Column>
-                        <Column field="activity" header="Activity" style={{ flexGrow: 1, flexBasis: "200px" }}></Column>
-                        <Column field="representative.name" header="Representative" style={{ flexGrow: 1, flexBasis: "200px" }} body={representativeBodyTemplate}></Column>
-                        <Column field="balance" header="Balance" body={balanceTemplate} frozen style={{ flexGrow: 1, flexBasis: "120px" }} alignFrozen="right"></Column>
+                        <Column field="name" header="Name" style={{ flexGrow: 1, flexBasis: '160px' }} frozen></Column>
+                        <Column field="id" header="Id" style={{ flexGrow: 1, flexBasis: '100px' }} frozen={idFrozen} alignFrozen="left"></Column>
+                        <Column field="name" header="Name" style={{ flexGrow: 1, flexBasis: '200px' }}></Column>
+                        <Column field="country.name" header="Country" style={{ flexGrow: 1, flexBasis: '200px' }} body={countryBodyTemplate}></Column>
+                        <Column field="date" header="Date" style={{ flexGrow: 1, flexBasis: '200px' }} body={dateBodyTemplate}></Column>
+                        <Column field="company" header="Company" style={{ flexGrow: 1, flexBasis: '200px' }}></Column>
+                        <Column field="status" header="Status" style={{ flexGrow: 1, flexBasis: '200px' }} body={statusBodyTemplate}></Column>
+                        <Column field="activity" header="Activity" style={{ flexGrow: 1, flexBasis: '200px' }}></Column>
+                        <Column field="representative.name" header="Representative" style={{ flexGrow: 1, flexBasis: '200px' }} body={representativeBodyTemplate}></Column>
+                        <Column field="balance" header="Balance" body={balanceTemplate} frozen style={{ flexGrow: 1, flexBasis: '120px' }} alignFrozen="right"></Column>
                     </DataTable>
                 </div>
             </div>
@@ -346,7 +373,7 @@ const TableDemo = () => {
                 <div className="card">
                     <h5>Row Expand</h5>
                     <DataTable value={products} expandedRows={expandedRows} onRowToggle={(e) => setExpandedRows(e.data)} responsiveLayout="scroll" rowExpansionTemplate={rowExpansionTemplate} dataKey="id" header={header}>
-                        <Column expander style={{ width: "3em" }} />
+                        <Column expander style={{ width: '3em' }} />
                         <Column field="name" header="Name" sortable />
                         <Column header="Image" body={imageBodyTemplate} />
                         <Column field="price" header="Price" sortable body={priceBodyTemplate} />
@@ -373,11 +400,11 @@ const TableDemo = () => {
                         rowGroupFooterTemplate={footerTemplate}
                         responsiveLayout="scroll"
                     >
-                        <Column field="name" header="Name" style={{ minWidth: "200px" }}></Column>
-                        <Column field="country" header="Country" body={countryBodyTemplate} style={{ minWidth: "200px" }}></Column>
-                        <Column field="company" header="Company" style={{ minWidth: "200px" }}></Column>
-                        <Column field="status" header="Status" body={statusBodyTemplate} style={{ minWidth: "200px" }}></Column>
-                        <Column field="date" header="Date" style={{ minWidth: "200px" }}></Column>
+                        <Column field="name" header="Name" style={{ minWidth: '200px' }}></Column>
+                        <Column field="country" header="Country" body={countryBodyTemplate} style={{ minWidth: '200px' }}></Column>
+                        <Column field="company" header="Company" style={{ minWidth: '200px' }}></Column>
+                        <Column field="status" header="Status" body={statusBodyTemplate} style={{ minWidth: '200px' }}></Column>
+                        <Column field="date" header="Date" style={{ minWidth: '200px' }}></Column>
                     </DataTable>
                 </div>
             </div>

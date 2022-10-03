@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-sync-scripts */
-import React, { useEffect, useState } from "react";
-import { InputText } from "primereact/inputtext";
-import { CodeHighlight } from "../../demo/components/CodeHighlight";
-import { IconService } from "../../demo/service/IconService";
+import React, { useEffect, useState } from 'react';
+import { InputText } from 'primereact/inputtext';
+import { CodeHighlight } from '../../demo/components/CodeHighlight';
+import { IconService } from '../../demo/service/IconService';
 
 const IconsDemo = () => {
     const [icons, setIcons] = useState([]);
@@ -37,12 +37,12 @@ const IconsDemo = () => {
         <div className="card docs">
             <h4>Icons</h4>
             <p>
-                PrimeReact components internally use{" "}
-                <a href="https://github.com/primefaces/primeicons" className="font-medium" target={"_blank"}>
+                PrimeReact components internally use{' '}
+                <a href="https://github.com/primefaces/primeicons" className="font-medium" target={'_blank'}>
                     PrimeIcons
-                </a>{" "}
-                library, the official icons suite from{" "}
-                <a href="https://www.primetek.com.tr" className="font-medium" target={"_blank"}>
+                </a>{' '}
+                library, the official icons suite from{' '}
+                <a href="https://www.primetek.com.tr" className="font-medium" target={'_blank'}>
                     PrimeTek
                 </a>
                 .
@@ -85,7 +85,7 @@ npm install primeicons --save
 `}
             </CodeHighlight>
 
-            <i className="pi pi-check" style={{ fontSize: "2rem" }}></i>
+            <i className="pi pi-check" style={{ fontSize: '2rem' }}></i>
 
             <h5>Spinning Animation</h5>
             <p>Special pi-spin class applies continuous rotation to an icon.</p>
@@ -95,7 +95,7 @@ npm install primeicons --save
 `}
             </CodeHighlight>
 
-            <i className="pi pi-spin pi-spinner" style={{ fontSize: "2rem" }}></i>
+            <i className="pi pi-spin pi-spinner" style={{ fontSize: '2rem' }}></i>
 
             <h5>Constants</h5>
             <p>PrimeIcons constants API is provided to easily choose an icon with typescript e.g. when defining a menu model.</p>
@@ -124,10 +124,10 @@ const items = [
             </CodeHighlight>
             <h5>List of Icons</h5>
             <p>
-                Here is the current list of PrimeIcons, more icons are added periodically. You may also{" "}
-                <a href="https://github.com/primefaces/primeicons/issues" className="font-medium" target={"_blank"}>
+                Here is the current list of PrimeIcons, more icons are added periodically. You may also{' '}
+                <a href="https://github.com/primefaces/primeicons/issues" className="font-medium" target={'_blank'}>
                     request new icons
-                </a>{" "}
+                </a>{' '}
                 at the issue tracker.
             </p>
 
@@ -140,9 +140,9 @@ const items = [
                         const { icon, properties } = iconMeta;
 
                         return (
-                            icon.tags.indexOf("deprecate") === -1 && (
+                            icon.tags.indexOf('deprecate') === -1 && (
                                 <div className="col-6 sm:col-4 lg:col-3 xl:col-2 pb-5" key={properties.name}>
-                                    <i className={"text-2xl mb-2 pi pi-" + properties.name}></i>
+                                    <i className={'text-2xl mb-2 pi pi-' + properties.name}></i>
                                     <div>pi-{properties.name}</div>
                                 </div>
                             )

@@ -1,5 +1,5 @@
-import React from "react";
-import Menu from "./index";
+import React from 'react';
+import Menu from './index';
 function ConfirmationDemo() {
     return (
         <Menu>
@@ -10,7 +10,5 @@ function ConfirmationDemo() {
         </Menu>
     );
 }
-
-
 
 export default ConfirmationDemo;

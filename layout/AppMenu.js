@@ -1,12 +1,12 @@
-import React, { useState, useContext } from "react";
-import { NavLink } from "../demo/utils/navlink";
-import { CSSTransition } from "react-transition-group";
-import classNames from "classnames";
-import { Ripple } from "primereact/ripple";
-import { Badge } from "primereact/badge";
-import { LayoutContext } from "./layoutcontext";
-import getConfig from "next/config";
-import data from "./data";
+import React, { useState, useContext } from 'react';
+import { NavLink } from '../demo/utils/navlink';
+import { CSSTransition } from 'react-transition-group';
+import classNames from 'classnames';
+import { Ripple } from 'primereact/ripple';
+import { Badge } from 'primereact/badge';
+import { LayoutContext } from './layoutcontext';
+import getConfig from 'next/config';
+import data from './data';
 
 const AppSubmenu = (props) => {
     const [activeIndex, setActiveIndex] = useState(null);
@@ -28,13 +28,13 @@ const AppSubmenu = (props) => {
         if (props.onMenuItemClick) {
             props.onMenuItemClick({
                 originalEvent: event,
-                item: item,
+                item: item
             });
         }
     };
 
     const onKeyDown = (event) => {
-        if (event.code === "Enter" || event.code === "Space") {
+        if (event.code === 'Enter' || event.code === 'Space') {
             event.preventDefault();
             event.target.click();
         }
@@ -66,7 +66,7 @@ const AppSubmenu = (props) => {
             );
         } else {
             return (
-                <a tabIndex="0" aria-label={item.label} onKeyDown={onKeyDown} role="menuitem" href={item.url} className="p-ripple" onClick={(e) => onMenuItemClick(e, item, i)} target={"_blank"} rel="noreferrer">
+                <a tabIndex="0" aria-label={item.label} onKeyDown={onKeyDown} role="menuitem" href={item.url} className="p-ripple" onClick={(e) => onMenuItemClick(e, item, i)} target={'_blank'} rel="noreferrer">
                     {content}
                 </a>
             );
@@ -77,7 +77,7 @@ const AppSubmenu = (props) => {
         props.items &&
         props.items.map((item, i) => {
             let active = activeIndex === i;
-            let styleClass = classNames(item.badgeStyleClass, { "layout-menuitem-category": props.root, "active-menuitem": active && !item.to });
+            let styleClass = classNames(item.badgeStyleClass, { 'layout-menuitem-category': props.root, 'active-menuitem': active && !item.to });
 
             if (props.root) {
                 return (
@@ -119,7 +119,7 @@ export default function AppMenu() {
         <div className="layout-menu-container">
             <AppSubmenu items={data.menu} className="layout-menu" onMenuItemClick={onMenuItemClick} root={true} role="menu" />
             <a href="https://www.primefaces.org/primeblocks-react" className="block mt-3">
-                <img alt="primeblocks" className="w-full" src={layoutState.layoutColorMode === "light" ? `${contextPath}/layout/images/banner-primeblocks.png` : `${contextPath}/layout/images/banner-primeblocks-dark.png`} />
+                <img alt="primeblocks" className="w-full" src={layoutState.layoutColorMode === 'light' ? `${contextPath}/layout/images/banner-primeblocks.png` : `${contextPath}/layout/images/banner-primeblocks-dark.png`} />
             </a>
         </div>
     );

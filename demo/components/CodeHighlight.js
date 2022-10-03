@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from 'react';
 
 export function CodeHighlight(props) {
     const codeElement = useRef();
-    const languageClassName = `language-${props.lang || "jsx"}`;
+    const languageClassName = `language-${props.lang || 'jsx'}`;
 
     useEffect(() => {
         window.Prism.highlightElement(codeElement.current);

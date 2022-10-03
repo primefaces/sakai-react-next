@@ -1,18 +1,18 @@
-import React, { useContext } from "react";
-import Link from "next/link";
-import classNames from "classnames";
-import { LayoutContext } from "./layoutcontext";
-import getConfig from "next/config";
+import React, { useContext } from 'react';
+import Link from 'next/link';
+import classNames from 'classnames';
+import { LayoutContext } from './layoutcontext';
+import getConfig from 'next/config';
 
 export default function AppTopbar(props) {
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
     const { onToggleMenuClick, layoutState, layoutConfig, onMobileTopbarMenuClick, onMobileSubTopbarMenuClick } = useContext(LayoutContext);
     return (
         <div className="layout-topbar">
-            <Link href={"/"}>
+            <Link href={'/'}>
                 <a className="layout-topbar-logo">
                     <>
-                        <img src={layoutState.layoutColorMode === "light" ? `${contextPath}/layout/images/logo-dark.svg` : `${contextPath}/layout/images/logo-white.svg`} width="47.22px" height={"35px"} widt={"true"} alt="logo" />
+                        <img src={layoutState.layoutColorMode === 'light' ? `${contextPath}/layout/images/logo-dark.svg` : `${contextPath}/layout/images/logo-white.svg`} width="47.22px" height={'35px'} widt={'true'} alt="logo" />
                         <span>SAKAI</span>
                     </>
                 </a>
@@ -26,7 +26,7 @@ export default function AppTopbar(props) {
                 <i className="pi pi-ellipsis-v" />
             </button>
 
-            <ul className={classNames("layout-topbar-menu lg:flex origin-top", { "layout-topbar-menu-mobile-active": layoutConfig.mobileTopbarMenuActive })}>
+            <ul className={classNames('layout-topbar-menu lg:flex origin-top', { 'layout-topbar-menu-mobile-active': layoutConfig.mobileTopbarMenuActive })}>
                 <li>
                     <button className="p-link layout-topbar-button" onClick={onMobileSubTopbarMenuClick}>
                         <i className="pi pi-calendar" />

@@ -1,35 +1,35 @@
-import React, { useState, useEffect } from "react";
-import { InputText } from "primereact/inputtext";
-import { InputTextarea } from "primereact/inputtextarea";
-import { InputMask } from "primereact/inputmask";
-import { InputNumber } from "primereact/inputnumber";
-import { AutoComplete } from "primereact/autocomplete";
-import { Calendar } from "primereact/calendar";
-import { Chips } from "primereact/chips";
-import { Dropdown } from "primereact/dropdown";
-import { MultiSelect } from "primereact/multiselect";
-import { CountryService } from "../../demo/service/CountryService";
+import React, { useState, useEffect } from 'react';
+import { InputText } from 'primereact/inputtext';
+import { InputTextarea } from 'primereact/inputtextarea';
+import { InputMask } from 'primereact/inputmask';
+import { InputNumber } from 'primereact/inputnumber';
+import { AutoComplete } from 'primereact/autocomplete';
+import { Calendar } from 'primereact/calendar';
+import { Chips } from 'primereact/chips';
+import { Dropdown } from 'primereact/dropdown';
+import { MultiSelect } from 'primereact/multiselect';
+import { CountryService } from '../../demo/service/CountryService';
 
 const FloatLabelDemo = () => {
     const [countries, setCountries] = useState([]);
     const [filteredCountries, setFilteredCountries] = useState(null);
-    const [value1, setValue1] = useState("");
-    const [value2, setValue2] = useState("");
+    const [value1, setValue1] = useState('');
+    const [value2, setValue2] = useState('');
     const [value3, setValue3] = useState(null);
-    const [value4, setValue4] = useState("");
-    const [value5, setValue5] = useState("");
-    const [value6, setValue6] = useState("");
-    const [value7, setValue7] = useState("");
-    const [value8, setValue8] = useState("");
+    const [value4, setValue4] = useState('');
+    const [value5, setValue5] = useState('');
+    const [value6, setValue6] = useState('');
+    const [value7, setValue7] = useState('');
+    const [value8, setValue8] = useState('');
     const [value9, setValue9] = useState([]);
     const [value10, setValue10] = useState(null);
 
     const cities = [
-        { name: "New York", code: "NY" },
-        { name: "Rome", code: "RM" },
-        { name: "London", code: "LDN" },
-        { name: "Istanbul", code: "IST" },
-        { name: "Paris", code: "PRS" },
+        { name: 'New York', code: 'NY' },
+        { name: 'Rome', code: 'RM' },
+        { name: 'London', code: 'LDN' },
+        { name: 'Istanbul', code: 'IST' },
+        { name: 'Paris', code: 'PRS' }
     ];
 
     useEffect(() => {

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Carousel } from "primereact/carousel";
-import { Galleria } from "primereact/galleria";
-import { Button } from "primereact/button";
-import { Image } from "primereact/image";
-import { ProductService } from "../../demo/service/ProductService";
-import { PhotoService } from "../../demo/service/PhotoService";
-import getConfig from "next/config";
+import React, { useEffect, useState } from 'react';
+import { Carousel } from 'primereact/carousel';
+import { Galleria } from 'primereact/galleria';
+import { Button } from 'primereact/button';
+import { Image } from 'primereact/image';
+import { ProductService } from '../../demo/service/ProductService';
+import { PhotoService } from '../../demo/service/PhotoService';
+import getConfig from 'next/config';
 
 const MediaDemo = () => {
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
@@ -14,38 +14,38 @@ const MediaDemo = () => {
 
     const galleriaResponsiveOptions = [
         {
-            breakpoint: "1024px",
-            numVisible: 5,
+            breakpoint: '1024px',
+            numVisible: 5
         },
         {
-            breakpoint: "960px",
-            numVisible: 4,
+            breakpoint: '960px',
+            numVisible: 4
         },
         {
-            breakpoint: "768px",
-            numVisible: 3,
+            breakpoint: '768px',
+            numVisible: 3
         },
         {
-            breakpoint: "560px",
-            numVisible: 1,
-        },
+            breakpoint: '560px',
+            numVisible: 1
+        }
     ];
     const carouselResponsiveOptions = [
         {
-            breakpoint: "1024px",
+            breakpoint: '1024px',
             numVisible: 3,
-            numScroll: 3,
+            numScroll: 3
         },
         {
-            breakpoint: "768px",
+            breakpoint: '768px',
             numVisible: 2,
-            numScroll: 2,
+            numScroll: 2
         },
         {
-            breakpoint: "560px",
+            breakpoint: '560px',
             numVisible: 1,
-            numScroll: 1,
-        },
+            numScroll: 1
+        }
     ];
 
     useEffect(() => {
@@ -78,8 +78,8 @@ const MediaDemo = () => {
         );
     };
 
-    const galleriaItemTemplate = (item) => <img src={`${contextPath}/${item.itemImageSrc}`} alt={item.alt} style={{ width: "100%", display: "block" }} />;
-    const galleriaThumbnailTemplate = (item) => <img src={`${contextPath}/${item.thumbnailImageSrc}`} alt={item.alt} style={{ width: "100%", display: "block" }} />;
+    const galleriaItemTemplate = (item) => <img src={`${contextPath}/${item.itemImageSrc}`} alt={item.alt} style={{ width: '100%', display: 'block' }} />;
+    const galleriaThumbnailTemplate = (item) => <img src={`${contextPath}/${item.thumbnailImageSrc}`} alt={item.alt} style={{ width: '100%', display: 'block' }} />;
 
     return (
         <div className="grid p-fluid media-demo">
@@ -93,7 +93,7 @@ const MediaDemo = () => {
             <div className="col-12">
                 <div className="card">
                     <h5>Galleria</h5>
-                    <Galleria value={images} responsiveOptions={galleriaResponsiveOptions} numVisible={7} circular style={{ maxWidth: "800px", margin: "auto" }} item={galleriaItemTemplate} thumbnail={galleriaThumbnailTemplate}></Galleria>
+                    <Galleria value={images} responsiveOptions={galleriaResponsiveOptions} numVisible={7} circular style={{ maxWidth: '800px', margin: 'auto' }} item={galleriaItemTemplate} thumbnail={galleriaThumbnailTemplate}></Galleria>
                 </div>
             </div>
 

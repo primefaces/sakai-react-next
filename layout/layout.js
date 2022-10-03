@@ -1,17 +1,17 @@
-import React, { useRef, useContext, useEffect } from "react";
-import Head from "next/head";
-import { CSSTransition } from "react-transition-group";
-import AppTopbar from "./AppTopbar";
-import AppFooter from "./AppFooter";
-import AppMenu from "./AppMenu";
-import AppConfig from "./AppConfig";
-import ScrollToTop from "../demo/utils/ScrollToTop";
-import PrimeReact from "primereact/api";
-import { Tooltip } from "primereact/tooltip";
-import getConfig from "next/config";
-import { LayoutContext } from "./layoutcontext";
-import classNames from "classnames";
-import { useEventListener } from "primereact/hooks";
+import React, { useRef, useContext, useEffect } from 'react';
+import Head from 'next/head';
+import { CSSTransition } from 'react-transition-group';
+import AppTopbar from './AppTopbar';
+import AppFooter from './AppFooter';
+import AppMenu from './AppMenu';
+import AppConfig from './AppConfig';
+import ScrollToTop from '../demo/utils/ScrollToTop';
+import PrimeReact from 'primereact/api';
+import { Tooltip } from 'primereact/tooltip';
+import getConfig from 'next/config';
+import { LayoutContext } from './layoutcontext';
+import classNames from 'classnames';
+import { useEventListener } from 'primereact/hooks';
 function Layout({ children }) {
     const { layoutState, layoutConfig, hideMenu, hideProfileMenu } = useContext(LayoutContext);
     const copyTooltipRef = useRef();
@@ -24,7 +24,7 @@ function Layout({ children }) {
 
     const [bindDocumentClickSidebarListener, unbindDocumentClickSidebarListener] = useEventListener({
         target: containerRef,
-        type: "click",
+        type: 'click',
         listener: (event) => {
             const sidebarClicked = sidebarRef.current.isSameNode(event.target) || sidebarRef.current.contains(event.target);
             const topbarClicked = topbarRef.current.isSameNode(event.target) || topbarRef.current.contains(event.target);
@@ -33,22 +33,22 @@ function Layout({ children }) {
             const isMobileTopbarMenuOutsideClicked = !mobileTopbarClicked;
             if (isOutsideClicked) hideMenu();
             if (isMobileTopbarMenuOutsideClicked) hideProfileMenu();
-        },
+        }
     });
 
     useEffect(() => {
         bindDocumentClickSidebarListener();
     }, [layoutConfig.overlayMenuActive]);
 
-    const containerClass = classNames("layout-wrapper", {
-        "layout-overlay": layoutState.layoutMode === "overlay",
-        "layout-static": layoutState.layoutMode === "static",
-        "layout-static-sidebar-inactive": layoutConfig.staticMenuInactive && layoutState.layoutMode === "static",
-        "layout-overlay-sidebar-active": layoutConfig.overlayMenuActive && layoutState.layoutMode === "overlay",
-        "layout-mobile-sidebar-active": layoutConfig.mobileMenuActive,
-        "p-input-filled": layoutState.inputStyle === "filled",
-        "p-ripple-disabled": layoutState.ripple === false,
-        "layout-theme-light": layoutState.layoutColorMode === "light",
+    const containerClass = classNames('layout-wrapper', {
+        'layout-overlay': layoutState.layoutMode === 'overlay',
+        'layout-static': layoutState.layoutMode === 'static',
+        'layout-static-sidebar-inactive': layoutConfig.staticMenuInactive && layoutState.layoutMode === 'static',
+        'layout-overlay-sidebar-active': layoutConfig.overlayMenuActive && layoutState.layoutMode === 'overlay',
+        'layout-mobile-sidebar-active': layoutConfig.mobileMenuActive,
+        'p-input-filled': layoutState.inputStyle === 'filled',
+        'p-ripple-disabled': layoutState.ripple === false,
+        'layout-theme-light': layoutState.layoutColorMode === 'light'
     });
 
     return (

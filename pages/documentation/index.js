@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-sync-scripts */
-import React from "react";
-import { CodeHighlight } from "../../demo/components/CodeHighlight";
+import React from 'react';
+import { CodeHighlight } from '../../demo/components/CodeHighlight';
 
 const Documentation = () => {
     return (
@@ -12,7 +12,7 @@ const Documentation = () => {
 
                     <h5>Getting Started</h5>
                     <p>
-                        Sakai is an application template for React based on the popular <a href="https://github.com/facebook/create-react-app">create-react-app</a> that allows creating React apps with no configuration. To get started, clone the{" "}
+                        Sakai is an application template for React based on the popular <a href="https://github.com/facebook/create-react-app">create-react-app</a> that allows creating React apps with no configuration. To get started, clone the{' '}
                         <a href="https://github.com/primefaces/sakai-react">repository</a> from GitHub and install the dependencies with npm or yarn.
                     </p>
                     <CodeHighlight>
@@ -22,7 +22,8 @@ const Documentation = () => {
                     </CodeHighlight>
 
                     <p>
-                        Next step is running the application using the start script and navigate to <b>http://localhost:3000/</b> to view the application. That is it, you may now start with the development of your application using the Sakai template.
+                        Next step is running the application using the start script and navigate to <b>http://localhost:3000/</b> to view the application. That is it, you may now start with the development of your application using the Sakai
+                        template.
                     </p>
 
                     <CodeHighlight>
@@ -55,15 +56,21 @@ const Documentation = () => {
 
                     <h5>Structure</h5>
                     <p>
-                        Sakai consists of 2 main parts; the application layout and the resources. <b>App.js</b> inside src folder is the main component containing the template for the base layout whereas required resources such as SASS structure for the layout are placed inside the <b>src/layout</b>{" "}
-                        folder.
+                        Sakai consists of 2 main parts; the application layout and the resources. <b>App.js</b> inside src folder is the main component containing the template for the base layout whereas required resources such as SASS structure for
+                        the layout are placed inside the <b>src/layout</b> folder.
                     </p>
 
                     <h5>Application Template</h5>
-                    <p>Main layout is the JSX template of the App.js, it is divided into a couple of child components such as topbar, profile, menu and footer. Here is render method of the App.js component that implements the logic such as menu state, layout modes and so on.</p>
+                    <p>
+                        Main layout is the JSX template of the App.js, it is divided into a couple of child components such as topbar, profile, menu and footer. Here is render method of the App.js component that implements the logic such as menu
+                        state, layout modes and so on.
+                    </p>
 
                     <h5>Menu</h5>
-                    <p>Menu is a separate component defined in AppMenu.js file based on PrimeReact MenuModel API. In order to define the menuitems, navigate to App.js file and define your own model as a nested structure. Here is the menu component from the demo application.</p>
+                    <p>
+                        Menu is a separate component defined in AppMenu.js file based on PrimeReact MenuModel API. In order to define the menuitems, navigate to App.js file and define your own model as a nested structure. Here is the menu component
+                        from the demo application.
+                    </p>
 
                     <h5>PrimeReact Theme</h5>
                     <p>

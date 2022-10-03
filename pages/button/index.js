@@ -14,7 +14,7 @@ const ButtonDemo = () => {
         setTimeout(() => {
             setLoading1(false);
         }, 2000);
-    }
+    };
 
     const onLoadingClick2 = () => {
         setLoading2(true);
@@ -22,7 +22,7 @@ const ButtonDemo = () => {
         setTimeout(() => {
             setLoading2(false);
         }, 2000);
-    }
+    };
 
     const onLoadingClick3 = () => {
         setLoading3(true);
@@ -30,7 +30,7 @@ const ButtonDemo = () => {
         setTimeout(() => {
             setLoading3(false);
         }, 2000);
-    }
+    };
 
     const onLoadingClick4 = () => {
         setLoading4(true);
@@ -38,7 +38,7 @@ const ButtonDemo = () => {
         setTimeout(() => {
             setLoading4(false);
         }, 2000);
-    }
+    };
 
     const items = [
         {
@@ -187,9 +187,7 @@ const ButtonDemo = () => {
                 </div>
             </div>
         </div>
-    )
-}
-
-
+    );
+};
 
 export default ButtonDemo;

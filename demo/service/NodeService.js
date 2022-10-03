@@ -1,4 +1,4 @@
-import getConfig from "next/config";
+import getConfig from 'next/config';
 
 export class NodeService {
     constructor() {
@@ -6,13 +6,13 @@ export class NodeService {
     }
 
     getTreeNodes() {
-        return fetch(this.contextPath + "/demo/data/treenodes.json", { headers: { "Cache-Control": "no-cache" } })
+        return fetch(this.contextPath + '/demo/data/treenodes.json', { headers: { 'Cache-Control': 'no-cache' } })
             .then((res) => res.json())
             .then((d) => d.root);
     }
 
     getTreeTableNodes() {
-        return fetch(this.contextPath + "/demo/data/treetablenodes.json", { headers: { "Cache-Control": "no-cache" } })
+        return fetch(this.contextPath + '/demo/data/treetablenodes.json', { headers: { 'Cache-Control': 'no-cache' } })
             .then((res) => res.json())
             .then((d) => d.root);
     }

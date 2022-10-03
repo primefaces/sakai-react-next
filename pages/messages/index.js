@@ -5,7 +5,6 @@ import { Message } from 'primereact/message';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 
-
 const MessagesDemo = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -73,17 +72,21 @@ const MessagesDemo = () => {
                 <div className="card">
                     <h5>Inline</h5>
                     <div className="field grid">
-                        <label htmlFor="username1" className="col-fixed w-9rem">Username</label>
+                        <label htmlFor="username1" className="col-fixed w-9rem">
+                            Username
+                        </label>
                         <div className="col">
-                            <InputText id="username1" value={username} onChange={(e) => setUsername(e.target.value)} required className="p-invalid mr-2"/>
+                            <InputText id="username1" value={username} onChange={(e) => setUsername(e.target.value)} required className="p-invalid mr-2" />
                             <Message severity="error" text="Username is required" />
                         </div>
                     </div>
                     <div className="field grid">
-                        <label htmlFor="email" className="col-fixed w-9rem">Email</label>
+                        <label htmlFor="email" className="col-fixed w-9rem">
+                            Email
+                        </label>
                         <div className="col">
-                            <InputText id="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="p-invalid mr-2"/>
-                            <Message severity="error"/>
+                            <InputText id="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="p-invalid mr-2" />
+                            <Message severity="error" />
                         </div>
                     </div>
                 </div>
@@ -95,14 +98,14 @@ const MessagesDemo = () => {
                     <div className="field p-fluid">
                         <label htmlFor="username2">Username</label>
                         <InputText id="username2" type="text" className="p-invalid" aria-describedby="username-help" />
-                        <small id="username-help" className="p-error">Enter your username to reset your password.</small>
+                        <small id="username-help" className="p-error">
+                            Enter your username to reset your password.
+                        </small>
                     </div>
                 </div>
             </div>
         </div>
     );
-}
-
-
+};
 
 export default MessagesDemo;

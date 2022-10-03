@@ -1,6 +1,6 @@
-import { useRouter } from "next/router";
-import Link from "next/link";
-import PropTypes from "prop-types";
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+import PropTypes from 'prop-types';
 
 export { NavLink };
 
@@ -8,11 +8,11 @@ NavLink.propTypes = {
     href: PropTypes.string.isRequired,
     activeclassname: PropTypes.string,
     exact: PropTypes.bool,
-    role: PropTypes.string,
+    role: PropTypes.string
 };
 
 NavLink.defaultProps = {
-    exact: false,
+    exact: false
 };
 
 function NavLink({ href, exact, children, role, target, ariaLabel, ...props }) {
@@ -20,7 +20,7 @@ function NavLink({ href, exact, children, role, target, ariaLabel, ...props }) {
     const isActive = exact ? pathname === href : pathname.startsWith(href);
 
     if (isActive) {
-        props.className += " active router-link-active router-link-exact-active";
+        props.className += ' active router-link-active router-link-exact-active';
     }
 
     return (

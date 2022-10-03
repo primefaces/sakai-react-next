@@ -6,7 +6,7 @@ const FileDemo = () => {
 
     const onUpload = () => {
         toast.current.show({ severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000 });
-    }
+    };
 
     return (
         <div className="grid">
@@ -20,9 +20,7 @@ const FileDemo = () => {
                 </div>
             </div>
         </div>
-    )
-}
-
-
+    );
+};
 
 export default FileDemo;

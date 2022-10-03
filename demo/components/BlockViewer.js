@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { classNames } from "primereact/utils";
-import { CodeHighlight } from "./CodeHighlight";
+import React, { useState } from 'react';
+import { classNames } from 'primereact/utils';
+import { CodeHighlight } from './CodeHighlight';
 
 const BlockViewer = (props) => {
-    const [blockView, setBlockView] = useState("PREVIEW");
+    const [blockView, setBlockView] = useState('PREVIEW');
 
     const copyCode = async (event) => {
         await navigator.clipboard.writeText(props.code);
@@ -19,10 +19,10 @@ const BlockViewer = (props) => {
                         {props.new && <span className="badge-new">New</span>}
                     </span>
                     <div className="block-actions">
-                        <button tabIndex="0" className={classNames("p-link", { "block-action-active": blockView === "PREVIEW" })} onClick={() => setBlockView("PREVIEW")}>
+                        <button tabIndex="0" className={classNames('p-link', { 'block-action-active': blockView === 'PREVIEW' })} onClick={() => setBlockView('PREVIEW')}>
                             <span>Preview</span>
                         </button>
-                        <button className={classNames("p-link", { "block-action-active": blockView === "CODE" })} onClick={() => setBlockView("CODE")}>
+                        <button className={classNames('p-link', { 'block-action-active': blockView === 'CODE' })} onClick={() => setBlockView('CODE')}>
                             <span>Code</span>
                         </button>
                         <button tabIndex="0" className="p-link block-action-copy" onClick={copyCode}>
@@ -31,13 +31,13 @@ const BlockViewer = (props) => {
                     </div>
                 </div>
                 <div className="block-content">
-                    {blockView === "PREVIEW" && (
+                    {blockView === 'PREVIEW' && (
                         <div className={props.containerClassName} style={props.previewStyle}>
                             {props.children}
                         </div>
                     )}
 
-                    {blockView === "CODE" && <CodeHighlight>{props.code}</CodeHighlight>}
+                    {blockView === 'CODE' && <CodeHighlight>{props.code}</CodeHighlight>}
                 </div>
             </div>
         </div>
