@@ -1,7 +1,7 @@
 {
     "name": "sakai-react-nextjs",
     "version": "0.1.0",
-    "private": true,
+    "private": false,
     "scripts": {
         "dev": "next dev",
         "build": "next build",
@@ -16,21 +16,18 @@
         "@fullcalendar/react": "^5.11.2",
         "@fullcalendar/timegrid": "^5.11.2",
         "chart.js": "^3.9.1",
-        "classnames": "^2.3.1",
-        "i": "^0.3.7",
         "next": "12.2.4",
-        "npm": "^8.17.0",
         "primeflex": "^3.2.1",
         "primeicons": "^6.0.1",
         "primereact": "^8.6.1",
         "react": "18.2.0",
         "react-dom": "18.2.0",
-        "react-transition-group": "^4.4.5",
-        "sass": "^1.54.4"
+        "react-transition-group": "^4.4.5"
     },
     "devDependencies": {
         "eslint": "8.21.0",
         "eslint-config-next": "12.2.4",
-        "prettier": "2.7.1"
+        "prettier": "2.7.1",
+        "sass": "^1.54.4"
     }
 }

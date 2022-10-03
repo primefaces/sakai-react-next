@@ -1,9 +1,9 @@
-import React from 'react';
+import getConfig from 'next/config';
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
 import { Timeline } from 'primereact/timeline';
-import classNames from 'classnames';
-import getConfig from 'next/config';
+import { classNames } from 'primereact/utils';
+import React from 'react';
 
 const TimelineDemo = () => {
     const customEvents = [

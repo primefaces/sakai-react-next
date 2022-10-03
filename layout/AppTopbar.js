@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
-import Link from 'next/link';
-import classNames from 'classnames';
-import { LayoutContext } from './layoutcontext';
 import getConfig from 'next/config';
+import Link from 'next/link';
+import { classNames } from 'primereact/utils';
+import React, { useContext } from 'react';
+import { LayoutContext } from './layoutcontext';
 
 export default function AppTopbar(props) {
     const contextPath = getConfig().publicRuntimeConfig.contextPath;

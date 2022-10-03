@@ -1,17 +1,18 @@
-import React, { useRef, useContext, useEffect } from 'react';
+import getConfig from 'next/config';
 import Head from 'next/head';
+import PrimeReact from 'primereact/api';
+import { useEventListener } from 'primereact/hooks';
+import { Tooltip } from 'primereact/tooltip';
+import { classNames } from 'primereact/utils';
+import React, { useContext, useEffect, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
-import AppTopbar from './AppTopbar';
+import ScrollToTop from '../demo/utils/ScrollToTop';
+import AppConfig from './AppConfig';
 import AppFooter from './AppFooter';
 import AppMenu from './AppMenu';
-import AppConfig from './AppConfig';
-import ScrollToTop from '../demo/utils/ScrollToTop';
-import PrimeReact from 'primereact/api';
-import { Tooltip } from 'primereact/tooltip';
-import getConfig from 'next/config';
+import AppTopbar from './AppTopbar';
 import { LayoutContext } from './layoutcontext';
-import classNames from 'classnames';
-import { useEventListener } from 'primereact/hooks';
+
 function Layout({ children }) {
     const { layoutState, layoutConfig, hideMenu, hideProfileMenu } = useContext(LayoutContext);
     const copyTooltipRef = useRef();

@@ -1,19 +1,19 @@
-import React, { useState, useEffect, useRef } from 'react';
-import classNames from 'classnames';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
-import { Toast } from 'primereact/toast';
+import getConfig from 'next/config';
 import { Button } from 'primereact/button';
+import { Column } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
+import { Dialog } from 'primereact/dialog';
 import { FileUpload } from 'primereact/fileupload';
-import { Rating } from 'primereact/rating';
-import { Toolbar } from 'primereact/toolbar';
+import { InputNumber } from 'primereact/inputnumber';
+import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { RadioButton } from 'primereact/radiobutton';
-import { InputNumber } from 'primereact/inputnumber';
-import { Dialog } from 'primereact/dialog';
-import { InputText } from 'primereact/inputtext';
+import { Rating } from 'primereact/rating';
+import { Toast } from 'primereact/toast';
+import { Toolbar } from 'primereact/toolbar';
+import { classNames } from 'primereact/utils';
+import React, { useEffect, useRef, useState } from 'react';
 import { ProductService } from '../../demo/service/ProductService';
-import getConfig from 'next/config';
 
 const Crud = () => {
     let emptyProduct = {

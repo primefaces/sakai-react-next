@@ -1,10 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState, useContext } from 'react';
-import { RadioButton } from 'primereact/radiobutton';
-import { InputSwitch } from 'primereact/inputswitch';
-import classNames from 'classnames';
-import { Button } from 'primereact/button';
-import { LayoutContext } from './layoutcontext';
 import getConfig from 'next/config';
+import { Button } from 'primereact/button';
+import { InputSwitch } from 'primereact/inputswitch';
+import { RadioButton } from 'primereact/radiobutton';
+import { classNames } from 'primereact/utils';
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { LayoutContext } from './layoutcontext';
 
 export default function AppConfig() {
     const [active, setActive] = useState(false);

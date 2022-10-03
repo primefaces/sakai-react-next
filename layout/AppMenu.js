@@ -1,12 +1,12 @@
-import React, { useState, useContext } from 'react';
-import { NavLink } from '../demo/utils/navlink';
-import { CSSTransition } from 'react-transition-group';
-import classNames from 'classnames';
-import { Ripple } from 'primereact/ripple';
-import { Badge } from 'primereact/badge';
-import { LayoutContext } from './layoutcontext';
 import getConfig from 'next/config';
+import { Badge } from 'primereact/badge';
+import { Ripple } from 'primereact/ripple';
+import { classNames } from 'primereact/utils';
+import React, { useContext, useState } from 'react';
+import { CSSTransition } from 'react-transition-group';
+import { NavLink } from '../demo/utils/navlink';
 import data from './data';
+import { LayoutContext } from './layoutcontext';
 
 const AppSubmenu = (props) => {
     const [activeIndex, setActiveIndex] = useState(null);
