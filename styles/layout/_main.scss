@@ -4,7 +4,7 @@
 
 html {
     height: 100%;
-    font-size: $fontSize;
+    font-size: $scale;
 }
 
 body {
@@ -18,11 +18,11 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-a, button {
+a {
     text-decoration: none;
     color: var(--primary-color);
 }
 
-.layout-theme-light {
-    background-color: #edf1f5;
+.layout-wrapper {
+    min-height: 100vh;
 }

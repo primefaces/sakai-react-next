@@ -1,93 +1,131 @@
 import getConfig from 'next/config';
 import Head from 'next/head';
-import PrimeReact from 'primereact/api';
-import { useEventListener } from 'primereact/hooks';
-import { Tooltip } from 'primereact/tooltip';
-import { classNames } from 'primereact/utils';
+import { useEventListener, useUnmountEffect } from 'primereact/hooks';
+import { classNames, DomHandler } from 'primereact/utils';
 import React, { useContext, useEffect, useRef } from 'react';
-import { CSSTransition } from 'react-transition-group';
 import ScrollToTop from '../demo/utils/ScrollToTop';
-import AppConfig from './AppConfig';
 import AppFooter from './AppFooter';
 import AppMenu from './AppMenu';
 import AppTopbar from './AppTopbar';
-import { LayoutContext } from './layoutcontext';
+import AppConfig from './config/AppConfig';
+import { LayoutContext } from './context/layoutcontext';
 
-function Layout({ children }) {
-    const { layoutState, layoutConfig, hideMenu, hideProfileMenu } = useContext(LayoutContext);
-    const copyTooltipRef = useRef();
-    const containerRef = useRef();
-    const topbarRef = useRef();
-    const mobileTopbarRef = useRef();
-    const sidebarRef = useRef();
+const Layout = (props) => {
+    const { config, state, setState } = useContext(LayoutContext);
+    const topbarRef = useRef(null);
+    const sidebarRef = useRef(null);
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
-    PrimeReact.ripple = true;
 
-    const [bindDocumentClickSidebarListener, unbindDocumentClickSidebarListener] = useEventListener({
-        target: containerRef,
+    const [bindMenuOutsideClickListener, unbindMenuOutsideClickListener] = useEventListener({
         type: 'click',
         listener: (event) => {
-            const sidebarClicked = sidebarRef.current.isSameNode(event.target) || sidebarRef.current.contains(event.target);
-            const topbarClicked = topbarRef.current.isSameNode(event.target) || topbarRef.current.contains(event.target);
-            const mobileTopbarClicked = mobileTopbarRef.current.isSameNode(event.target) || mobileTopbarRef.current.contains(event.target);
-            const isOutsideClicked = !(sidebarClicked || topbarClicked);
-            const isMobileTopbarMenuOutsideClicked = !mobileTopbarClicked;
-            if (isOutsideClicked) hideMenu();
-            if (isMobileTopbarMenuOutsideClicked) hideProfileMenu();
+            const isOutsideClicked = !(sidebarRef.current.isSameNode(event.target) || sidebarRef.current.contains(event.target) || topbarRef.current.menubutton.isSameNode(event.target) || topbarRef.current.menubutton.contains(event.target));
+
+            if (isOutsideClicked) {
+                hideMenu();
+            }
         }
     });
 
+    const [bindProfileMenuOutsideClickListener, unbindProfileMenuOutsideClickListener] = useEventListener({
+        type: 'click',
+        listener: (event) => {
+            const isOutsideClicked = !(
+                topbarRef.current.topbarmenu.isSameNode(event.target) ||
+                topbarRef.current.topbarmenu.contains(event.target) ||
+                topbarRef.current.topbarmenubutton.isSameNode(event.target) ||
+                topbarRef.current.topbarmenubutton.contains(event.target)
+            );
+
+            if (isOutsideClicked) {
+                hideProfileMenu();
+            }
+        }
+    });
+
+    const hideMenu = () => {
+        setState((prevState) => ({ ...prevState, overlayMenuActive: false, staticMenuMobileActive: false, menuHoverActive: false }));
+        unbindMenuOutsideClickListener();
+        unblockBodyScroll();
+    };
+
+    const hideProfileMenu = () => {
+        setState((prevState) => ({ ...prevState, profileSidebarVisible: false }));
+        unbindProfileMenuOutsideClickListener();
+    };
+
+    const blockBodyScroll = () => {
+        DomHandler.addClass('blocked-scroll');
+    };
+
+    const unblockBodyScroll = () => {
+        DomHandler.removeClass('blocked-scroll');
+    };
+
     useEffect(() => {
-        bindDocumentClickSidebarListener();
-    }, [layoutConfig.overlayMenuActive]);
+        (state.overlayMenuActive || state.staticMenuMobileActive) && bindMenuOutsideClickListener();
+        state.profileSidebarVisible && bindProfileMenuOutsideClickListener();
+    }, [state.overlayMenuActive, state.staticMenuMobileActive, state.profileSidebarVisible]);
+
+    useEffect(() => {
+        state.staticMenuMobileActive && blockBodyScroll();
+    }, [state.staticMenuMobileActive]);
+
+    /*
+    this.router.events.pipe(filter(event => event instanceof NavigationEnd))
+            .subscribe(() => {
+                this.hideMenu();
+                this.hideProfileMenu();
+            });
+    */
+
+    useUnmountEffect(() => {
+        unbindMenuOutsideClickListener();
+        unbindProfileMenuOutsideClickListener();
+    });
 
     const containerClass = classNames('layout-wrapper', {
-        'layout-overlay': layoutState.layoutMode === 'overlay',
-        'layout-static': layoutState.layoutMode === 'static',
-        'layout-static-sidebar-inactive': layoutConfig.staticMenuInactive && layoutState.layoutMode === 'static',
-        'layout-overlay-sidebar-active': layoutConfig.overlayMenuActive && layoutState.layoutMode === 'overlay',
-        'layout-mobile-sidebar-active': layoutConfig.mobileMenuActive,
-        'p-input-filled': layoutState.inputStyle === 'filled',
-        'p-ripple-disabled': layoutState.ripple === false,
-        'layout-theme-light': layoutState.layoutColorMode === 'light'
+        'layout-theme-light': config.colorScheme === 'light',
+        'layout-theme-dark': config.colorScheme === 'dark',
+        'layout-overlay': config.menuMode === 'overlay',
+        'layout-static': config.menuMode === 'static',
+        'layout-slim': config.menuMode === 'slim',
+        'layout-horizontal': config.menuMode === 'horizontal',
+        'layout-static-inactive': state.staticMenuDesktopInactive && config.menuMode === 'static',
+        'layout-overlay-active': state.overlayMenuActive,
+        'layout-mobile-active': state.staticMenuMobileActive,
+        'p-input-filled': config.inputStyle === 'filled',
+        'p-ripple-disabled': !config.ripple
     });
 
     return (
-        <>
-            <ScrollToTop>
-                <Head>
-                    <base href={contextPath}></base>
-                    <title>Sakai React with NextJS</title>
-                    <meta charSet="UTF-8" />
-                    <link rel="icon" href={`${contextPath}/favicon.ico`} type="image/x-icon"></link>
-                    {/* eslint-disable */}
-                    <script src={`${contextPath}/layout/scripts/prism/prism.js`} data-manual></script>
-                    {/* eslint-enable */}
-                </Head>
+        <ScrollToTop>
+            <Head>
+                <base href={contextPath}></base>
+                <title>Sakai React with NextJS</title>
+                <meta charSet="UTF-8" />
+                <link rel="icon" href={`${contextPath}/favicon.ico`} type="image/x-icon"></link>
+            </Head>
 
-                <div ref={containerRef} className={containerClass}>
-                    <Tooltip ref={copyTooltipRef} target=".block-action-copy" position="bottom" content="Copied to clipboard" event="focus" />
+            <div className={containerClass}>
+                <AppTopbar ref={topbarRef} />
 
-                    <AppTopbar topbarRef={topbarRef} mobileTopbarRef={mobileTopbarRef} />
-
-                    <div ref={sidebarRef} className="layout-sidebar">
-                        <AppMenu />
-                    </div>
-
-                    <div className="layout-main-container">
-                        <div className="layout-main">{children}</div>
-
-                        <AppFooter />
-                    </div>
-                    <AppConfig />
-
-                    <CSSTransition classNames="layout-mask" timeout={{ enter: 200, exit: 200 }} in={layoutConfig.mobileMenuActive} unmountOnExit>
-                        <div className="layout-mask p-component-overlay"></div>
-                    </CSSTransition>
+                <div ref={sidebarRef} className="layout-sidebar">
+                    <AppMenu />
                 </div>
-            </ScrollToTop>
-        </>
+
+                <div className="layout-main-container">
+                    <div className="layout-main">{props.children}</div>
+
+                    <AppFooter />
+                </div>
+
+                <AppConfig />
+
+                <div className="layout-mask"></div>
+            </div>
+        </ScrollToTop>
     );
-}
+};
 
 export default Layout;

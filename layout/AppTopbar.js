@@ -1,51 +1,57 @@
 import getConfig from 'next/config';
 import Link from 'next/link';
 import { classNames } from 'primereact/utils';
-import React, { useContext } from 'react';
-import { LayoutContext } from './layoutcontext';
+import React, { forwardRef, useContext, useImperativeHandle, useRef } from 'react';
+import { LayoutContext } from './context/layoutcontext';
 
-export default function AppTopbar(props) {
+const AppTopbar = forwardRef((props, ref) => {
+    const { config, state, onMenuToggle, showProfileSidebar } = useContext(LayoutContext);
+    const menubuttonRef = useRef(null);
+    const topbarmenuRef = useRef(null);
+    const topbarmenubuttonRef = useRef(null);
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
-    const { onToggleMenuClick, layoutState, layoutConfig, onMobileTopbarMenuClick, onMobileSubTopbarMenuClick } = useContext(LayoutContext);
+
+    useImperativeHandle(ref, () => ({
+        menubutton: menubuttonRef.current,
+        topbarmenu: topbarmenuRef.current,
+        topbarmenubutton: topbarmenubuttonRef.current
+    }));
+
     return (
         <div className="layout-topbar">
             <Link href={'/'}>
                 <a className="layout-topbar-logo">
                     <>
-                        <img src={layoutState.layoutColorMode === 'light' ? `${contextPath}/layout/images/logo-dark.svg` : `${contextPath}/layout/images/logo-white.svg`} width="47.22px" height={'35px'} widt={'true'} alt="logo" />
+                        <img src={config.colorScheme === 'light' ? `${contextPath}/layout/images/logo-dark.svg` : `${contextPath}/layout/images/logo-white.svg`} width="47.22px" height={'35px'} widt={'true'} alt="logo" />
                         <span>SAKAI</span>
                     </>
                 </a>
             </Link>
 
-            <button ref={props.topbarRef} type="button" className="p-link  layout-menu-button layout-topbar-button" onClick={onToggleMenuClick}>
+            <button ref={menubuttonRef} type="button" className="p-link  layout-menu-button layout-topbar-button" onClick={onMenuToggle}>
                 <i className="pi pi-bars" />
             </button>
 
-            <button ref={props.mobileTopbarRef} type="button" className="p-link layout-topbar-menu-button layout-topbar-button" onClick={onMobileTopbarMenuClick}>
+            <button ref={topbarmenubuttonRef} type="button" className="p-link layout-topbar-menu-button layout-topbar-button" onClick={showProfileSidebar}>
                 <i className="pi pi-ellipsis-v" />
             </button>
 
-            <ul className={classNames('layout-topbar-menu lg:flex origin-top', { 'layout-topbar-menu-mobile-active': layoutConfig.mobileTopbarMenuActive })}>
-                <li>
-                    <button className="p-link layout-topbar-button" onClick={onMobileSubTopbarMenuClick}>
-                        <i className="pi pi-calendar" />
-                        <span>Events</span>
-                    </button>
-                </li>
-                <li>
-                    <button className="p-link layout-topbar-button" onClick={onMobileSubTopbarMenuClick}>
-                        <i className="pi pi-cog" />
-                        <span>Settings</span>
-                    </button>
-                </li>
-                <li>
-                    <button className="p-link layout-topbar-button" onClick={onMobileSubTopbarMenuClick}>
-                        <i className="pi pi-user" />
-                        <span>Profile</span>
-                    </button>
-                </li>
-            </ul>
+            <div ref={topbarmenuRef} className={classNames('layout-topbar-menu', { 'layout-topbar-menu-mobile-active': state.profileSidebarVisible })}>
+                <button type="button" className="p-link layout-topbar-button">
+                    <i className="pi pi-calendar"></i>
+                    <span>Calendar</span>
+                </button>
+                <button type="button" className="p-link layout-topbar-button">
+                    <i className="pi pi-user"></i>
+                    <span>Profile</span>
+                </button>
+                <button type="button" className="p-link layout-topbar-button">
+                    <i className="pi pi-cog"></i>
+                    <span>Settings</span>
+                </button>
+            </div>
         </div>
     );
-}
+});
+
+export default AppTopbar;

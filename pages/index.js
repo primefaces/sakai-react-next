@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
-import { Menu } from 'primereact/menu';
+import getConfig from 'next/config';
 import { Button } from 'primereact/button';
 import { Chart } from 'primereact/chart';
-import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
+import { Menu } from 'primereact/menu';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { ProductService } from '../demo/service/ProductService';
-import { LayoutContext } from '../layout/layoutcontext';
-import getConfig from 'next/config';
+import { LayoutContext } from '../layout/context/layoutcontext';
 
 const lineData = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -35,7 +35,7 @@ const Dashboard = () => {
     const menu1 = useRef(null);
     const menu2 = useRef(null);
     const [lineOptions, setLineOptions] = useState(null);
-    const { layoutState } = useContext(LayoutContext);
+    const { config } = useContext(LayoutContext);
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
 
     const applyLightTheme = () => {
@@ -108,12 +108,12 @@ const Dashboard = () => {
     }, []);
 
     useEffect(() => {
-        if (layoutState.layoutColorMode === 'light') {
+        if (config.colorScheme === 'light') {
             applyLightTheme();
         } else {
             applyDarkTheme();
         }
-    }, [layoutState.layoutColorMode]);
+    }, [config.colorScheme]);
 
     const formatCurrency = (value) => {
         return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });

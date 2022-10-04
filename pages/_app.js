@@ -1,23 +1,19 @@
-import React from 'react';
-import 'primereact/resources/primereact.css';
-import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
-import '../styles/demo/flags/flags.css';
-import '../styles/demo/Demos.scss';
-import '../styles/layout/layout.scss';
+import 'primeicons/primeicons.css';
+import 'primereact/resources/primereact.css';
+import React from 'react';
+import { LayoutProvider } from '../layout/context/layoutcontext';
 import Layout from '../layout/layout';
-import LayoutProvider from '../layout/layoutcontext';
+import '../styles/demo/Demos.scss';
+import '../styles/demo/flags/flags.css';
+import '../styles/layout/layout.scss';
 
 export default function MyApp({ Component, pageProps }) {
-    if (Component.getLayout) {
-        return Component.getLayout(<Component {...pageProps} />);
-    } else {
-        return (
-            <LayoutProvider>
-                <Layout>
-                    <Component {...pageProps} />
-                </Layout>
-            </LayoutProvider>
-        );
-    }
+    return (
+        <LayoutProvider>
+            <Layout>
+                <Component {...pageProps} />
+            </Layout>
+        </LayoutProvider>
+    );
 }

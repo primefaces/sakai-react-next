@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useContext } from 'react';
 import { Chart } from 'primereact/chart';
-import { LayoutContext } from '../../layout/layoutcontext';
+import React, { useContext, useEffect, useState } from 'react';
+import { LayoutContext } from '../../layout/context/layoutcontext';
 const lineData = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
     datasets: [
@@ -104,7 +104,7 @@ const ChartDemo = (props) => {
     const [pieOptions, setPieOptions] = useState(null);
     const [polarOptions, setPolarOptions] = useState(null);
     const [radarOptions, setRadarOptions] = useState(null);
-    const { layoutState } = useContext(LayoutContext);
+    const { config } = useContext(LayoutContext);
 
     const applyLightTheme = () => {
         const lineOptions = {
@@ -323,12 +323,12 @@ const ChartDemo = (props) => {
     };
 
     useEffect(() => {
-        if (layoutState.layoutColorMode === 'light') {
+        if (config.colorScheme === 'light') {
             applyLightTheme();
         } else {
             applyDarkTheme();
         }
-    }, [layoutState.layoutColorMode]);
+    }, [config.colorScheme]);
 
     return (
         <div className="grid p-fluid">

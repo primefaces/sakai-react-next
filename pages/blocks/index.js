@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import getConfig from 'next/config';
 import { Button } from 'primereact/button';
+import { Checkbox } from 'primereact/checkbox';
 import { Chip } from 'primereact/chip';
 import { InputText } from 'primereact/inputtext';
-import { Checkbox } from 'primereact/checkbox';
+import React, { useState } from 'react';
 import BlockViewer from '../../demo/components/BlockViewer';
-import getConfig from 'next/config';
 
 const BlocksDemo = () => {
     const [checked, setChecked] = useState(false);

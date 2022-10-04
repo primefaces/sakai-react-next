@@ -1,11 +1,17 @@
-import React, { useEffect, useRef } from 'react';
+import { useMountEffect } from 'primereact/hooks';
+import 'prismjs/themes/prism-coy.css';
+import React, { useRef } from 'react';
 
 export function CodeHighlight(props) {
     const codeElement = useRef();
     const languageClassName = `language-${props.lang || 'jsx'}`;
 
-    useEffect(() => {
-        window.Prism.highlightElement(codeElement.current);
+    useMountEffect(() => {
+        import('prismjs').then((module) => {
+            if (module) {
+                module.highlightElement(codeElement.current);
+            }
+        });
     }, []);
 
     return (

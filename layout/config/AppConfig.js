@@ -1,13 +1,5 @@
-import getConfig from 'next/config';
-import { Button } from 'primereact/button';
-import { InputSwitch } from 'primereact/inputswitch';
-import { RadioButton } from 'primereact/radiobutton';
-import { classNames } from 'primereact/utils';
-import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
-import { LayoutContext } from './layoutcontext';
-
 export default function AppConfig() {
-    const [active, setActive] = useState(false);
+    /*const [active, setActive] = useState(false);
     const [scale, setScale] = useState(14);
     const [scales] = useState([12, 13, 14, 15, 16]);
     const [theme, setTheme] = useState('lara-light-indigo');
@@ -116,10 +108,11 @@ export default function AppConfig() {
     const changeTheme = (e, theme, scheme) => {
         onColorModeChange(scheme);
         setTheme(theme);
-    };
+    };*/
 
-    return (
-        <div ref={config} className={configClassName} id={'layout-config'}>
+    return <div></div>;
+
+    /*<div ref={config} className={configClassName} id={'layout-config'}>
             <button className="layout-config-button p-link" id="layout-config-button" onClick={toggleConfigurator}>
                 <i className="pi pi-cog"></i>
             </button>
@@ -362,5 +355,5 @@ export default function AppConfig() {
                 </div>
             </div>
         </div>
-    );
+                */
 }
