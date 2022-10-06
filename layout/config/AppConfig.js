@@ -6,7 +6,6 @@ import { RadioButton } from 'primereact/radiobutton';
 import { LayoutContext } from '../context/layoutcontext';
 import { classNames } from 'primereact/utils';
 import PrimeReact from 'primereact/api';
-
 import getConfig from 'next/config';
 
 export default function AppConfig() {
@@ -48,7 +47,6 @@ export default function AppConfig() {
     useEffect(() => {
         let themeElement = document.getElementById('theme-link');
         const themeHref = contextPath + '/themes/' + config.theme + '/theme.css';
-        console.log(config.theme);
         replaceLink(themeElement, themeHref);
     }, [config.theme, replaceLink]);
 

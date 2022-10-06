@@ -154,7 +154,7 @@ const AppMenu = () => {
         <div className="layout-menu-container">
             <AppMenuitem items={menu} className="layout-menu" root={true} role="menu" />
             <a href="https://www.primefaces.org/primeblocks-react" className="block mt-3">
-                <img alt="primeblocks" className="w-full" src={config.colorScheme === 'light' ? `${contextPath}/layout/images/banner-primeblocks.png` : `${contextPath}/layout/images/banner-primeblocks-dark.png`} />
+                <img alt="primeblocks" className="w-full" src={`${contextPath}/layout/images/banner-primeblocks${config.colorScheme === 'light' ? '' : '-dark'}.png`} />
             </a>
         </div>
     );
