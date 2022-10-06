@@ -41,6 +41,10 @@ export const LayoutProvider = (props) => {
         setState((prevState) => ({ ...prevState, configSidebarVisible: true }));
     };
 
+    const hideConfigSidebar = () => {
+        setState((prevState) => ({ ...prevState, configSidebarVisible: false }));
+    };
+
     const isOverlay = () => {
         return config.menuMode === 'overlay';
     };
@@ -56,7 +60,8 @@ export const LayoutProvider = (props) => {
         setState,
         onMenuToggle,
         showProfileSidebar,
-        showConfigSidebar
+        showConfigSidebar,
+        hideConfigSidebar
     };
 
     return <LayoutContext.Provider value={value}>{props.children}</LayoutContext.Provider>;

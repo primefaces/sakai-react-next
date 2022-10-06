@@ -6,7 +6,7 @@ import { NavLink } from '../demo/utils/navlink';
 
 const AppMenuitem = (props) => {
     const [activeIndex, setActiveIndex] = useState(null);
-    const onMenuItemClick = (event, item, index) => {
+    const itemClick = (event, item, index) => {
         //avoid processing disabled items
         if (item.disabled) {
             event.preventDefault();
@@ -21,11 +21,16 @@ const AppMenuitem = (props) => {
         if (index === activeIndex) setActiveIndex(null);
         else setActiveIndex(index);
 
-        if (props.onMenuItemClick) {
-            props.onMenuItemClick({
+        if (props.itemClick) {
+            props.itemClick({
                 originalEvent: event,
                 item: item
             });
+        }
+
+        // toggle active state
+        if (item.items) {
+            setActiveIndex((prevState) => !prevState);
         }
     };
 
@@ -54,13 +59,13 @@ const AppMenuitem = (props) => {
 
         if (item.to) {
             return (
-                <NavLink ariaLabel={item.label} onKeyDown={onKeyDown} role="menuitem" className="p-ripple" href={item.to} onClick={(e) => onMenuItemClick(e, item, i)} exact>
+                <NavLink ariaLabel={item.label} onKeyDown={onKeyDown} role="menuitem" className="p-ripple" href={item.to} onClick={(e) => itemClick(e, item, i)} exact>
                     {content}
                 </NavLink>
             );
         } else {
             return (
-                <a tabIndex="0" aria-label={item.label} onKeyDown={onKeyDown} role="menuitem" href={item.url} className="p-ripple" onClick={(e) => onMenuItemClick(e, item, i)} target={'_blank'} rel="noreferrer">
+                <a tabIndex="0" aria-label={item.label} onKeyDown={onKeyDown} role="menuitem" href={item.url} className="p-ripple" onClick={(e) => itemClick(e, item, i)} target={'_blank'} rel="noreferrer">
                     {content}
                 </a>
             );
@@ -81,7 +86,7 @@ const AppMenuitem = (props) => {
                                 <div className="layout-menuitem-root-text" aria-label={item.label}>
                                     {item.label}
                                 </div>
-                                <AppMenuitem items={item.items} onMenuItemClick={props.onMenuItemClick} />
+                                <AppMenuitem items={item.items} itemClick={props.itemClick} />
                             </React.Fragment>
                         )}
                     </li>
@@ -91,7 +96,7 @@ const AppMenuitem = (props) => {
                     <li className={styleClass} key={i} role="none">
                         {renderLink(item, i)}
                         <CSSTransition classNames="layout-submenu-wrapper" timeout={{ enter: 1000, exit: 450 }} in={active} unmountOnExit>
-                            <AppMenuitem items={item.items} onMenuItemClick={props.onMenuItemClick} />
+                            <AppMenuitem items={item.items} itemClick={props.itemClick} />
                         </CSSTransition>
                     </li>
                 );

@@ -1,9 +1,9 @@
 import getConfig from 'next/config';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { useEventListener, useUnmountEffect } from 'primereact/hooks';
 import { classNames, DomHandler } from 'primereact/utils';
 import React, { useContext, useEffect, useRef } from 'react';
-import ScrollToTop from '../demo/utils/ScrollToTop';
 import AppFooter from './AppFooter';
 import AppMenu from './AppMenu';
 import AppTopbar from './AppTopbar';
@@ -15,7 +15,7 @@ const Layout = (props) => {
     const topbarRef = useRef(null);
     const sidebarRef = useRef(null);
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
-
+    const router = useRouter();
     const [bindMenuOutsideClickListener, unbindMenuOutsideClickListener] = useEventListener({
         type: 'click',
         listener: (event) => {
@@ -69,15 +69,11 @@ const Layout = (props) => {
 
     useEffect(() => {
         state.staticMenuMobileActive && blockBodyScroll();
+        router.events.on('routeChangeStart', () => {
+            hideMenu();
+            hideProfileMenu();
+        });
     }, [state.staticMenuMobileActive]);
-
-    /*
-    this.router.events.pipe(filter(event => event instanceof NavigationEnd))
-            .subscribe(() => {
-                this.hideMenu();
-                this.hideProfileMenu();
-            });
-    */
 
     useUnmountEffect(() => {
         unbindMenuOutsideClickListener();
@@ -99,7 +95,7 @@ const Layout = (props) => {
     });
 
     return (
-        <ScrollToTop>
+        <React.Fragment>
             <Head>
                 <base href={contextPath}></base>
                 <title>Sakai React with NextJS</title>
@@ -124,7 +120,7 @@ const Layout = (props) => {
 
                 <div className="layout-mask"></div>
             </div>
-        </ScrollToTop>
+        </React.Fragment>
     );
 };
 

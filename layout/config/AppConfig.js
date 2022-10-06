@@ -1,72 +1,18 @@
+import React, { useEffect, useState, useContext, useCallback } from 'react';
+import { Sidebar } from 'primereact/sidebar';
+import { Button } from 'primereact/button';
+import { InputSwitch } from 'primereact/inputswitch';
+import { RadioButton } from 'primereact/radiobutton';
+import { LayoutContext } from '../context/layoutcontext';
+import { classNames } from 'primereact/utils';
+import PrimeReact from 'primereact/api';
+
+import getConfig from 'next/config';
+
 export default function AppConfig() {
-    /*const [active, setActive] = useState(false);
-    const [scale, setScale] = useState(14);
     const [scales] = useState([12, 13, 14, 15, 16]);
-    const [theme, setTheme] = useState('lara-light-indigo');
-    const { layoutState, onRipple, onInputStyleChange, onLayoutModeChange, onColorModeChange } = useContext(LayoutContext);
+    const { config, state, setConfig, showConfigSidebar, hideConfigSidebar } = useContext(LayoutContext);
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
-
-    const config = useRef(null);
-    let outsideClickListener = useRef(null);
-
-    const unbindOutsideClickListener = useCallback(() => {
-        if (outsideClickListener.current) {
-            document.removeEventListener('click', outsideClickListener.current);
-            outsideClickListener.current = null;
-        }
-    }, []);
-
-    const hideConfigurator = useCallback(
-        (event) => {
-            setActive(false);
-            unbindOutsideClickListener();
-            event.preventDefault();
-        },
-        [unbindOutsideClickListener]
-    );
-
-    const bindOutsideClickListener = useCallback(() => {
-        if (!outsideClickListener.current) {
-            outsideClickListener.current = (event) => {
-                if (active && isOutsideClicked(event)) {
-                    hideConfigurator(event);
-                }
-            };
-            document.addEventListener('click', outsideClickListener.current);
-        }
-    }, [active, hideConfigurator]);
-
-    useEffect(() => {
-        if (active) {
-            bindOutsideClickListener();
-        } else {
-            unbindOutsideClickListener();
-        }
-    }, [active, bindOutsideClickListener, unbindOutsideClickListener]);
-
-    const isOutsideClicked = (event) => {
-        return !(config.current.isSameNode(event.target) || config.current.contains(event.target));
-    };
-
-    const decrementScale = () => {
-        setScale((prevState) => --prevState);
-    };
-
-    const incrementScale = () => {
-        setScale((prevState) => ++prevState);
-    };
-
-    useEffect(() => {
-        document.documentElement.style.fontSize = scale + 'px';
-    }, [scale]);
-
-    const toggleConfigurator = (event) => {
-        setActive((prevState) => !prevState);
-    };
-
-    const configClassName = classNames('layout-config', {
-        'layout-config-active': active
-    });
 
     const replaceLink = useCallback((linkElement, href, callback) => {
         if (isIE()) {
@@ -95,265 +41,292 @@ export default function AppConfig() {
         }
     }, []);
 
-    useEffect(() => {
-        let themeElement = document.getElementById('theme-link');
-        const themeHref = contextPath + '/themes/' + theme + '/theme.css';
-        replaceLink(themeElement, themeHref);
-    }, [theme, replaceLink]);
-
     const isIE = () => {
         return /(MSIE|Trident\/|Edge\/)/i.test(window.navigator.userAgent);
     };
 
-    const changeTheme = (e, theme, scheme) => {
-        onColorModeChange(scheme);
-        setTheme(theme);
-    };*/
+    useEffect(() => {
+        let themeElement = document.getElementById('theme-link');
+        const themeHref = contextPath + '/themes/' + config.theme + '/theme.css';
+        console.log(config.theme);
+        replaceLink(themeElement, themeHref);
+    }, [config.theme, replaceLink]);
 
-    return <div></div>;
+    useEffect(() => {
+        document.documentElement.style.fontSize = config.scale + 'px';
+    }, [config.scale]);
 
-    /*<div ref={config} className={configClassName} id={'layout-config'}>
-            <button className="layout-config-button p-link" id="layout-config-button" onClick={toggleConfigurator}>
+    const decrementScale = () => {
+        setConfig((prevState) => ({ ...prevState, scale: prevState.scale - 1 }));
+    };
+
+    const incrementScale = () => {
+        setConfig((prevState) => ({ ...prevState, scale: prevState.scale + 1 }));
+    };
+    const changeTheme = (e, theme, colorScheme) => {
+        setConfig((prevState) => ({ ...prevState, colorScheme, theme }));
+    };
+
+    const changeInputStyle = (e) => {
+        setConfig((prevState) => ({ ...prevState, inputStyle: e.value }));
+    };
+
+    const changeRipple = (e) => {
+        PrimeReact.ripple = e.value;
+        setConfig((prevState) => ({ ...prevState, ripple: e.value }));
+    };
+
+    const changeMenuMode = (e) => {
+        setConfig((prevState) => ({ ...prevState, menuMode: e.value }));
+    };
+
+    const onConfigButtonClick = () => {
+        showConfigSidebar();
+    };
+
+    const onConfigSidebarHide = () => {
+        hideConfigSidebar();
+    };
+
+    return (
+        <>
+            <Button className="layout-config-button p-link" type="button" onClick={onConfigButtonClick}>
                 <i className="pi pi-cog"></i>
-            </button>
-            <Button className="p-button-danger layout-config-close p-button-rounded p-button-text" icon="pi pi-times" onClick={hideConfigurator} />
+            </Button>
 
-            <div className="layout-config-content">
-                <h5 className="mt-0">Component Scale</h5>
-                <div className="config-scale">
-                    <Button icon="pi pi-minus" onClick={decrementScale} className="p-button-text" disabled={scale === scales[0]} />
-                    {scales.map((item) => {
-                        return <i className={classNames('pi pi-circle-on', { 'scale-active': item === scale })} key={item} />;
-                    })}
-                    <Button icon="pi pi-plus" onClick={incrementScale} className="p-button-text" disabled={scale === scales[scales.length - 1]} />
+            <Sidebar visible={state.configSidebarVisible} onHide={onConfigSidebarHide} position="right" transitionOptions=".3s cubic-bezier(0, 0, 0.2, 1)" className="layout-config-sidebar w-20rem">
+                <h5>Scale</h5>
+                <div className="flex align-items-center">
+                    <Button icon="pi pi-minus" type="button" onClick={decrementScale} className="p-button-text p-button-rounded w-2rem h-2rem mr-2" disabled={config.scale === scales[0]}></Button>
+                    <div className="flex gap-2 align-items-center">
+                        {scales.map((item) => {
+                            return <i className={classNames('pi pi-circle-fill', { 'text-primary-500': item === config.scale, 'text-300': item !== config.scale })} key={item}></i>;
+                        })}
+                    </div>
+                    <Button icon="pi pi-plus" type="button" onClick={incrementScale} className="p-button-text p-button-rounded w-2rem h-2rem ml-2" disabled={config.scale === scales[scales.length - 1]}></Button>
+                </div>
+                <h5>Menu Type</h5>
+                <div class="field-radiobutton">
+                    <RadioButton name="menuMode" value={'static'} checked={config.menuMode === 'static'} onChange={(e) => changeMenuMode(e)} inputId="mode1"></RadioButton>
+                    <label for="mode1">Static</label>
+                </div>
+                <div class="field-radiobutton">
+                    <RadioButton name="menuMode" value={'overlay'} checked={config.menuMode === 'overlay'} onChange={(e) => changeMenuMode(e)} inputId="mode2"></RadioButton>
+                    <label for="mode2">Overlay</label>
                 </div>
 
                 <h5>Input Style</h5>
-                <div className="p-formgroup-inline">
-                    <div className="field-radiobutton">
-                        <RadioButton inputId="input_outlined" name="inputstyle" value="outlined" onChange={(e) => onInputStyleChange(e.value)} checked={layoutState.inputStyle === 'outlined'} />
-                        <label htmlFor="input_outlined">Outlined</label>
+                <div class="flex">
+                    <div class="field-radiobutton flex-1">
+                        <RadioButton name="inputStyle" value={'outlined'} checked={config.inputStyle === 'outlined'} onChange={(e) => changeInputStyle(e)} inputId="outlined_input"></RadioButton>
+                        <label for="outlined_input">Outlined</label>
                     </div>
-                    <div className="field-radiobutton">
-                        <RadioButton inputId="input_filled" name="inputstyle" value="filled" onChange={(e) => onInputStyleChange(e.value)} checked={layoutState.inputStyle === 'filled'} />
-                        <label htmlFor="input_filled">Filled</label>
+                    <div class="field-radiobutton flex-1">
+                        <RadioButton name="inputStyle" value={'filled'} checked={config.inputStyle === 'filled'} onChange={(e) => changeInputStyle(e)} inputId="filled_input"></RadioButton>
+                        <label for="filled_input">Filled</label>
                     </div>
                 </div>
 
                 <h5>Ripple Effect</h5>
-                <InputSwitch checked={layoutState.ripple} onChange={onRipple} />
-
-                <h5>Menu Type</h5>
-                <div className="p-formgroup-inline">
-                    <div className="field-radiobutton">
-                        <RadioButton inputId="static" name="layoutMode" value="static" onChange={(e) => onLayoutModeChange(e.value)} checked={layoutState.layoutMode === 'static'} />
-                        <label htmlFor="static">Static</label>
-                    </div>
-                    <div className="field-radiobutton">
-                        <RadioButton inputId="overlay" name="layoutMode" value="overlay" onChange={(e) => onLayoutModeChange(e.value)} checked={layoutState.layoutMode === 'overlay'} />
-                        <label htmlFor="overlay">Overlay</label>
-                    </div>
-                </div>
-
-                <h5>Themes</h5>
-                <h6 className="mt-0">Bootstrap</h6>
-                <div className="grid free-themes">
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'bootstrap4-light-blue', 'light')}>
-                            <img src={`${contextPath}/layout/images/themes/bootstrap4-light-blue.svg`} alt="Bootstrap Light Blue" />
+                <InputSwitch checked={config.ripple} onChange={(e) => changeRipple(e)}></InputSwitch>
+                <h5>Bootstrap</h5>
+                <div className="grid">
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'bootstrap4-light-blue', 'light')}>
+                            <img src={`${contextPath}/layout/images/themes/bootstrap4-light-blue.svg`} className="w-2rem h-2rem" alt="Bootstrap Light Blue" />
                         </button>
                     </div>
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'bootstrap4-light-purple', 'light')}>
-                            <img src={`${contextPath}/layout/images/themes/bootstrap4-light-purple.svg`} alt="Bootstrap Light Purple" />
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'bootstrap4-light-purple', 'light')}>
+                            <img src={`${contextPath}/layout/images/themes/bootstrap4-light-purple.svg`} className="w-2rem h-2rem" alt="Bootstrap Light Purple" />
                         </button>
                     </div>
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'bootstrap4-dark-blue', 'dark')}>
-                            <img src={`${contextPath}/layout/images/themes/bootstrap4-dark-blue.svg`} alt="Bootstrap Dark Blue" />
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'bootstrap4-dark-blue', 'dark')}>
+                            <img src={`${contextPath}/layout/images/themes/bootstrap4-dark-blue.svg`} className="w-2rem h-2rem" alt="Bootstrap Dark Blue" />
                         </button>
                     </div>
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'bootstrap4-dark-purple', 'dark')}>
-                            <img src={`${contextPath}/layout/images/themes/bootstrap4-dark-purple.svg`} alt="Bootstrap Dark Purple" />
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'bootstrap4-dark-purple', 'dark')}>
+                            <img src={`${contextPath}/layout/images/themes/bootstrap4-dark-purple.svg`} className="w-2rem h-2rem" alt="Bootstrap Dark Purple" />
                         </button>
                     </div>
                 </div>
 
-                <h6>Material Design</h6>
-                <div className="grid free-themes">
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'md-light-indigo', 'light')}>
-                            <img src={`${contextPath}/layout/images/themes/md-light-indigo.svg`} alt="Material Light Indigo" />
+                <h5>Material Design</h5>
+                <div className="grid">
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'md-light-indigo', 'light')}>
+                            <img src={`${contextPath}/layout/images/themes/md-light-indigo.svg`} className="w-2rem h-2rem" alt="Material Light Indigo" />
                         </button>
                     </div>
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'md-light-deeppurple', 'light')}>
-                            <img src={`${contextPath}/layout/images/themes/md-light-deeppurple.svg`} alt="Material Light DeepPurple" />
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'md-light-deeppurple', 'light')}>
+                            <img src={`${contextPath}/layout/images/themes/md-light-deeppurple.svg`} className="w-2rem h-2rem" alt="Material Light DeepPurple" />
                         </button>
                     </div>
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'md-dark-indigo', 'dark')}>
-                            <img src={`${contextPath}/layout/images/themes/md-dark-indigo.svg`} alt="Material Dark Indigo" />
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'md-dark-indigo', 'dark')}>
+                            <img src={`${contextPath}/layout/images/themes/md-dark-indigo.svg`} className="w-2rem h-2rem" alt="Material Dark Indigo" />
                         </button>
                     </div>
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'md-dark-deeppurple', 'dark')}>
-                            <img src={`${contextPath}/layout/images/themes/md-dark-deeppurple.svg`} alt="Material Dark DeepPurple" />
-                        </button>
-                    </div>
-                </div>
-
-                <h6>Material Design Compact</h6>
-                <div className="grid free-themes">
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'mdc-light-indigo', 'light')}>
-                            <img src={`${contextPath}/layout/images/themes/md-light-indigo.svg`} alt="Material Light Indigo" />
-                        </button>
-                    </div>
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'mdc-light-deeppurple', 'light')}>
-                            <img src={`${contextPath}/layout/images/themes/md-light-deeppurple.svg`} alt="Material Light DeepPurple" />
-                        </button>
-                    </div>
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'mdc-dark-indigo', 'dark')}>
-                            <img src={`${contextPath}/layout/images/themes/md-dark-indigo.svg`} alt="Material Dark Indigo" />
-                        </button>
-                    </div>
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'mdc-dark-deeppurple', 'dark')}>
-                            <img src={`${contextPath}/layout/images/themes/md-dark-deeppurple.svg`} alt="Material Dark DeepPurple" />
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'md-dark-deeppurple', 'dark')}>
+                            <img src={`${contextPath}/layout/images/themes/md-dark-deeppurple.svg`} className="w-2rem h-2rem" alt="Material Dark DeepPurple" />
                         </button>
                     </div>
                 </div>
 
-                <h6>Tailwind</h6>
-                <div className="grid free-themes">
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'tailwind-light', 'light')}>
-                            <img src={`${contextPath}/layout/images/themes/tailwind-light.png`} alt="Tailwind Light" />
+                <h5>Material Design Compact</h5>
+                <div className="grid">
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'mdc-light-indigo', 'light')}>
+                            <img src={`${contextPath}/layout/images/themes/md-light-indigo.svg`} className="w-2rem h-2rem" alt="Material Light Indigo" />
+                        </button>
+                    </div>
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'mdc-light-deeppurple', 'light')}>
+                            <img src={`${contextPath}/layout/images/themes/md-light-deeppurple.svg`} className="w-2rem h-2rem" alt="Material Light Deep Purple" />
+                        </button>
+                    </div>
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'mdc-dark-indigo', 'dark')}>
+                            <img src={`${contextPath}/layout/images/themes/md-dark-indigo.svg`} className="w-2rem h-2rem" alt="Material Dark Indigo" />
+                        </button>
+                    </div>
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'mdc-dark-deeppurple', 'dark')}>
+                            <img src={`${contextPath}/layout/images/themes/md-dark-deeppurple.svg`} className="w-2rem h-2rem" alt="Material Dark Deep Purple" />
                         </button>
                     </div>
                 </div>
 
-                <h6>Fluent UI</h6>
-                <div className="grid free-themes">
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'fluent-light', 'light')}>
-                            <img src={`${contextPath}/layout/images/themes/fluent-light.png`} alt="Fluent Light" />
+                <h5>Tailwind</h5>
+                <div className="grid">
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'tailwind-light', 'light')}>
+                            <img src={`${contextPath}/layout/images/themes/tailwind-light.png`} className="w-2rem h-2rem" alt="Tailwind Light" />
                         </button>
                     </div>
                 </div>
 
-                <h6>PrimeOne Design - 2022</h6>
-                <div className="grid free-themes">
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'lara-light-indigo', 'light')}>
-                            <img src={`${contextPath}/layout/images/themes/lara-light-indigo.png`} alt="Lara Light Indigo" />
-                        </button>
-                    </div>
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'lara-light-blue', 'light')}>
-                            <img src={`${contextPath}/layout/images/themes/lara-light-blue.png`} alt="Lara Light Blue" />
-                        </button>
-                    </div>
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'lara-light-purple', 'light')}>
-                            <img src={`${contextPath}/layout/images/themes/lara-light-purple.png`} alt="Lara Light Purple" />
-                        </button>
-                    </div>
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'lara-light-teal', 'light')}>
-                            <img src={`${contextPath}/layout/images/themes/lara-light-teal.png`} alt="Lara Light Teal" />
-                        </button>
-                    </div>
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'lara-dark-indigo', 'dark')}>
-                            <img src={`${contextPath}/layout/images/themes/lara-dark-indigo.png`} alt="Lara Dark Indigo" />
-                        </button>
-                    </div>
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'lara-dark-blue', 'dark')}>
-                            <img src={`${contextPath}/layout/images/themes/lara-dark-blue.png`} alt="Lara Dark Blue" />
-                        </button>
-                    </div>
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'lara-dark-purple', 'dark')}>
-                            <img src={`${contextPath}/layout/images/themes/lara-dark-purple.png`} alt="Lara Dark Purple" />
-                        </button>
-                    </div>
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'lara-dark-teal', 'dark')}>
-                            <img src={`${contextPath}/layout/images/themes/lara-dark-teal.png`} alt="Lara Dark Teal" />
+                <h5>Fluent UI</h5>
+                <div className="grid">
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'fluent-light', 'light')}>
+                            <img src={`${contextPath}/layout/images/themes/fluent-light.png`} className="w-2rem h-2rem" alt="Fluent Light" />
                         </button>
                     </div>
                 </div>
 
-                <h6>PrimeOne Design - 2021</h6>
-                <div className="grid free-themes">
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'saga-blue', 'light')}>
-                            <img src={`${contextPath}/layout/images/themes/saga-blue.png`} alt="Saga Blue" />
+                <h5>PrimeOne Design - 2022</h5>
+                <div className="grid">
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'lara-light-indigo', 'light')}>
+                            <img src={`${contextPath}/layout/images/themes/lara-light-indigo.png`} className="w-2rem h-2rem" alt="Lara Light Indigo" />
                         </button>
                     </div>
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'saga-green', 'light')}>
-                            <img src={`${contextPath}/layout/images/themes/saga-green.png`} alt="Saga Green" />
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'lara-light-blue', 'light')}>
+                            <img src={`${contextPath}/layout/images/themes/lara-light-blue.png`} className="w-2rem h-2rem" alt="Lara Light Blue" />
                         </button>
                     </div>
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'saga-orange', 'light')}>
-                            <img src={`${contextPath}/layout/images/themes/saga-orange.png`} alt="Saga Orange" />
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'lara-light-purple', 'light')}>
+                            <img src={`${contextPath}/layout/images/themes/lara-light-purple.png`} className="w-2rem h-2rem" alt="Lara Light Purple" />
                         </button>
                     </div>
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'saga-purple', 'light')}>
-                            <img src={`${contextPath}/layout/images/themes/saga-purple.png`} alt="Saga Purple" />
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'lara-light-teal', 'light')}>
+                            <img src={`${contextPath}/layout/images/themes/lara-light-teal.png`} className="w-2rem h-2rem" alt="Lara Light Teal" />
                         </button>
                     </div>
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'vela-blue', 'dim')}>
-                            <img src={`${contextPath}/layout/images/themes/vela-blue.png`} alt="Vela Blue" />
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'lara-dark-indigo', 'dark')}>
+                            <img src={`${contextPath}/layout/images/themes/lara-dark-indigo.png`} className="w-2rem h-2rem" alt="Lara Dark Indigo" />
                         </button>
                     </div>
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'vela-green', 'dim')}>
-                            <img src={`${contextPath}/layout/images/themes/vela-green.png`} alt="Vela Green" />
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'lara-dark-blue', 'dark')}>
+                            <img src={`${contextPath}/layout/images/themes/lara-dark-blue.png`} className="w-2rem h-2rem" alt="Lara Dark Blue" />
                         </button>
                     </div>
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'vela-orange', 'dim')}>
-                            <img src={`${contextPath}/layout/images/themes/vela-orange.png`} alt="Vela Orange" />
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'lara-dark-purple', 'dark')}>
+                            <img src={`${contextPath}/layout/images/themes/lara-dark-purple.png`} className="w-2rem h-2rem" alt="Lara Dark Purple" />
                         </button>
                     </div>
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'vela-purple', 'dim')}>
-                            <img src={`${contextPath}/layout/images/themes/vela-purple.png`} alt="Vela Purple" />
-                        </button>
-                    </div>
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'arya-blue', 'dark')}>
-                            <img src={`${contextPath}/layout/images/themes/arya-blue.png`} alt="Arya Blue" />
-                        </button>
-                    </div>
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'arya-green', 'dark')}>
-                            <img src={`${contextPath}/layout/images/themes/arya-green.png`} alt="Arya Green" />
-                        </button>
-                    </div>
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'arya-orange', 'dark')}>
-                            <img src={`${contextPath}/layout/images/themes/arya-orange.png`} alt="Arya Orange" />
-                        </button>
-                    </div>
-                    <div className="col-3 text-center">
-                        <button className="p-link" onClick={(e) => changeTheme(e, 'arya-purple', 'dark')}>
-                            <img src={`${contextPath}/layout/images/themes/arya-purple.png`} alt="Arya Purple" />
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'lara-dark-teal', 'dark')}>
+                            <img src={`${contextPath}/layout/images/themes/lara-dark-teal.png`} className="w-2rem h-2rem" alt="Lara Dark Teal" />
                         </button>
                     </div>
                 </div>
-            </div>
-        </div>
-                */
+
+                <h5>PrimeOne Design - 2021</h5>
+                <div className="grid">
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'saga-blue', 'light')}>
+                            <img src={`${contextPath}/layout/images/themes/saga-blue.png`} className="w-2rem h-2rem" alt="Saga Blue" />
+                        </button>
+                    </div>
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'saga-green', 'light')}>
+                            <img src={`${contextPath}/layout/images/themes/saga-green.png`} className="w-2rem h-2rem" alt="Saga Green" />
+                        </button>
+                    </div>
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'saga-orange', 'light')}>
+                            <img src={`${contextPath}/layout/images/themes/saga-orange.png`} className="w-2rem h-2rem" alt="Saga Orange" />
+                        </button>
+                    </div>
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'saga-purple', 'light')}>
+                            <img src={`${contextPath}/layout/images/themes/saga-purple.png`} className="w-2rem h-2rem" alt="Saga Purple" />
+                        </button>
+                    </div>
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'vela-blue', 'dark')}>
+                            <img src={`${contextPath}/layout/images/themes/vela-blue.png`} className="w-2rem h-2rem" alt="Vela Blue" />
+                        </button>
+                    </div>
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'vela-green', 'dark')}>
+                            <img src={`${contextPath}/layout/images/themes/vela-green.png`} className="w-2rem h-2rem" alt="Vela Green" />
+                        </button>
+                    </div>
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'vela-orange', 'dark')}>
+                            <img src={`${contextPath}/layout/images/themes/vela-orange.png`} className="w-2rem h-2rem" alt="Vela Orange" />
+                        </button>
+                    </div>
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'vela-purple', 'dark')}>
+                            <img src={`${contextPath}/layout/images/themes/vela-purple.png`} className="w-2rem h-2rem" alt="Vela Purple" />
+                        </button>
+                    </div>
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'arya-blue', 'dark')}>
+                            <img src={`${contextPath}/layout/images/themes/arya-blue.png`} className="w-2rem h-2rem" alt="Arya Blue" />
+                        </button>
+                    </div>
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'arya-green', 'dark')}>
+                            <img src={`${contextPath}/layout/images/themes/arya-green.png`} className="w-2rem h-2rem" alt="Arya Green" />
+                        </button>
+                    </div>
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'arya-orange', 'dark')}>
+                            <img src={`${contextPath}/layout/images/themes/arya-orange.png`} className="w-2rem h-2rem" alt="Arya Orange" />
+                        </button>
+                    </div>
+                    <div className="col-3">
+                        <button className="p-link w-2rem h-2rem" onClick={(e) => changeTheme(e, 'arya-purple', 'dark')}>
+                            <img src={`${contextPath}/layout/images/themes/arya-purple.png`} className="w-2rem h-2rem" alt="Arya Purple" />
+                        </button>
+                    </div>
+                </div>
+            </Sidebar>
+        </>
+    );
 }
