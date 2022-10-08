@@ -382,4 +382,8 @@ const Dashboard = () => {
     );
 };
 
+Dashboard.getInitialProps = () => {
+    return { isLayoutNeeded: true };
+};
+
 export default Dashboard;

@@ -1,7 +1,6 @@
 import { useMountEffect } from 'primereact/hooks';
-import 'prismjs/themes/prism-coy.css';
 import React, { useRef } from 'react';
-
+import 'prismjs/themes/prism-coy.css';
 export function CodeHighlight(props) {
     const codeElement = useRef();
     const languageClassName = `language-${props.lang || 'jsx'}`;

@@ -97,4 +97,8 @@ $transitionDuration:.2s;
     );
 };
 
+Documentation.getInitialProps = () => {
+    return { isLayoutNeeded: true };
+};
+
 export default Documentation;

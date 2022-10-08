@@ -1,5 +1,6 @@
 import getConfig from 'next/config';
 import Link from 'next/link';
+import Router, { useRouter } from 'next/router';
 import { classNames } from 'primereact/utils';
 import React, { forwardRef, useContext, useImperativeHandle, useRef } from 'react';
 import { LayoutContext } from './context/layoutcontext';
@@ -28,7 +29,7 @@ const AppTopbar = forwardRef((props, ref) => {
                 </a>
             </Link>
 
-            <button ref={menubuttonRef} type="button" className="p-link  layout-menu-button layout-topbar-button" onClick={onMenuToggle}>
+            <button ref={menubuttonRef} type="button" className="p-link layout-menu-button layout-topbar-button" onClick={onMenuToggle}>
                 <i className="pi pi-bars" />
             </button>
 
@@ -45,10 +46,12 @@ const AppTopbar = forwardRef((props, ref) => {
                     <i className="pi pi-user"></i>
                     <span>Profile</span>
                 </button>
-                <button type="button" className="p-link layout-topbar-button">
-                    <i className="pi pi-cog"></i>
-                    <span>Settings</span>
-                </button>
+                <Link href={'/documentation'}>
+                    <button type="button" className="p-link layout-topbar-button">
+                        <i className="pi pi-cog"></i>
+                        <span>Settings</span>
+                    </button>
+                </Link>
             </div>
         </div>
     );

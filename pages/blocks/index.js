@@ -845,4 +845,8 @@ const BlocksDemo = () => {
     );
 };
 
+BlocksDemo.getInitialProps = () => {
+    return { isLayoutNeeded: true };
+};
+
 export default BlocksDemo;

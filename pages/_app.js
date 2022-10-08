@@ -9,11 +9,12 @@ import '../styles/demo/flags/flags.css';
 import '../styles/layout/layout.scss';
 
 export default function MyApp({ Component, pageProps }) {
+    const LayoutComponent = pageProps.isLayoutNeeded ? Layout : React.Fragment;
     return (
         <LayoutProvider>
-            <Layout>
+            <LayoutComponent>
                 <Component {...pageProps} />
-            </Layout>
+            </LayoutComponent>
         </LayoutProvider>
     );
 }

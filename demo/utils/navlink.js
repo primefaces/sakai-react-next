@@ -20,7 +20,7 @@ function NavLink({ href, exact, children, role, target, ariaLabel, ...props }) {
     const isActive = exact ? pathname === href : pathname.startsWith(href);
 
     if (isActive) {
-        props.className += ' active router-link-active router-link-exact-active';
+        props.className += ' active-route';
     }
 
     return (
