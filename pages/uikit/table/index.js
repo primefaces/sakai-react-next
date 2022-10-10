@@ -108,7 +108,7 @@ const TableDemo = () => {
     const countryBodyTemplate = (rowData) => {
         return (
             <React.Fragment>
-                <img alt="flag" src={`${contextPath}/demo/images/flags/flag_placeholder.png`} className={`flag flag-${rowData.country.code}`} width={30} />
+                <img alt="flag" src={`${contextPath}/demo/images/flag/flag_placeholder.png`} className={`flag flag-${rowData.country.code}`} width={30} />
                 <span style={{ marginLeft: '.5em', verticalAlign: 'middle' }} className="image-text">
                     {rowData.country.name}
                 </span>
@@ -279,7 +279,7 @@ const TableDemo = () => {
     const headerTemplate = (data) => {
         return (
             <React.Fragment>
-                <img alt={data.representative.name} src={`demo/images/avatar/${data.representative.image}`} width="32" style={{ verticalAlign: 'middle' }} />
+                <img alt={data.representative.name} src={`/demo/images/avatar/${data.representative.image}`} width="32" style={{ verticalAlign: 'middle' }} />
                 <span className="image-text font-bold">{data.representative.name}</span>
             </React.Fragment>
         );
