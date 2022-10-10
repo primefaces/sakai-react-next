@@ -103,7 +103,7 @@ const AppMenuitem = (props) => {
             }
         });
 
-    return items ? <ul>{items}</ul> : null;
+    return items ? props.root ? items : <ul>{items}</ul> : null;
 };
 
 export default AppMenuitem;
