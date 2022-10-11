@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 export const MenuContext = React.createContext();
 
 export const MenuProvider = (props) => {
-    const [key, setKey] = useState('');
+    const [contextKey, setContextKey] = useState('');
     const [routeEvent, setRouteEvent] = useState(false);
     const onMenuStateChange = ({ key, routeEvent }) => {
         setKey(key);
@@ -11,7 +11,7 @@ export const MenuProvider = (props) => {
     };
 
     const value = {
-        key,
+        contextKey,
         routeEvent,
         onMenuStateChange
     };
