@@ -12,7 +12,7 @@ export const LayoutProvider = (props) => {
         scale: 14
     });
 
-    const [state, setState] = useState({
+    const [layoutState, setLayoutState] = useState({
         staticMenuDesktopInactive: false,
         overlayMenuActive: false,
         profileSidebarVisible: false,
@@ -23,18 +23,18 @@ export const LayoutProvider = (props) => {
 
     const onMenuToggle = () => {
         if (isOverlay()) {
-            setState((prevState) => ({ ...prevState, overlayMenuActive: !prevState.overlayMenuActive }));
+            setLayoutState((prevLayoutState) => ({ ...prevLayoutState, overlayMenuActive: !prevLayoutState.overlayMenuActive }));
         }
 
         if (isDesktop()) {
-            setState((prevState) => ({ ...prevState, staticMenuDesktopInactive: !prevState.staticMenuDesktopInactive }));
+            setLayoutState((prevLayoutState) => ({ ...prevLayoutState, staticMenuDesktopInactive: !prevLayoutState.staticMenuDesktopInactive }));
         } else {
-            setState((prevState) => ({ ...prevState, staticMenuMobileActive: !prevState.staticMenuMobileActive }));
+            setLayoutState((prevLayoutState) => ({ ...prevLayoutState, staticMenuMobileActive: !prevLayoutState.staticMenuMobileActive }));
         }
     };
 
     const showProfileSidebar = () => {
-        setState((prevState) => ({ ...prevState, profileSidebarVisible: !prevState.profileSidebarVisible }));
+        setLayoutState((prevLayoutState) => ({ ...prevLayoutState, profileSidebarVisible: !prevLayoutState.profileSidebarVisible }));
     };
 
     const isOverlay = () => {
@@ -48,8 +48,8 @@ export const LayoutProvider = (props) => {
     const value = {
         config,
         setConfig,
-        state,
-        setState,
+        layoutState,
+        setLayoutState,
         onMenuToggle,
         showProfileSidebar
     };

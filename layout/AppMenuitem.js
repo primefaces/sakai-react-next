@@ -15,7 +15,7 @@ const AppMenuitem = (props) => {
     let item = props.item;
     let root = props.root;
 
-    useEffect(() => {
+    /*useEffect(() => {
         setKey(props.parentKey ? props.parentKey + '-' + props.index : String(props.index));
         router.events.on('routeChangeStart', () => {
             if (item.routerLink) {
@@ -38,7 +38,7 @@ const AppMenuitem = (props) => {
         if (activeRoute) {
             onMenuStateChange({ key: key, routeEvent: true });
         }
-    };
+    };*/
 
     const itemClick = (event) => {
         //avoid processing disabled items
@@ -60,40 +60,42 @@ const AppMenuitem = (props) => {
         onMenuStateChange({ key: key });
     };
 
+    const subMenu = item.items && item.visible !== false && (
+        <CSSTransition timeout={{ enter: 1000, exit: 450 }} classNames="p-toggleable-content" in={props.root ? true : active} unmountOnExit key={item.label}>
+            <ul>
+                {
+                    item.items.map((child, i) => {
+                        return <AppMenuitem item={child} index={i} className={child.badgeClass} parentKey={key} key={child.label} />
+                    })
+                }
+            </ul>
+        </CSSTransition>
+    )
+
     return (
-        <li className={classNames('layout-root-menuitem', { 'active-menuitem': active })}>
+        <li className={classNames({'layout-root-menuitem': props.root, 'active-menuitem': active })}>
             {root && item.visible !== false && <div className="layout-menuitem-root-text">{item.label}</div>}
             {(!item.routerLink || item.items) && item.visible !== false ? (
-                <a href={item.url} onClick={(e) => itemClick(e)} className={item.class} target={item.target} tabIndex={0}>
+                <a href={item.url} onClick={(e) => itemClick(e)} className={item.class} target={item.target} tabIndex="0">
                     <i className={classNames('layout-menuitem-icon', item.icon)}></i>
-                    <span class="layout-menuitem-text">{item.label}</span>
-                    {item.items && <i class="pi pi-fw pi-angle-down layout-submenu-toggler"></i>}
+                    <span className="layout-menuitem-text">{item.label}</span>
+                    {item.items && <i className="pi pi-fw pi-angle-down layout-submenu-toggler"></i>}
                     <Ripple />
                 </a>
             ) : null}
 
             {item.routerLink && !item.items && item.visible !== false ? (
                 <Link href={item.routerLink} replace={item.replaceUrl} target={item.target}>
-                    <a onClick={(e) => itemClick(e)} className={item.class} target={item.target} tabindex={0}>
+                    <a onClick={(e) => itemClick(e)} className={item.class} target={item.target} tabIndex="0">
                         <i className={classNames('layout-menuitem-icon', item.icon)}></i>
-                        <span class="layout-menuitem-text">{item.label}</span>
-                        {item.items && <i class="pi pi-fw pi-angle-down layout-submenu-toggler"></i>}
+                        <span className="layout-menuitem-text">{item.label}</span>
+                        {item.items && <i className="pi pi-fw pi-angle-down layout-submenu-toggler"></i>}
                         <Ripple />
                     </a>
                 </Link>
             ) : null}
 
-            {item.items && item.visible !== false
-                ? item.items.map((child, i) => {
-                      return (
-                          <ul className={classNames(item.badge, { 'layout-root-menuitem': root, 'active-menuitem': active })}>
-                              <CSSTransition timeout={{ enter: 1000, exit: 450 }} in={props.index === i} unmountOnExit>
-                                  <AppMenuitem item={child} index={i} className={child.badgeClass} parentKey={key} />
-                              </CSSTransition>
-                          </ul>
-                      );
-                  })
-                : null}
+            {subMenu}
         </li>
     );
 };

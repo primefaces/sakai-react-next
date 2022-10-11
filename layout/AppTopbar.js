@@ -6,7 +6,7 @@ import React, { forwardRef, useContext, useImperativeHandle, useRef } from 'reac
 import { LayoutContext } from './context/layoutcontext';
 
 const AppTopbar = forwardRef((props, ref) => {
-    const { config, state, onMenuToggle, showProfileSidebar } = useContext(LayoutContext);
+    const { config, layoutState, onMenuToggle, showProfileSidebar } = useContext(LayoutContext);
     const menubuttonRef = useRef(null);
     const topbarmenuRef = useRef(null);
     const topbarmenubuttonRef = useRef(null);
@@ -37,7 +37,7 @@ const AppTopbar = forwardRef((props, ref) => {
                 <i className="pi pi-ellipsis-v" />
             </button>
 
-            <div ref={topbarmenuRef} className={classNames('layout-topbar-menu', { 'layout-topbar-menu-mobile-active': state.profileSidebarVisible })}>
+            <div ref={topbarmenuRef} className={classNames('layout-topbar-menu', { 'layout-topbar-menu-mobile-active': layoutState.profileSidebarVisible })}>
                 <button type="button" className="p-link layout-topbar-button">
                     <i className="pi pi-calendar"></i>
                     <span>Calendar</span>

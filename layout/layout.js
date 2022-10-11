@@ -5,13 +5,13 @@ import { useEventListener, useUnmountEffect } from 'primereact/hooks';
 import { classNames, DomHandler } from 'primereact/utils';
 import React, { useContext, useEffect, useRef } from 'react';
 import AppFooter from './AppFooter';
-import AppMenu from './AppMenu';
+import AppSidebar from './AppSidebar';
 import AppTopbar from './AppTopbar';
-import AppConfig from './config/AppConfig';
+import AppConfig from './AppConfig';
 import { LayoutContext } from './context/layoutcontext';
 
 const Layout = (props) => {
-    const { config, state, setState } = useContext(LayoutContext);
+    const { config, layoutState, setLayoutState } = useContext(LayoutContext);
     const topbarRef = useRef(null);
     const sidebarRef = useRef(null);
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
@@ -44,13 +44,13 @@ const Layout = (props) => {
     });
 
     const hideMenu = () => {
-        setState((prevState) => ({ ...prevState, overlayMenuActive: false, staticMenuMobileActive: false, menuHoverActive: false }));
+        setLayoutState((prevLayoutState) => ({ ...prevLayoutState, overlayMenuActive: false, staticMenuMobileActive: false, menuHoverActive: false }));
         unbindMenuOutsideClickListener();
         unblockBodyScroll();
     };
 
     const hideProfileMenu = () => {
-        setState((prevState) => ({ ...prevState, profileSidebarVisible: false }));
+        setLayoutState((prevLayoutState) => ({ ...prevLayoutState, profileSidebarVisible: false }));
         unbindProfileMenuOutsideClickListener();
     };
 
@@ -63,17 +63,25 @@ const Layout = (props) => {
     };
 
     useEffect(() => {
-        (state.overlayMenuActive || state.staticMenuMobileActive) && bindMenuOutsideClickListener();
-        state.profileSidebarVisible && bindProfileMenuOutsideClickListener();
-    }, [state.overlayMenuActive, state.staticMenuMobileActive, state.profileSidebarVisible]);
+        if (layoutState.overlayMenuActive || layoutState.staticMenuMobileActive) {
+            bindMenuOutsideClickListener();
+        }
+
+        layoutState.staticMenuMobileActive && blockBodyScroll();
+    }, [layoutState.overlayMenuActive, layoutState.staticMenuMobileActive]);
 
     useEffect(() => {
-        state.staticMenuMobileActive && blockBodyScroll();
-        router.events.on('routeChangeStart', () => {
+        if (layoutState.profileSidebarVisible) {
+            bindProfileMenuOutsideClickListener();
+        }
+    }, [layoutState.profileSidebarVisible]);
+
+    useEffect(() => {
+        router.events.on('routeChangeComplete', () => {
             hideMenu();
             hideProfileMenu();
         });
-    }, [state.staticMenuMobileActive]);
+    }, []);
 
     useUnmountEffect(() => {
         unbindMenuOutsideClickListener();
@@ -85,11 +93,10 @@ const Layout = (props) => {
         'layout-theme-dark': config.colorScheme === 'dark',
         'layout-overlay': config.menuMode === 'overlay',
         'layout-static': config.menuMode === 'static',
-        'layout-slim': config.menuMode === 'slim',
         'layout-horizontal': config.menuMode === 'horizontal',
-        'layout-static-inactive': state.staticMenuDesktopInactive && config.menuMode === 'static',
-        'layout-overlay-active': state.overlayMenuActive,
-        'layout-mobile-active': state.staticMenuMobileActive,
+        'layout-static-inactive': layoutState.staticMenuDesktopInactive && config.menuMode === 'static',
+        'layout-overlay-active': layoutState.overlayMenuActive,
+        'layout-mobile-active': layoutState.staticMenuMobileActive,
         'p-input-filled': config.inputStyle === 'filled',
         'p-ripple-disabled': !config.ripple
     });
@@ -105,19 +112,14 @@ const Layout = (props) => {
 
             <div className={containerClass}>
                 <AppTopbar ref={topbarRef} />
-
                 <div ref={sidebarRef} className="layout-sidebar">
-                    <AppMenu />
+                    <AppSidebar />
                 </div>
-
                 <div className="layout-main-container">
                     <div className="layout-main">{props.children}</div>
-
                     <AppFooter />
                 </div>
-
                 <AppConfig />
-
                 <div className="layout-mask"></div>
             </div>
         </React.Fragment>

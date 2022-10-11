@@ -6,19 +6,19 @@ import { RadioButton } from 'primereact/radiobutton';
 import { Sidebar } from 'primereact/sidebar';
 import { classNames } from 'primereact/utils';
 import React, { useContext, useEffect, useState } from 'react';
-import { LayoutContext } from '../context/layoutcontext';
+import { LayoutContext } from './context/layoutcontext';
 
 const AppConfig = () => {
     const [scales] = useState([12, 13, 14, 15, 16]);
-    const { config, setConfig, state, setState } = useContext(LayoutContext);
+    const { config, setConfig, layoutState, setLayoutState } = useContext(LayoutContext);
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
 
     const onConfigButtonClick = () => {
-        setState((prevState) => ({ ...prevState, configSidebarVisible: true }));
+        setLayoutState((prevState) => ({ ...prevState, configSidebarVisible: true }));
     };
 
     const onConfigSidebarHide = () => {
-        setState((prevState) => ({ ...prevState, configSidebarVisible: false }));
+        setLayoutState((prevState) => ({ ...prevState, configSidebarVisible: false }));
     };
 
     const changeInputStyle = (e) => {
@@ -99,7 +99,7 @@ const AppConfig = () => {
                 <i className="pi pi-cog"></i>
             </button>
 
-            <Sidebar visible={state.configSidebarVisible} onHide={onConfigSidebarHide} position="right" className="layout-config-sidebar w-20rem">
+            <Sidebar visible={layoutState.configSidebarVisible} onHide={onConfigSidebarHide} position="right" className="layout-config-sidebar w-20rem">
                 <h5>Scale</h5>
                 <div className="flex align-items-center">
                     <Button icon="pi pi-minus" type="button" onClick={decrementScale} className="p-button-text p-button-rounded w-2rem h-2rem mr-2" disabled={config.scale === scales[0]}></Button>
