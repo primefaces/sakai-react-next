@@ -6,7 +6,7 @@ export const MenuProvider = (props) => {
     const [contextKey, setContextKey] = useState('');
     const [routeEvent, setRouteEvent] = useState(false);
     const onMenuStateChange = ({ key, routeEvent }) => {
-        setKey(key);
+        setContextKey(key);
         setRouteEvent(routeEvent);
     };
 
