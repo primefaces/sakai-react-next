@@ -368,8 +368,4 @@ const ChartDemo = (props) => {
     );
 };
 
-ChartDemo.getInitialProps = () => {
-    return { isLayoutNeeded: true };
-};
-
 export default ChartDemo;

@@ -108,8 +108,4 @@ const MessagesDemo = () => {
     );
 };
 
-MessagesDemo.getInitialProps = () => {
-    return { isLayoutNeeded: true };
-};
-
 export default MessagesDemo;

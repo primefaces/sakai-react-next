@@ -172,8 +172,4 @@ const ListDemo = () => {
     );
 };
 
-ListDemo.getInitialProps = () => {
-    return { isLayoutNeeded: true };
-};
-
 export default ListDemo;

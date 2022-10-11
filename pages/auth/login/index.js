@@ -56,7 +56,7 @@ const LoginPage = () => {
     );
 };
 
-LoginPage.getInitialProps = () => {
-    return { isLayoutNeeded: false };
+LoginPage.getLayout = function getLayout(page) {
+    return page;
 };
 export default LoginPage;

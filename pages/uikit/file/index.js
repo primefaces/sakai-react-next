@@ -23,8 +23,4 @@ const FileDemo = () => {
     );
 };
 
-FileDemo.getInitialProps = () => {
-    return { isLayoutNeeded: true };
-};
-
 export default FileDemo;

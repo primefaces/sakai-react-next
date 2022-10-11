@@ -38,8 +38,4 @@ const TreeDemo = () => {
     );
 };
 
-TreeDemo.getInitialProps = () => {
-    return { isLayoutNeeded: true };
-};
-
 export default TreeDemo;

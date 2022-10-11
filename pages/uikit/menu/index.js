@@ -574,8 +574,4 @@ const MenuDemo = ({ children }) => {
     );
 };
 
-MenuDemo.getInitialProps = () => {
-    return { isLayoutNeeded: true };
-};
-
 export default MenuDemo;

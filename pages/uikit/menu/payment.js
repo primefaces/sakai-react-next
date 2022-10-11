@@ -11,8 +11,4 @@ function PaymentDemo() {
     );
 }
 
-PaymentDemo.getInitialProps = () => {
-    return { isLayoutNeeded: true };
-};
-
 export default PaymentDemo;

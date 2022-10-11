@@ -190,8 +190,4 @@ const ButtonDemo = () => {
     );
 };
 
-ButtonDemo.getInitialProps = () => {
-    return { isLayoutNeeded: true };
-};
-
 export default ButtonDemo;

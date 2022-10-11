@@ -2,6 +2,7 @@ import getConfig from 'next/config';
 import React, { useContext } from 'react';
 import AppMenuitem from './AppMenuitem';
 import { LayoutContext } from './context/layoutcontext';
+import { MenuProvider } from './context/menucontext';
 
 const AppMenu = () => {
     const { config } = useContext(LayoutContext);
@@ -162,14 +163,19 @@ const AppMenu = () => {
     ];
 
     return (
-        <ul className="layout-menu">
-            <AppMenuitem items={model} root={true} role="menu" />
-            <li>
-                <a href="https://www.primefaces.org/primeblocks-react">
-                    <img alt="primeblocks" className="w-full mt-3" src={`${contextPath}/layout/images/banner-primeblocks${config.colorScheme === 'light' ? '' : '-dark'}.png`} />
-                </a>
-            </li>
-        </ul>
+        <MenuProvider>
+            <ul className="layout-menu">
+                {model.map((item, i) => {
+                    return !item.seperator ? <AppMenuitem item={item} root={true} index={i} /> : <li className="menu-separator"></li>;
+                })}
+
+                <li>
+                    <a href="https://www.primefaces.org/primeblocks-react">
+                        <img alt="Prime Blocks" className="w-full mt-3" src={`${contextPath}/layout/images/banner-primeblocks${config.colorScheme === 'light' ? '' : '-dark'}.png`} />
+                    </a>
+                </li>
+            </ul>
+        </MenuProvider>
     );
 };
 

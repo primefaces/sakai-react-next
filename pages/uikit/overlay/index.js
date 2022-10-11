@@ -185,8 +185,4 @@ const OverlayDemo = () => {
     );
 };
 
-OverlayDemo.getInitialProps = () => {
-    return { isLayoutNeeded: true };
-};
-
 export default OverlayDemo;

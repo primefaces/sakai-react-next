@@ -358,8 +358,4 @@ export const InputDemo = () => {
     );
 };
 
-InputDemo.getInitialProps = () => {
-    return { isLayoutNeeded: true };
-};
-
 export default InputDemo;

@@ -109,8 +109,4 @@ const MediaDemo = () => {
     );
 };
 
-MediaDemo.getInitialProps = () => {
-    return { isLayoutNeeded: true };
-};
-
 export default MediaDemo;

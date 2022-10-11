@@ -127,8 +127,4 @@ const FloatLabelDemo = () => {
     );
 };
 
-FloatLabelDemo.getInitialProps = () => {
-    return { isLayoutNeeded: true };
-};
-
 export default FloatLabelDemo;

@@ -13,8 +13,4 @@ const EmptyPage = () => {
     );
 };
 
-EmptyPage.getInitialProps = () => {
-    return { isLayoutNeeded: true };
-};
-
 export default EmptyPage;

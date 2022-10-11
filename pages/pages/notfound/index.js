@@ -57,8 +57,8 @@ const NotFound = () => {
     );
 };
 
-NotFound.getInitialProps = () => {
-    return { isLayoutNeeded: false };
+NotFound.getLayout = function getLayout(page) {
+    return page;
 };
 
 export default NotFound;

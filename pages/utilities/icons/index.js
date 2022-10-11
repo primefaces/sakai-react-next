@@ -153,8 +153,4 @@ const items = [
     );
 };
 
-IconsDemo.getInitialProps = () => {
-    return { isLayoutNeeded: true };
-};
-
 export default IconsDemo;

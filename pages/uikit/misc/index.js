@@ -206,8 +206,4 @@ const MiscDemo = () => {
     );
 };
 
-MiscDemo.getInitialProps = () => {
-    return { isLayoutNeeded: true };
-};
-
 export default MiscDemo;

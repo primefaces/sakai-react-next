@@ -11,8 +11,4 @@ function ConfirmationDemo() {
     );
 }
 
-ConfirmationDemo.getInitialProps = () => {
-    return { isLayoutNeeded: true };
-};
-
 export default ConfirmationDemo;

@@ -112,8 +112,4 @@ const InvalidStateDemo = () => {
     );
 };
 
-InvalidStateDemo.getInitialProps = () => {
-    return { isLayoutNeeded: true };
-};
-
 export default InvalidStateDemo;

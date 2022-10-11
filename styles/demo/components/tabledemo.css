@@ -1,0 +1,11 @@
+:host ::ng-deep  .p-frozen-column {
+    font-weight: bold;
+}
+
+:host ::ng-deep .p-datatable-frozen-tbody {
+    font-weight: bold;
+}
+
+:host ::ng-deep .p-progressbar {
+    height:.5rem;
+}

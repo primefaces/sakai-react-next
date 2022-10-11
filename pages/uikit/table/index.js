@@ -412,8 +412,4 @@ const TableDemo = () => {
     );
 };
 
-TableDemo.getInitialProps = () => {
-    return { isLayoutNeeded: true };
-};
-
 export default TableDemo;

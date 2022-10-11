@@ -394,8 +394,4 @@ const Crud = () => {
     );
 };
 
-Crud.getInitialProps = () => {
-    return { isLayoutNeeded: true };
-};
-
 export default Crud;

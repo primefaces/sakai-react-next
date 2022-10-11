@@ -11,8 +11,4 @@ function SeatDemo() {
     );
 }
 
-SeatDemo.getInitialProps = () => {
-    return { isLayoutNeeded: true };
-};
-
 export default SeatDemo;

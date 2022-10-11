@@ -91,7 +91,7 @@ const LandingPage = () => {
                                     height: '160px',
                                     padding: '2px',
                                     borderRadius: '10px',
-                                    background: 'linear-gradient(90deg, rgba(253, 228, 165, 0.2), rgba(187, 199, 205, 0.2)), linear-gradient(180deg, rgba(253, 228, 165, 0.2), rgba(187, 199, 205, 0.2));'
+                                    background: 'linear-gradient(90deg, rgba(253, 228, 165, 0.2), rgba(187, 199, 205, 0.2)), linear-gradient(180deg, rgba(253, 228, 165, 0.2), rgba(187, 199, 205, 0.2))'
                                 }}
                             >
                                 <div className="p-3 surface-card h-full" style={{ borderRadius: '8px' }}>
@@ -320,7 +320,13 @@ const LandingPage = () => {
 
                     <div className="grid justify-content-between mt-8 md:mt-0">
                         <div className="col-12 lg:col-4 p-0 md:p-3">
-                            <div className="p-3 flex flex-column border-200 pricing-card cursor-pointer" style={{ border: '2px solid', borderRadius: '10px' }}>
+                            <div
+                                className="p-3 flex flex-column border-200 pricing-card cursor-pointer"
+                                style={{
+                                    border: '2px solid',
+                                    borderRadius: '10px'
+                                }}
+                            >
                                 <h3 className="text-900 text-center my-5">Free</h3>
                                 <img src={`${contextPath}/demo/images/landing/free.svg`} className="w-10 h-10 mx-auto" alt="free" />
                                 <div className="my-5 text-center">
@@ -351,7 +357,13 @@ const LandingPage = () => {
                         </div>
 
                         <div className="col-12 lg:col-4 p-0 md:p-3 mt-4 md:mt-0">
-                            <div className="p-3 flex flex-column border-200 pricing-card cursor-pointer" style={{ border: '2px solid', borderRadius: '10px' }}>
+                            <div
+                                className="p-3 flex flex-column border-200 pricing-card cursor-pointer"
+                                style={{
+                                    border: '2px solid',
+                                    borderRadius: '10px'
+                                }}
+                            >
                                 <h3 className="text-900 text-center my-5">Startup</h3>
                                 <img src={`${contextPath}/demo/images/landing/startup.svg`} className="w-10 h-10 mx-auto" alt="startup" />
                                 <div className="my-5 text-center">
@@ -382,7 +394,13 @@ const LandingPage = () => {
                         </div>
 
                         <div className="col-12 lg:col-4 p-0 md:p-3 mt-4 md:mt-0">
-                            <div className="p-3 flex flex-column border-200 pricing-card cursor-pointer" style={{ border: '2px solid', borderRadius: '10px' }}>
+                            <div
+                                className="p-3 flex flex-column border-200 pricing-card cursor-pointer"
+                                style={{
+                                    border: '2px solid',
+                                    borderRadius: '10px'
+                                }}
+                            >
                                 <h3 className="text-900 text-center my-5">Enterprise</h3>
                                 <img src={`${contextPath}/demo/images/landing/enterprise.svg`} className="w-10 h-10 mx-auto" alt="enterprise" />
                                 <div className="my-5 text-center">
@@ -469,8 +487,8 @@ const LandingPage = () => {
     );
 };
 
-LandingPage.getInitialProps = () => {
-    return { isLayoutNeeded: false };
+LandingPage.getLayout = function getLayout(page) {
+    return page;
 };
 
 export default LandingPage;

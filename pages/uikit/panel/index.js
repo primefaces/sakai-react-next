@@ -244,8 +244,4 @@ const PanelDemo = () => {
     );
 };
 
-PanelDemo.getInitialProps = () => {
-    return { isLayoutNeeded: true };
-};
-
 export default PanelDemo;

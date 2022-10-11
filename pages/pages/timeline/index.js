@@ -62,8 +62,4 @@ const TimelineDemo = () => {
     );
 };
 
-TimelineDemo.getInitialProps = () => {
-    return { isLayoutNeeded: true };
-};
-
 export default TimelineDemo;

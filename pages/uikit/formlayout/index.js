@@ -131,8 +131,4 @@ const FormLayoutDemo = () => {
     );
 };
 
-FormLayoutDemo.getInitialProps = () => {
-    return { isLayoutNeeded: true };
-};
-
 export default FormLayoutDemo;
