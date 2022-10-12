@@ -5,7 +5,7 @@ import { LayoutContext } from './context/layoutcontext';
 import { MenuProvider } from './context/menucontext';
 
 const AppMenu = () => {
-    const { config } = useContext(LayoutContext);
+    const { layoutConfig } = useContext(LayoutContext);
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
     const model = [
         {
@@ -171,7 +171,7 @@ const AppMenu = () => {
 
                 <li>
                     <a href="https://www.primefaces.org/primeblocks-react">
-                        <img alt="Prime Blocks" className="w-full mt-3" src={`${contextPath}/layout/images/banner-primeblocks${config.colorScheme === 'light' ? '' : '-dark'}.png`} />
+                        <img alt="Prime Blocks" className="w-full mt-3" src={`${contextPath}/layout/images/banner-primeblocks${layoutConfig.colorScheme === 'light' ? '' : '-dark'}.png`} />
                     </a>
                 </li>
             </ul>

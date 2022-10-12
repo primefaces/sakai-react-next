@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { LayoutContext } from '../../../layout/context/layoutcontext';
 
 const Error = () => {
-    const { config } = useContext(LayoutContext);
+ 
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
     return (
         <div className="surface-0 flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
@@ -33,5 +33,7 @@ const Error = () => {
         </div>
     );
 };
-
+Error.getLayout = function getLayout(page) {
+    return page;
+};
 export default Error;

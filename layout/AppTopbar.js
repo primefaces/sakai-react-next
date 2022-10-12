@@ -6,7 +6,7 @@ import React, { forwardRef, useContext, useImperativeHandle, useRef } from 'reac
 import { LayoutContext } from './context/layoutcontext';
 
 const AppTopbar = forwardRef((props, ref) => {
-    const { config, layoutState, onMenuToggle, showProfileSidebar } = useContext(LayoutContext);
+    const { layoutConfig, layoutState, onMenuToggle, showProfileSidebar } = useContext(LayoutContext);
     const menubuttonRef = useRef(null);
     const topbarmenuRef = useRef(null);
     const topbarmenubuttonRef = useRef(null);
@@ -23,7 +23,7 @@ const AppTopbar = forwardRef((props, ref) => {
             <Link href={'/'}>
                 <a className="layout-topbar-logo">
                     <>
-                        <img src={`${contextPath}/layout/images/logo-${config.colorScheme !== 'light' ? 'white' : 'dark'}.svg`} width="47.22px" height={'35px'} widt={'true'} alt="logo" />
+                        <img src={`${contextPath}/layout/images/logo-${layoutConfig.colorScheme !== 'light' ? 'white' : 'dark'}.svg`} width="47.22px" height={'35px'} widt={'true'} alt="logo" />
                         <span>SAKAI</span>
                     </>
                 </a>

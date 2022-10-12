@@ -9,13 +9,13 @@ import { InputText } from 'primereact/inputtext';
 const LoginPage = () => {
     const [password, setPassword] = useState('');
     const [checked, setChecked] = useState(false);
-    const { config } = useContext(LayoutContext);
+    const { layoutConfig } = useContext(LayoutContext);
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
     return (
         <div className="surface-0 flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
             <div className="grid justify-content-center p-2 lg:p-0" style={{ minWidth: '80%' }}>
                 <div className="col-12 mt-5 xl:mt-0 text-center">
-                    <img src={`${contextPath}/layout/images/logo-${config.colorScheme === 'light' ? 'dark' : 'white'}.svg`} alt="Sakai logo" className="mb-5" style={{ width: '81px', height: '60px' }} />
+                    <img src={`${contextPath}/layout/images/logo-${layoutConfig.colorScheme === 'light' ? 'dark' : 'white'}.svg`} alt="Sakai logo" className="mb-5" style={{ width: '81px', height: '60px' }} />
                 </div>
                 <div className="col-12 xl:col-6" style={{ borderRadius: '56px', padding: '0.3rem', background: 'linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%)' }}>
                     <div className="h-full w-full m-0 py-7 px-4" style={{ borderRadius: '53px', background: 'linear-gradient(180deg, var(--surface-50) 38.9%, var(--surface-0))' }}>
@@ -26,20 +26,20 @@ const LoginPage = () => {
                         </div>
 
                         <div className="w-full p-fluid md:w-10 mx-auto">
-                            <label for="email1" className="block text-900 text-xl font-medium mb-2">
+                            <label htmlFor="email1" className="block text-900 text-xl font-medium mb-2">
                                 Email
                             </label>
-                            <InputText inputId="email1" type="text" placeholder="Email address" className="w-full mb-3" style={{ padding: '1rem' }} />
+                            <InputText inputid="email1" type="text" placeholder="Email address" className="w-full mb-3" style={{ padding: '1rem' }} />
 
-                            <label for="password1" className="block text-900 font-medium text-xl mb-2">
+                            <label htmlFor="password1" className="block text-900 font-medium text-xl mb-2">
                                 Password
                             </label>
-                            <Password inputId="password1" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" toggleMask className="mb-3"></Password>
+                            <Password inputid="password1" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" toggleMask className="mb-3"></Password>
 
                             <div className="flex align-items-center justify-content-between mb-5">
                                 <div className="flex align-items-center">
-                                    <Checkbox inputId="rememberme1" value={checked} onChange={(e) => setChecked(e.checked)} className="mr-2"></Checkbox>
-                                    <label for="rememberme1" className="mr-2">
+                                    <Checkbox inputid="rememberme1" value={checked} onChange={(e) => setChecked(e.checked)} className="mr-2"></Checkbox>
+                                    <label htmlFor="rememberme1" className="mr-2">
                                         Remember me
                                     </label>
                                 </div>

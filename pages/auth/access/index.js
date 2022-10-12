@@ -3,8 +3,9 @@ import React, { useContext, useState } from 'react';
 import { LayoutContext } from '../../../layout/context/layoutcontext';
 
 const Access = () => {
-    const { config } = useContext(LayoutContext);
+    
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
+
     return (
         <div className="surface-0 flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
             <div className="grid justify-content-center p-2 lg:p-0" style={{ minWidth: '80%' }}>
@@ -33,5 +34,7 @@ const Access = () => {
         </div>
     );
 };
-
+Access.getLayout = function getLayout(page) {
+    return page;
+};
 export default Access;

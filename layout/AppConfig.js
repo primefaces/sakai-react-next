@@ -10,7 +10,7 @@ import { LayoutContext } from './context/layoutcontext';
 
 const AppConfig = () => {
     const [scales] = useState([12, 13, 14, 15, 16]);
-    const { config, setConfig, layoutState, setLayoutState } = useContext(LayoutContext);
+    const { layoutConfig, setLayoutConfig, layoutState, setLayoutState } = useContext(LayoutContext);
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
 
     const onConfigButtonClick = () => {
@@ -22,25 +22,25 @@ const AppConfig = () => {
     };
 
     const changeInputStyle = (e) => {
-        setConfig((prevState) => ({ ...prevState, inputStyle: e.value }));
+        setLayoutConfig((prevState) => ({ ...prevState, inputStyle: e.value }));
     };
 
     const changeRipple = (e) => {
         PrimeReact.ripple = e.value;
-        setConfig((prevState) => ({ ...prevState, ripple: e.value }));
+        setLayoutConfig((prevState) => ({ ...prevState, ripple: e.value }));
     };
 
     const changeMenuMode = (e) => {
-        setConfig((prevState) => ({ ...prevState, menuMode: e.value }));
+        setLayoutConfig((prevState) => ({ ...prevState, menuMode: e.value }));
     };
 
     const changeTheme = (theme, colorScheme) => {
         const themeLink = document.getElementById('theme-css');
         const themeHref = themeLink ? themeLink.getAttribute('href') : null;
-        const newHref = themeHref ? themeHref.replace(config.theme, theme) : null;
+        const newHref = themeHref ? themeHref.replace(layoutConfig.theme, theme) : null;
 
         replaceLink(themeLink, newHref, () => {
-            setConfig((prevState) => ({ ...prevState, theme, colorScheme }));
+            setLayoutConfig((prevState) => ({ ...prevState, theme, colorScheme }));
         });
     };
 
@@ -74,15 +74,15 @@ const AppConfig = () => {
     };
 
     const decrementScale = () => {
-        setConfig((prevState) => ({ ...prevState, scale: prevState.scale - 1 }));
+        setLayoutConfig((prevState) => ({ ...prevState, scale: prevState.scale - 1 }));
     };
 
     const incrementScale = () => {
-        setConfig((prevState) => ({ ...prevState, scale: prevState.scale + 1 }));
+        setLayoutConfig((prevState) => ({ ...prevState, scale: prevState.scale + 1 }));
     };
 
     const applyScale = () => {
-        document.documentElement.style.fontSize = config.scale + 'px';
+        document.documentElement.style.fontSize = layoutConfig.scale + 'px';
     };
 
     const isIE = () => {
@@ -91,7 +91,7 @@ const AppConfig = () => {
 
     useEffect(() => {
         applyScale();
-    }, [config.scale]);
+    }, [layoutConfig.scale]);
 
     return (
         <>
@@ -102,39 +102,39 @@ const AppConfig = () => {
             <Sidebar visible={layoutState.configSidebarVisible} onHide={onConfigSidebarHide} position="right" className="layout-config-sidebar w-20rem">
                 <h5>Scale</h5>
                 <div className="flex align-items-center">
-                    <Button icon="pi pi-minus" type="button" onClick={decrementScale} className="p-button-text p-button-rounded w-2rem h-2rem mr-2" disabled={config.scale === scales[0]}></Button>
+                    <Button icon="pi pi-minus" type="button" onClick={decrementScale} className="p-button-text p-button-rounded w-2rem h-2rem mr-2" disabled={layoutConfig.scale === scales[0]}></Button>
                     <div className="flex gap-2 align-items-center">
                         {scales.map((item) => {
-                            return <i className={classNames('pi pi-circle-fill', { 'text-primary-500': item === config.scale, 'text-300': item !== config.scale })} key={item}></i>;
+                            return <i className={classNames('pi pi-circle-fill', { 'text-primary-500': item === layoutConfig.scale, 'text-300': item !== layoutConfig.scale })} key={item}></i>;
                         })}
                     </div>
-                    <Button icon="pi pi-plus" type="button" onClick={incrementScale} className="p-button-text p-button-rounded w-2rem h-2rem ml-2" disabled={config.scale === scales[scales.length - 1]}></Button>
+                    <Button icon="pi pi-plus" type="button" onClick={incrementScale} className="p-button-text p-button-rounded w-2rem h-2rem ml-2" disabled={layoutConfig.scale === scales[scales.length - 1]}></Button>
                 </div>
 
                 <h5>Menu Type</h5>
                 <div className="field-radiobutton">
-                    <RadioButton name="menuMode" value={'static'} checked={config.menuMode === 'static'} onChange={(e) => changeMenuMode(e)} inputId="mode1"></RadioButton>
+                    <RadioButton name="menuMode" value={'static'} checked={layoutConfig.menuMode === 'static'} onChange={(e) => changeMenuMode(e)} inputId="mode1"></RadioButton>
                     <label htmlFor="mode1">Static</label>
                 </div>
                 <div className="field-radiobutton">
-                    <RadioButton name="menuMode" value={'overlay'} checked={config.menuMode === 'overlay'} onChange={(e) => changeMenuMode(e)} inputId="mode2"></RadioButton>
+                    <RadioButton name="menuMode" value={'overlay'} checked={layoutConfig.menuMode === 'overlay'} onChange={(e) => changeMenuMode(e)} inputId="mode2"></RadioButton>
                     <label htmlFor="mode2">Overlay</label>
                 </div>
 
                 <h5>Input Style</h5>
                 <div className="flex">
                     <div className="field-radiobutton flex-1">
-                        <RadioButton name="inputStyle" value={'outlined'} checked={config.inputStyle === 'outlined'} onChange={(e) => changeInputStyle(e)} inputId="outlined_input"></RadioButton>
+                        <RadioButton name="inputStyle" value={'outlined'} checked={layoutConfig.inputStyle === 'outlined'} onChange={(e) => changeInputStyle(e)} inputId="outlined_input"></RadioButton>
                         <label htmlFor="outlined_input">Outlined</label>
                     </div>
                     <div className="field-radiobutton flex-1">
-                        <RadioButton name="inputStyle" value={'filled'} checked={config.inputStyle === 'filled'} onChange={(e) => changeInputStyle(e)} inputId="filled_input"></RadioButton>
+                        <RadioButton name="inputStyle" value={'filled'} checked={layoutConfig.inputStyle === 'filled'} onChange={(e) => changeInputStyle(e)} inputId="filled_input"></RadioButton>
                         <label htmlFor="filled_input">Filled</label>
                     </div>
                 </div>
 
                 <h5>Ripple Effect</h5>
-                <InputSwitch checked={config.ripple} onChange={(e) => changeRipple(e)}></InputSwitch>
+                <InputSwitch checked={layoutConfig.ripple} onChange={(e) => changeRipple(e)}></InputSwitch>
 
                 <h5>Bootstrap</h5>
                 <div className="grid">

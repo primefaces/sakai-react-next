@@ -104,7 +104,7 @@ const ChartDemo = (props) => {
     const [pieOptions, setPieOptions] = useState(null);
     const [polarOptions, setPolarOptions] = useState(null);
     const [radarOptions, setRadarOptions] = useState(null);
-    const { config } = useContext(LayoutContext);
+    const { layoutConfig } = useContext(LayoutContext);
 
     const applyLightTheme = () => {
         const lineOptions = {
@@ -323,12 +323,12 @@ const ChartDemo = (props) => {
     };
 
     useEffect(() => {
-        if (config.colorScheme === 'light') {
+        if (layoutConfig.colorScheme === 'light') {
             applyLightTheme();
         } else {
             applyDarkTheme();
         }
-    }, [config.colorScheme]);
+    }, [layoutConfig.colorScheme]);
 
     return (
         <div className="grid p-fluid">

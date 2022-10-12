@@ -11,7 +11,7 @@ import AppConfig from './AppConfig';
 import { LayoutContext } from './context/layoutcontext';
 
 const Layout = (props) => {
-    const { config, layoutState, setLayoutState } = useContext(LayoutContext);
+    const { layoutConfig, layoutState, setLayoutState } = useContext(LayoutContext);
     const topbarRef = useRef(null);
     const sidebarRef = useRef(null);
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
@@ -89,16 +89,16 @@ const Layout = (props) => {
     });
 
     const containerClass = classNames('layout-wrapper', {
-        'layout-theme-light': config.colorScheme === 'light',
-        'layout-theme-dark': config.colorScheme === 'dark',
-        'layout-overlay': config.menuMode === 'overlay',
-        'layout-static': config.menuMode === 'static',
-        'layout-horizontal': config.menuMode === 'horizontal',
-        'layout-static-inactive': layoutState.staticMenuDesktopInactive && config.menuMode === 'static',
+        'layout-theme-light': layoutConfig.colorScheme === 'light',
+        'layout-theme-dark': layoutConfig.colorScheme === 'dark',
+        'layout-overlay': layoutConfig.menuMode === 'overlay',
+        'layout-static': layoutConfig.menuMode === 'static',
+        'layout-horizontal': layoutConfig.menuMode === 'horizontal',
+        'layout-static-inactive': layoutState.staticMenuDesktopInactive && layoutConfig.menuMode === 'static',
         'layout-overlay-active': layoutState.overlayMenuActive,
         'layout-mobile-active': layoutState.staticMenuMobileActive,
-        'p-input-filled': config.inputStyle === 'filled',
-        'p-ripple-disabled': !config.ripple
+        'p-input-filled': layoutConfig.inputStyle === 'filled',
+        'p-ripple-disabled': !layoutConfig.ripple
     });
 
     return (

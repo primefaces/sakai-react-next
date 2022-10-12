@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 export const LayoutContext = React.createContext();
 
 export const LayoutProvider = (props) => {
-    const [config, setConfig] = useState({
+    const [layoutConfig, setLayoutConfig] = useState({
         ripple: false,
         inputStyle: 'outlined',
         menuMode: 'static',
@@ -38,7 +38,7 @@ export const LayoutProvider = (props) => {
     };
 
     const isOverlay = () => {
-        return config.menuMode === 'overlay';
+        return layoutConfig.menuMode === 'overlay';
     };
 
     const isDesktop = () => {
@@ -46,8 +46,8 @@ export const LayoutProvider = (props) => {
     };
 
     const value = {
-        config,
-        setConfig,
+        layoutConfig,
+        setLayoutConfig,
         layoutState,
         setLayoutState,
         onMenuToggle,
