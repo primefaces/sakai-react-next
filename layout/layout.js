@@ -93,7 +93,6 @@ const Layout = (props) => {
         'layout-theme-dark': layoutConfig.colorScheme === 'dark',
         'layout-overlay': layoutConfig.menuMode === 'overlay',
         'layout-static': layoutConfig.menuMode === 'static',
-        'layout-horizontal': layoutConfig.menuMode === 'horizontal',
         'layout-static-inactive': layoutState.staticMenuDesktopInactive && layoutConfig.menuMode === 'static',
         'layout-overlay-active': layoutState.overlayMenuActive,
         'layout-mobile-active': layoutState.staticMenuMobileActive,
