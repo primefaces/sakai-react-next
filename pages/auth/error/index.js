@@ -1,9 +1,8 @@
 import getConfig from 'next/config';
 import React, { useContext } from 'react';
-import { LayoutContext } from '../../../layout/context/layoutcontext';
+import AppConfig from '../../../layout/AppConfig';
 
 const Error = () => {
- 
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
     return (
         <div className="surface-0 flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
@@ -22,7 +21,7 @@ const Error = () => {
                             <img src={`${contextPath}/demo/images/error/asset-error.svg`} alt="Error" className="mt-5" width="80%" />
                             <div className="col-12 mt-5 text-center">
                                 <i className="pi pi-fw pi-arrow-left text-blue-500 mr-2" style={{ verticalAlign: 'center' }}></i>
-                                <a href="#" className="text-blue-500">
+                                <a href="/" className="text-blue-500">
                                     Go to Dashboard
                                 </a>
                             </div>
@@ -34,6 +33,11 @@ const Error = () => {
     );
 };
 Error.getLayout = function getLayout(page) {
-    return page;
+    return (
+        <React.Fragment>
+            {page}
+            <AppConfig />
+        </React.Fragment>
+    );
 };
 export default Error;

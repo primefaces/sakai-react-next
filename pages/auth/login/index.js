@@ -1,5 +1,6 @@
 import getConfig from 'next/config';
 import React, { useContext, useState } from 'react';
+import AppConfig from '../../../layout/AppConfig';
 import { Checkbox } from 'primereact/checkbox';
 import { Button } from 'primereact/button';
 import { Password } from 'primereact/password';
@@ -57,6 +58,11 @@ const LoginPage = () => {
 };
 
 LoginPage.getLayout = function getLayout(page) {
-    return page;
+    return (
+        <React.Fragment>
+            {page}
+            <AppConfig />
+        </React.Fragment>
+    );
 };
 export default LoginPage;
