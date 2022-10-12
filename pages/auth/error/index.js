@@ -1,7 +1,7 @@
 import getConfig from 'next/config';
-import React, { useContext } from 'react';
+import React from 'react';
+import Link from 'next/link';
 import AppConfig from '../../../layout/AppConfig';
-
 const Error = () => {
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
     return (
@@ -21,9 +21,9 @@ const Error = () => {
                             <img src={`${contextPath}/demo/images/error/asset-error.svg`} alt="Error" className="mt-5" width="80%" />
                             <div className="col-12 mt-5 text-center">
                                 <i className="pi pi-fw pi-arrow-left text-blue-500 mr-2" style={{ verticalAlign: 'center' }}></i>
-                                <a href="/" className="text-blue-500">
-                                    Go to Dashboard
-                                </a>
+                                <Link href={`${contextPath}/`} passHref>
+                                    <a className="text-blue-500">Go to Dashboard</a>
+                                </Link>
                             </div>
                         </div>
                     </div>

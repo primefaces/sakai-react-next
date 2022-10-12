@@ -1,11 +1,12 @@
 import React, { useContext, useRef } from 'react';
 import Link from 'next/link';
 import getConfig from 'next/config';
-import { LayoutContext } from '../../layout/context/layoutcontext';
 import { StyleClass } from 'primereact/styleclass';
 import { Button } from 'primereact/button';
 import { Ripple } from 'primereact/ripple';
 import { Divider } from 'primereact/divider';
+import AppConfig from '../../layout/AppConfig';
+import { LayoutContext } from '../../layout/context/layoutcontext';
 
 const LandingPage = () => {
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
@@ -16,7 +17,7 @@ const LandingPage = () => {
         <div className="surface-0 flex justify-content-center">
             <div id="home" className="landing-wrapper overflow-hidden">
                 <div className="py-4 px-4 mx-0 md:mx-6 lg:mx-8 lg:px-8 flex align-items-center justify-content-between relative lg:static mb-3">
-                    <Link href={'/'}>
+                    <Link href={`${contextPath}/`}>
                         <a className="flex align-items-center">
                             <img src={`${contextPath}/layout/images/${layoutConfig.colorScheme === 'light' ? 'logo-dark' : 'logo-white'}.svg`} alt="Sakai Logo" height="50" className="mr-0 lg:mr-2" />
                             <span className="text-900 font-medium text-2xl line-height-3 mr-8">SAKAI</span>
@@ -28,7 +29,7 @@ const LandingPage = () => {
                     <div className="align-items-center surface-0 flex-grow-1 justify-content-between hidden lg:flex absolute lg:static w-full left-0 px-6 lg:px-0 z-2" style={{ top: '85%' }}>
                         <ul className="list-none p-0 m-0 flex lg:align-items-center select-none flex-column lg:flex-row cursor-pointer">
                             <li>
-                                <Link href={'/landing#home'}>
+                                <Link href={`${contextPath}/`} passHref>
                                     <a className="flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3">
                                         <span>Home</span>
                                     </a>
@@ -36,7 +37,7 @@ const LandingPage = () => {
                                 <Ripple />
                             </li>
                             <li>
-                                <Link href={'/landing#features'}>
+                                <Link href={`${contextPath}/`} passHref>
                                     <a className="flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3">
                                         <span>Features</span>
                                     </a>
@@ -44,7 +45,7 @@ const LandingPage = () => {
                                 <Ripple />
                             </li>
                             <li>
-                                <Link href={'/landing#highlights'}>
+                                <Link href={`${contextPath}/`} passHref>
                                     <a className="flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3">
                                         <span>Highlights</span>
                                     </a>
@@ -52,7 +53,7 @@ const LandingPage = () => {
                                 <Ripple />
                             </li>
                             <li>
-                                <Link href={'/landing#pricing'}>
+                                <Link href={`${contextPath}/`} passHref>
                                     <a className="flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3">
                                         <span>Pricing</span>
                                     </a>
@@ -435,7 +436,7 @@ const LandingPage = () => {
                 <div className="py-4 px-4 mx-0 mt-8 lg:mx-8">
                     <div className="grid justify-content-between">
                         <div className="col-12 md:col-2" style={{ marginTop: '-1.5rem' }}>
-                            <Link href={'/landing#home'}>
+                            <Link  href={`${contextPath}/`} passHref>
                                 <a className="flex flex-wrap align-items-center justify-content-center md:justify-content-start md:mb-0 mb-3 cursor-pointer">
                                     <img src={`${contextPath}/layout/images/${layoutConfig.colorScheme === 'light' ? 'logo-dark' : 'logo-white'}.svg`} alt="footer sections" width="50" height="50" className="mr-2" />
                                     <h4 className="font-medium text-3xl text-900">SAKAI</h4>
@@ -488,7 +489,12 @@ const LandingPage = () => {
 };
 
 LandingPage.getLayout = function getLayout(page) {
-    return page;
+    return (
+        <React.Fragment>
+            {page}
+            <AppConfig />
+        </React.Fragment>
+    );
 };
 
 export default LandingPage;

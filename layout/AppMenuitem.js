@@ -75,7 +75,7 @@ const AppMenuitem = (props) => {
     return (
         <li className={classNames({'layout-root-menuitem': props.root, 'active-menuitem': active })}>
             {root && item.visible !== false && <div className="layout-menuitem-root-text">{item.label}</div>}
-            {(!item.routerLink || item.items) && item.visible !== false ? (
+            {(!item.to || item.items) && item.visible !== false ? (
                 <a href={item.url} onClick={(e) => itemClick(e)} className={item.class} target={item.target} tabIndex="0">
                     <i className={classNames('layout-menuitem-icon', item.icon)}></i>
                     <span className="layout-menuitem-text">{item.label}</span>
@@ -84,8 +84,8 @@ const AppMenuitem = (props) => {
                 </a>
             ) : null}
 
-            {item.routerLink && !item.items && item.visible !== false ? (
-                <Link href={item.routerLink} replace={item.replaceUrl} target={item.target}>
+            {item.to && !item.items && item.visible !== false ? (
+                <Link href={item.to} replace={item.replaceUrl} target={item.target}>
                     <a onClick={(e) => itemClick(e)} className={item.class} target={item.target} tabIndex="0">
                         <i className={classNames('layout-menuitem-icon', item.icon)}></i>
                         <span className="layout-menuitem-text">{item.label}</span>

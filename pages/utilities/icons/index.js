@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { InputText } from 'primereact/inputtext';
 import { CodeHighlight } from '../../../demo/components/CodeHighlight';
 import { IconService } from '../../../demo/service/IconService';
+import Link from 'next/link';
 
 const IconsDemo = () => {
     const [icons, setIcons] = useState([]);
@@ -38,13 +39,17 @@ const IconsDemo = () => {
             <h4>Icons</h4>
             <p>
                 PrimeReact components internally use{' '}
-                <a href="https://github.com/primefaces/primeicons" className="font-medium" target={'_blank'}>
-                    PrimeIcons
-                </a>{' '}
+                <Link href="https://github.com/primefaces/primeicons" passHref>
+                    <a className="font-medium" target={'_blank'}>
+                        PrimeIcons
+                    </a>
+                </Link>{' '}
                 library, the official icons suite from{' '}
-                <a href="https://www.primetek.com.tr" className="font-medium" target={'_blank'}>
-                    PrimeTek
-                </a>
+                <Link href="https://www.primetek.com.tr" passHref>
+                    <a className="font-medium" target={'_blank'}>
+                        PrimeTek
+                    </a>
+                </Link>
                 .
             </p>
 
@@ -125,9 +130,11 @@ const items = [
             <h5>List of Icons</h5>
             <p>
                 Here is the current list of PrimeIcons, more icons are added periodically. You may also{' '}
-                <a href="https://github.com/primefaces/primeicons/issues" className="font-medium" target={'_blank'}>
-                    request new icons
-                </a>{' '}
+                <Link href="https://github.com/primefaces/primeicons/issues" passHref>
+                    <a className="font-medium" target={'_blank'}>
+                        request new icons
+                    </a>
+                </Link>{' '}
                 at the issue tracker.
             </p>
 

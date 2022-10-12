@@ -7,7 +7,7 @@ import { Menu } from 'primereact/menu';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { ProductService } from '../demo/service/ProductService';
 import { LayoutContext } from '../layout/context/layoutcontext';
-
+import Link from 'next/link';
 const lineData = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
     datasets: [
@@ -372,9 +372,11 @@ const Dashboard = () => {
                         <div className="text-white font-medium text-5xl">Try PrimeBlocks</div>
                     </div>
                     <div className="mt-4 mr-auto md:mt-0 md:mr-0">
-                        <a href="https://www.primefaces.org/primeblocks-react" className="p-button font-bold px-5 py-3 p-button-warning p-button-rounded p-button-raised">
-                            Get Started
-                        </a>
+                        <Link href="https://www.primefaces.org/primeblocks-react" passHref>
+                            <a className="p-button font-bold px-5 py-3 p-button-warning p-button-rounded p-button-raised">
+                                Get Started
+                            </a>
+                        </Link>
                     </div>
                 </div>
             </div>
