@@ -60,42 +60,51 @@ const ButtonDemo = () => {
             <div className="col-12 md:col-6">
                 <div className="card">
                     <h5>Default</h5>
-                    <Button label="Submit" className="mr-2 mb-2"></Button>
-                    <Button label="Disabled" className="mr-2 mb-2" disabled></Button>
-                    <Button label="Link" className="p-button-link mb-2 mr-2"></Button>
+                    <div className="flex flex-wrap gap-2">
+                        <Button label="Submit"></Button>
+                        <Button label="Disabled" disabled></Button>
+                        <Button label="Link" className="p-button-link"></Button>
+                    </div>
                 </div>
 
                 <div className="card">
                     <h5>Severities</h5>
-                    <Button label="Primary" className="mr-2 mb-2" />
-                    <Button label="Secondary" className="p-button-secondary mr-2 mb-2" />
-                    <Button label="Success" className="p-button-success mr-2 mb-2" />
-                    <Button label="Info" className="p-button-info mr-2 mb-2" />
-                    <Button label="Warning" className="p-button-warning mr-2 mb-2" />
-                    <Button label="Danger" className="p-button-danger mr-2 mb-2" />
+                    <div class="flex flex-wrap gap-2">
+                        <Button label="Primary" />
+                        <Button label="Secondary" className="p-button-secondary" />
+                        <Button label="Success" className="p-button-success" />
+                        <Button label="Info" className="p-button-info" />
+                        <Button label="Warning" className="p-button-warning" />
+                        <Button label="Help" className="p-button-help" />
+                        <Button label="Danger" className="p-button-danger" />
+                    </div>
                 </div>
 
                 <div className="card">
                     <h5>Text</h5>
-                    <Button label="Primary" className="p-button-text mr-2 mb-2" />
-                    <Button label="Secondary" className="p-button-secondary p-button-text mr-2 mb-2" />
-                    <Button label="Success" className="p-button-success p-button-text mr-2 mb-2" />
-                    <Button label="Info" className="p-button-info p-button-text mr-2 mb-2" />
-                    <Button label="Warning" className="p-button-warning p-button-text mr-2 mb-2" />
-                    <Button label="Help" className="p-button-help p-button-text mr-2 mb-2" />
-                    <Button label="Danger" className="p-button-danger p-button-text mr-2 mb-2" />
-                    <Button label="Plain" className="p-button-plain p-button-text mr-2 mb-2" />
+                    <div className="flex flex-wrap gap-2">
+                        <Button label="Primary" className="p-button-text" />
+                        <Button label="Secondary" className="p-button-secondary p-button-text" />
+                        <Button label="Success" className="p-button-success p-button-text" />
+                        <Button label="Info" className="p-button-info p-button-text" />
+                        <Button label="Warning" className="p-button-warning p-button-text" />
+                        <Button label="Help" className="p-button-help p-button-text" />
+                        <Button label="Danger" className="p-button-danger p-button-text" />
+                        <Button label="Plain" className="p-button-plain p-button-text" />
+                    </div>
                 </div>
 
                 <div className="card">
                     <h5>Outlined</h5>
-                    <Button label="Primary" className="p-button-outlined mr-2 mb-2" />
-                    <Button label="Secondary" className="p-button-outlined p-button-secondary mr-2 mb-2" />
-                    <Button label="Success" className="p-button-outlined p-button-success mr-2 mb-2" />
-                    <Button label="Info" className="p-button-outlined p-button-info mr-2 mb-2" />
-                    <Button label="Warning" className="p-button-outlined p-button-warning mr-2 mb-2" />
-                    <Button label="Help" className="p-button-outlined p-button-help mr-2 mb-2" />
-                    <Button label="Danger" className="p-button-outlined p-button-danger mr-2 mb-2" />
+                    <div className="flex flex-wrap gap-2">
+                        <Button label="Primary" className="p-button-outlined" />
+                        <Button label="Secondary" className="p-button-outlined p-button-secondary" />
+                        <Button label="Success" className="p-button-outlined p-button-success" />
+                        <Button label="Info" className="p-button-outlined p-button-info" />
+                        <Button label="Warning" className="p-button-outlined p-button-warning" />
+                        <Button label="Help" className="p-button-outlined p-button-help" />
+                        <Button label="Danger" className="p-button-outlined p-button-danger" />
+                    </div>
                 </div>
 
                 <div className="card">
@@ -109,81 +118,97 @@ const ButtonDemo = () => {
 
                 <div className="card">
                     <h5>SplitButton</h5>
-                    <SplitButton label="Save" icon="pi pi-check" model={items} className="p-button-secondary mr-2 mb-2"></SplitButton>
-                    <SplitButton label="Save" icon="pi pi-check" model={items} className="p-button-success mr-2 mb-2"></SplitButton>
-                    <SplitButton label="Save" icon="pi pi-check" model={items} className="p-button-info mr-2 mb-2"></SplitButton>
-                    <SplitButton label="Save" icon="pi pi-check" model={items} className="p-button-warning mr-2 mb-2"></SplitButton>
-                    <SplitButton label="Save" icon="pi pi-check" model={items} className="p-button-danger mr-2 mb-2"></SplitButton>
+                    <div className="flex flex-wrap gap-2">
+                        <SplitButton label="Save" icon="pi pi-check" model={items} className="p-button-secondary"></SplitButton>
+                        <SplitButton label="Save" icon="pi pi-check" model={items} className="p-button-success"></SplitButton>
+                        <SplitButton label="Save" icon="pi pi-check" model={items} className="p-button-info"></SplitButton>
+                        <SplitButton label="Save" icon="pi pi-check" model={items} className="p-button-warning"></SplitButton>
+                        <SplitButton label="Save" icon="pi pi-check" model={items} className="p-button-danger"></SplitButton>
+                    </div>
                 </div>
             </div>
 
             <div className="col-12 md:col-6">
                 <div className="card">
                     <h5>Icons</h5>
-                    <Button icon="pi pi-star-fill" className="mr-2 mb-2"></Button>
-                    <Button label="Bookmark" icon="pi pi-bookmark" className="mr-2 mb-2"></Button>
-                    <Button label="Bookmark" icon="pi pi-bookmark" iconPos="right" className="mr-2 mb-2"></Button>
+                    <div className="flex flex-wrap gap-2">
+                        <Button icon="pi pi-star-fill"></Button>
+                        <Button label="Bookmark" icon="pi pi-bookmark"></Button>
+                        <Button label="Bookmark" icon="pi pi-bookmark" iconPos="right"></Button>
+                    </div>
                 </div>
 
                 <div className="card">
                     <h5>Raised</h5>
-                    <Button label="Primary" className="p-button-raised mr-2 mb-2" />
-                    <Button label="Secondary" className="p-button-raised p-button-secondary mr-2 mb-2" />
-                    <Button label="Success" className="p-button-raised p-button-success mr-2 mb-2" />
-                    <Button label="Info" className="p-button-raised p-button-info mr-2 mb-2" />
-                    <Button label="Warning" className="p-button-raised p-button-warning mr-2 mb-2" />
-                    <Button label="Danger" className="p-button-raised p-button-danger mr-2 mb-2" />
+                    <div className="flex flex-wrap gap-2">
+                        <Button label="Primary" className="p-button-raised" />
+                        <Button label="Secondary" className="p-button-raised p-button-secondary" />
+                        <Button label="Success" className="p-button-raised p-button-success" />
+                        <Button label="Info" className="p-button-raised p-button-info" />
+                        <Button label="Warning" className="p-button-raised p-button-warning" />
+                        <Button label="Danger" className="p-button-raised p-button-danger" />
+                    </div>
                 </div>
 
                 <div className="card">
                     <h5>Rounded</h5>
-                    <Button label="Primary" className="p-button-rounded mr-2 mb-2" />
-                    <Button label="Secondary" className="p-button-rounded p-button-secondary mr-2 mb-2" />
-                    <Button label="Success" className="p-button-rounded p-button-success mr-2 mb-2" />
-                    <Button label="Info" className="p-button-rounded p-button-info mr-2 mb-2" />
-                    <Button label="Warning" className="p-button-rounded p-button-warning mr-2 mb-2" />
-                    <Button label="Danger" className="p-button-rounded p-button-danger mr-2 mb-2" />
+                    <div className="flex flex-wrap gap-2">
+                        <Button label="Primary" className="p-button-rounded" />
+                        <Button label="Secondary" className="p-button-rounded p-button-secondary" />
+                        <Button label="Success" className="p-button-rounded p-button-success" />
+                        <Button label="Info" className="p-button-rounded p-button-info" />
+                        <Button label="Warning" className="p-button-rounded p-button-warning" />
+                        <Button label="Danger" className="p-button-rounded p-button-danger" />
+                    </div>
                 </div>
 
                 <div className="card">
                     <h5>Rounded Icons</h5>
-                    <Button icon="pi pi-star" className="p-button-rounded mr-2 mb-2" />
-                    <Button icon="pi pi-bookmark" className="p-button-rounded p-button-secondary mr-2 mb-2" />
-                    <Button icon="pi pi-check" className="p-button-rounded p-button-success mr-2 mb-2" />
-                    <Button icon="pi pi-search" className="p-button-rounded p-button-info mr-2 mb-2" />
-                    <Button icon="pi pi-user" className="p-button-rounded p-button-warning mr-2 mb-2" />
-                    <Button icon="pi pi-sign-out" className="p-button-rounded p-button-danger mr-2 mb-2" />
+                    <div className="flex flex-wrap gap-2">
+                        <Button icon="pi pi-star" className="p-button-rounded" />
+                        <Button icon="pi pi-bookmark" className="p-button-rounded p-button-secondary" />
+                        <Button icon="pi pi-check" className="p-button-rounded p-button-success" />
+                        <Button icon="pi pi-search" className="p-button-rounded p-button-info" />
+                        <Button icon="pi pi-user" className="p-button-rounded p-button-warning" />
+                        <Button icon="pi pi-sign-out" className="p-button-rounded p-button-danger" />
+                    </div>
                 </div>
 
                 <div className="card">
                     <h5>Rounded Text</h5>
-                    <Button icon="pi pi-check" className="p-button-rounded p-button-text mr-2 mb-2" />
-                    <Button icon="pi pi-bookmark" className="p-button-rounded p-button-secondary p-button-text mr-2 mb-2" />
-                    <Button icon="pi pi-search" className="p-button-rounded p-button-success p-button-text mr-2 mb-2" />
-                    <Button icon="pi pi-user" className="p-button-rounded p-button-info p-button-text mr-2 mb-2" />
-                    <Button icon="pi pi-bell" className="p-button-rounded p-button-warning p-button-text mr-2 mb-2" />
-                    <Button icon="pi pi-heart" className="p-button-rounded p-button-help p-button-text mr-2 mb-2" />
-                    <Button icon="pi pi-times" className="p-button-rounded p-button-danger p-button-text mr-2 mb-2" />
-                    <Button icon="pi pi-filter" className="p-button-rounded p-button-plain p-button-text mr-2 mb-2" />
+                    <div className="flex flex-wrap gap-2">
+                        <Button icon="pi pi-check" className="p-button-rounded p-button-text" />
+                        <Button icon="pi pi-bookmark" className="p-button-rounded p-button-secondary p-button-text" />
+                        <Button icon="pi pi-search" className="p-button-rounded p-button-success p-button-text" />
+                        <Button icon="pi pi-user" className="p-button-rounded p-button-info p-button-text" />
+                        <Button icon="pi pi-bell" className="p-button-rounded p-button-warning p-button-text" />
+                        <Button icon="pi pi-heart" className="p-button-rounded p-button-help p-button-text" />
+                        <Button icon="pi pi-times" className="p-button-rounded p-button-danger p-button-text" />
+                        <Button icon="pi pi-filter" className="p-button-rounded p-button-plain p-button-text" />
+                    </div>
                 </div>
 
                 <div className="card">
                     <h5>Rounded Outlined</h5>
-                    <Button icon="pi pi-check" className="p-button-rounded p-button-outlined mr-2 mb-2" />
-                    <Button icon="pi pi-bookmark" className="p-button-rounded p-button-secondary p-button-outlined mr-2 mb-2" />
-                    <Button icon="pi pi-search" className="p-button-rounded p-button-success p-button-outlined mr-2 mb-2" />
-                    <Button icon="pi pi-user" className="p-button-rounded p-button-info p-button-outlined mr-2 mb-2" />
-                    <Button icon="pi pi-bell" className="p-button-rounded p-button-warning p-button-outlined mr-2 mb-2" />
-                    <Button icon="pi pi-heart" className="p-button-rounded p-button-help p-button-outlined mr-2 mb-2" />
-                    <Button icon="pi pi-times" className="p-button-rounded p-button-danger p-button-outlined mr-2 mb-2" />
+                    <div className="flex flex-wrap gap-2">
+                        <Button icon="pi pi-check" className="p-button-rounded p-button-outlined" />
+                        <Button icon="pi pi-bookmark" className="p-button-rounded p-button-secondary p-button-outlined" />
+                        <Button icon="pi pi-search" className="p-button-rounded p-button-success p-button-outlined" />
+                        <Button icon="pi pi-user" className="p-button-rounded p-button-info p-button-outlined" />
+                        <Button icon="pi pi-bell" className="p-button-rounded p-button-warning p-button-outlined" />
+                        <Button icon="pi pi-heart" className="p-button-rounded p-button-help p-button-outlined" />
+                        <Button icon="pi pi-times" className="p-button-rounded p-button-danger p-button-outlined" />
+                    </div>
                 </div>
 
                 <div className="card">
                     <h5>Loading</h5>
-                    <Button className="mr-2 mb-2" label="Search" icon="pi pi-search" loading={loading1} onClick={onLoadingClick1} />
-                    <Button className="mr-2 mb-2" label="Search" icon="pi pi-search" iconPos="right" loading={loading2} onClick={onLoadingClick2} />
-                    <Button className="mr-2 mb-2" icon="pi pi-search" loading={loading3} onClick={onLoadingClick3} />
-                    <Button className="mr-2 mb-2" label="Search" loading={loading4} onClick={onLoadingClick4} />
+                    <div class="flex flex-wrap gap-2">
+                        <Button label="Search" icon="pi pi-search" loading={loading1} onClick={onLoadingClick1} />
+                        <Button label="Search" icon="pi pi-search" iconPos="right" loading={loading2} onClick={onLoadingClick2} />
+                        <Button icon="pi pi-search" loading={loading3} onClick={onLoadingClick3} />
+                        <Button label="Search" loading={loading4} onClick={onLoadingClick4} />
+                    </div>
                 </div>
             </div>
         </div>

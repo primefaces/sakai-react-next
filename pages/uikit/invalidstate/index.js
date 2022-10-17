@@ -55,13 +55,11 @@ const InvalidStateDemo = () => {
     };
 
     return (
-        <div className="grid p-fluid">
-            <div className="col">
                 <div className="card">
                     <h5>Invalid State</h5>
-                    <div className="grid">
+                    <div className="grid p-fluid">
                         <div className="col-12 md:col-6">
-                            <div className="field">
+                            <div className="field mt-3">
                                 <label htmlFor="inputtext">InputText</label>
                                 <InputText type="text" id="inputtext" value={value1} onChange={(e) => setValue1(e.target.value)} className="p-invalid" />
                             </div>
@@ -84,7 +82,7 @@ const InvalidStateDemo = () => {
                         </div>
 
                         <div className="col-12 md:col-6">
-                            <div className="field">
+                            <div className="field mt-3">
                                 <label htmlFor="inputmask">InputMask</label>
                                 <InputMask id="inputmask" mask="99/99/9999" slotChar="mm/dd/yyyy" value={value2} onChange={(e) => setValue2(e.value)} className="p-invalid" />
                             </div>
@@ -107,8 +105,8 @@ const InvalidStateDemo = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+         
+        
     );
 };
 

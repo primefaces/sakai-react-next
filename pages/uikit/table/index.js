@@ -311,7 +311,7 @@ const TableDemo = () => {
     };
 
     return (
-        <div className="grid table-demo">
+        <div className="grid">
             <div className="col-12">
                 <div className="card">
                     <h5>Filter Menu</h5>
@@ -357,7 +357,7 @@ const TableDemo = () => {
                     <DataTable value={customers2} scrollable scrollHeight="400px" loading={loading2} scrollDirection="both" className="mt-3">
                         <Column field="name" header="Name" style={{ flexGrow: 1, flexBasis: '160px' }} frozen></Column>
                         <Column field="id" header="Id" style={{ flexGrow: 1, flexBasis: '100px' }} frozen={idFrozen} alignFrozen="left"></Column>
-                        <Column field="name" header="Name" style={{ flexGrow: 1, flexBasis: '200px' }}></Column>
+                        <Column className="font-bold" field="name" header="Name" style={{ flexGrow: 1, flexBasis: '200px' }}></Column>
                         <Column field="country.name" header="Country" style={{ flexGrow: 1, flexBasis: '200px' }} body={countryBodyTemplate}></Column>
                         <Column field="date" header="Date" style={{ flexGrow: 1, flexBasis: '200px' }} body={dateBodyTemplate}></Column>
                         <Column field="company" header="Company" style={{ flexGrow: 1, flexBasis: '200px' }}></Column>

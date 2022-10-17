@@ -482,21 +482,21 @@ const MenuDemo = ({ children }) => {
     return (
         <div className="grid p-fluid">
             <div className="col-12">
-                <div className="card card-w-title">
+                <div className="card">
                     <h5>Menubar</h5>
                     <Menubar model={nestedMenuitems} end={menubarEndTemplate}></Menubar>
                 </div>
             </div>
 
             <div className="col-12">
-                <div className="card card-w-title">
+                <div className="card">
                     <h5>Breadcrumb</h5>
                     <BreadCrumb home={breadcrumbHome} model={breadcrumbItems} />
                 </div>
             </div>
 
             <div className="col-12 md:col-6">
-                <div className="card card-w-title">
+                <div className="card">
                     <h5>Steps</h5>
                     <Steps model={wizardItems} activeIndex={activeIndex} onSelect={(e) => setActiveIndex(e.index)} readOnly={false} />
                     {router.pathname === '/uikit/menu' ? (
@@ -511,7 +511,7 @@ const MenuDemo = ({ children }) => {
             </div>
 
             <div className="col-12 md:col-6">
-                <div className="card card-w-title">
+                <div className="card">
                     <h5>TabMenu</h5>
                     <TabMenu model={wizardItems} activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)} />
                     {router.pathname === '/uikit/menu' ? (

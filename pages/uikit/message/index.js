@@ -48,46 +48,45 @@ const MessagesDemo = () => {
             <div className="col-12 lg:col-6">
                 <div className="card">
                     <h5>Toast</h5>
-                    <Toast ref={toast} />
-                    <Button type="button" onClick={showSuccess} label="Success" className="p-button-success mr-2" />
-                    <Button type="button" onClick={showInfo} label="Info" className="p-button-info mr-2" />
-                    <Button type="button" onClick={showWarn} label="Warn" className="p-button-warning mr-2" />
-                    <Button type="button" onClick={showError} label="Error" className="p-button-danger mr-2" />
+                    <div class="flex flex-wrap gap-2">
+                        <Toast ref={toast} />
+                        <Button type="button" onClick={showSuccess} label="Success" className="p-button-success" />
+                        <Button type="button" onClick={showInfo} label="Info" className="p-button-info" />
+                        <Button type="button" onClick={showWarn} label="Warn" className="p-button-warning" />
+                        <Button type="button" onClick={showError} label="Error" className="p-button-danger" />
+                    </div>
                 </div>
             </div>
 
             <div className="col-12 lg:col-6">
                 <div className="card">
                     <h5>Messages</h5>
-
-                    <Button label="Success" type="button" onClick={addSuccessMessage} className="p-button-success mr-2" />
-                    <Button label="Info" type="button" onClick={addInfoMessage} className="p-button-info mr-2" />
-                    <Button label="Warn" type="button" onClick={addWarnMessage} className="p-button-warning mr-2" />
-                    <Button label="Error" type="button" onClick={addErrorMessage} className="p-button-danger mr-2" />
-                    <Messages ref={message} />
+                    <div class="flex flex-wrap gap-2">
+                        <Button label="Success" type="button" onClick={addSuccessMessage} className="p-button-success" />
+                        <Button label="Info" type="button" onClick={addInfoMessage} className="p-button-info" />
+                        <Button label="Warn" type="button" onClick={addWarnMessage} className="p-button-warning" />
+                        <Button label="Error" type="button" onClick={addErrorMessage} className="p-button-danger" />
+                        <Messages ref={message} />
+                    </div>
                 </div>
             </div>
 
             <div className="col-12 lg:col-8">
                 <div className="card">
                     <h5>Inline</h5>
-                    <div className="field grid">
+                    <div className="flex align-items-center flex-wrap gap-2 mb-3">
                         <label htmlFor="username1" className="col-fixed w-9rem">
                             Username
                         </label>
-                        <div className="col">
-                            <InputText id="username1" value={username} onChange={(e) => setUsername(e.target.value)} required className="p-invalid mr-2" />
-                            <Message severity="error" text="Username is required" />
-                        </div>
+                        <InputText id="username1" value={username} onChange={(e) => setUsername(e.target.value)} required className="p-invalid" />
+                        <Message severity="error" text="Username is required" />
                     </div>
-                    <div className="field grid">
+                    <div className="flex align-items-center flex-wrap gap-2">
                         <label htmlFor="email" className="col-fixed w-9rem">
                             Email
                         </label>
-                        <div className="col">
-                            <InputText id="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="p-invalid mr-2" />
-                            <Message severity="error" />
-                        </div>
+                        <InputText id="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="p-invalid" />
+                        <Message severity="error" />
                     </div>
                 </div>
             </div>
