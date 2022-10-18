@@ -109,7 +109,7 @@ const ButtonDemo = () => {
 
                 <div className="card">
                     <h5>Button Group</h5>
-                    <span className="p-buttonset">
+                    <span className="p-buttonset flex">
                         <Button label="Save" icon="pi pi-check" />
                         <Button label="Delete" icon="pi pi-trash" />
                         <Button label="Cancel" icon="pi pi-times" />
