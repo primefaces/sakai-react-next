@@ -126,19 +126,6 @@ export const InputDemo = () => {
         );
     };
 
-    const selectedItemTemplate = (option) => {
-        if (option) {
-            return (
-                <div className="inline-flex align-items-center py-1 px-2 bg-primary text-primary border-round mr-2">
-                    <span className={`mr-2 flag flag-${option.code.toLowerCase()}`} style={{ width: '18px', height: '12px' }} />
-                    <span>{option.name}</span>
-                </div>
-            );
-        }
-
-        return 'Select Countries';
-    };
-
     return (
         <div className="grid p-fluid">
             <div className="col-12 md:col-6">
@@ -289,9 +276,8 @@ export const InputDemo = () => {
                         optionLabel="name"
                         placeholder="Select Countries"
                         filter
-                        itemTemplate={itemTemplate}
-                        selectedItemTemplate={selectedItemTemplate}
-                    />
+                        display="chip"
+                        itemTemplate={itemTemplate} />
 
                     <h5>TreeSelect</h5>
                     <TreeSelect value={selectedNode} onChange={(e) => setSelectedNode(e.value)} options={treeSelectNodes} placeholder="Select Item"></TreeSelect>

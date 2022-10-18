@@ -109,7 +109,7 @@ const TableDemo = () => {
         return (
             <React.Fragment>
                 <img alt="flag" src={`${contextPath}/demo/images/flag/flag_placeholder.png`} className={`flag flag-${rowData.country.code}`} width={30} />
-                <span style={{ marginLeft: '.5em', verticalAlign: 'middle' }} className="image-text">
+                <span style={{ marginLeft: '.5em', verticalAlign: 'middle' }}>
                     {rowData.country.name}
                 </span>
             </React.Fragment>
@@ -135,7 +135,7 @@ const TableDemo = () => {
                     width={32}
                     style={{ verticalAlign: 'middle' }}
                 />
-                <span style={{ marginLeft: '.5em', verticalAlign: 'middle' }} className="image-text">
+                <span style={{ marginLeft: '.5em', verticalAlign: 'middle' }}>
                     {representative.name}
                 </span>
             </React.Fragment>
@@ -155,7 +155,7 @@ const TableDemo = () => {
         return (
             <div className="p-multiselect-representative-option">
                 <img alt={option.name} src={`${contextPath}/demo/images/avatar/${option.image}`} width={32} style={{ verticalAlign: 'middle' }} />
-                <span style={{ marginLeft: '.5em', verticalAlign: 'middle' }} className="image-text">
+                <span style={{ marginLeft: '.5em', verticalAlign: 'middle' }}>
                     {option.name}
                 </span>
             </div>
@@ -280,7 +280,7 @@ const TableDemo = () => {
         return (
             <React.Fragment>
                 <img alt={data.representative.name} src={`/demo/images/avatar/${data.representative.image}`} width="32" style={{ verticalAlign: 'middle' }} />
-                <span className="image-text font-bold">{data.representative.name}</span>
+                <span className="font-bold">{data.representative.name}</span>
             </React.Fragment>
         );
     };
@@ -355,16 +355,15 @@ const TableDemo = () => {
                     <ToggleButton checked={idFrozen} onChange={(e) => setIdFrozen(e.value)} onIcon="pi pi-lock" offIcon="pi pi-lock-open" onLabel="Unfreeze Id" offLabel="Freeze Id" style={{ width: '10rem' }} />
 
                     <DataTable value={customers2} scrollable scrollHeight="400px" loading={loading2} scrollDirection="both" className="mt-3">
-                        <Column field="name" header="Name" style={{ flexGrow: 1, flexBasis: '160px' }} frozen></Column>
-                        <Column field="id" header="Id" style={{ flexGrow: 1, flexBasis: '100px' }} frozen={idFrozen} alignFrozen="left"></Column>
-                        <Column className="font-bold" field="name" header="Name" style={{ flexGrow: 1, flexBasis: '200px' }}></Column>
+                        <Column field="name" header="Name" style={{ flexGrow: 1, flexBasis: '160px' }} frozen className="font-bold"></Column>
+                        <Column field="id" header="Id" style={{ flexGrow: 1, flexBasis: '100px' }} frozen={idFrozen} alignFrozen="left" bodyClassName={classNames({'font-bold': idFrozen})}></Column>
                         <Column field="country.name" header="Country" style={{ flexGrow: 1, flexBasis: '200px' }} body={countryBodyTemplate}></Column>
                         <Column field="date" header="Date" style={{ flexGrow: 1, flexBasis: '200px' }} body={dateBodyTemplate}></Column>
                         <Column field="company" header="Company" style={{ flexGrow: 1, flexBasis: '200px' }}></Column>
                         <Column field="status" header="Status" style={{ flexGrow: 1, flexBasis: '200px' }} body={statusBodyTemplate}></Column>
                         <Column field="activity" header="Activity" style={{ flexGrow: 1, flexBasis: '200px' }}></Column>
                         <Column field="representative.name" header="Representative" style={{ flexGrow: 1, flexBasis: '200px' }} body={representativeBodyTemplate}></Column>
-                        <Column field="balance" header="Balance" body={balanceTemplate} frozen style={{ flexGrow: 1, flexBasis: '120px' }} alignFrozen="right"></Column>
+                        <Column field="balance" header="Balance" body={balanceTemplate} frozen style={{ flexGrow: 1, flexBasis: '120px' }} className="font-bold" alignFrozen="right"></Column>
                     </DataTable>
                 </div>
             </div>
