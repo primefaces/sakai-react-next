@@ -55,35 +55,42 @@ const MiscDemo = () => {
                 <div className="card">
                     <h4>Badge</h4>
                     <h5>Numbers</h5>
-                    <Badge value="2" className="mr-2"></Badge>
-                    <Badge value="8" severity="success" className="mr-2"></Badge>
-                    <Badge value="4" severity="info" className="mr-2"></Badge>
-                    <Badge value="12" severity="warning" className="mr-2"></Badge>
-                    <Badge value="3" severity="danger"></Badge>
+                    <div class="flex flex-wrap gap-2">
+                        <Badge value="2"></Badge>
+                        <Badge value="8" severity="success"></Badge>
+                        <Badge value="4" severity="info"></Badge>
+                        <Badge value="12" severity="warning"></Badge>
+                        <Badge value="3" severity="danger"></Badge>
+                    </div>
 
                     <h5>Positioned Badge</h5>
-                    <i className="pi pi-bell mr-4 p-text-secondary p-overlay-badge" style={{ fontSize: '2rem' }}>
-                        <Badge value="2"></Badge>
-                    </i>
-                    <i className="pi pi-calendar mr-4 p-text-secondary p-overlay-badge" style={{ fontSize: '2rem' }}>
-                        <Badge value="10+" severity="danger"></Badge>
-                    </i>
-                    <i className="pi pi-envelope p-text-secondary p-overlay-badge" style={{ fontSize: '2rem' }}>
-                        <Badge severity="danger"></Badge>
-                    </i>
+                    <div className="flex flex-wrap gap-2">
+                        <i className="pi pi-bell mr-4 p-text-secondary p-overlay-badge" style={{ fontSize: '2rem' }}>
+                            <Badge value="2"></Badge>
+                        </i>
+                        <i className="pi pi-calendar mr-4 p-text-secondary p-overlay-badge" style={{ fontSize: '2rem' }}>
+                            <Badge value="10+" severity="danger"></Badge>
+                        </i>
+                        <i className="pi pi-envelope p-text-secondary p-overlay-badge" style={{ fontSize: '2rem' }}>
+                            <Badge severity="danger"></Badge>
+                        </i>
+                    </div>
 
                     <h5>Button Badge</h5>
-                    <Button type="button" label="Emails" className="mr-2">
-                        <Badge value="8"></Badge>
-                    </Button>
-                    <Button type="button" label="Messages" icon="pi pi-users" className="p-button-warning">
-                        <Badge value="8" severity="danger"></Badge>
-                    </Button>
-
+                    <div className="flex flex-wrap gap-2">
+                        <Button type="button" label="Emails">
+                            <Badge value="8"></Badge>
+                        </Button>
+                        <Button type="button" label="Messages" icon="pi pi-users" className="p-button-warning">
+                            <Badge value="8" severity="danger"></Badge>
+                        </Button>
+                    </div>
                     <h5>Sizes</h5>
-                    <Badge value="2" className="mr-2"></Badge>
-                    <Badge value="4" className="mr-2" size="large" severity="warning"></Badge>
-                    <Badge value="6" size="xlarge" severity="success"></Badge>
+                    <div className="flex flex-wrap gap-2 align-items-end">
+                        <Badge value="2"></Badge>
+                        <Badge value="4" size="large" severity="warning"></Badge>
+                        <Badge value="6" size="xlarge" severity="success"></Badge>
+                    </div>
                 </div>
 
                 <div className="card">
@@ -99,9 +106,11 @@ const MiscDemo = () => {
                     </AvatarGroup>
 
                     <h5>Label - Circle</h5>
-                    <Avatar label="P" className="mr-2" size="xlarge" shape="circle"></Avatar>
-                    <Avatar label="V" className="mr-2" size="large" style={{ backgroundColor: '#2196F3', color: '#ffffff' }} shape="circle"></Avatar>
-                    <Avatar label="U" className="mr-2" style={{ backgroundColor: '#9c27b0', color: '#ffffff' }} shape="circle"></Avatar>
+                    <div class="flex flex-wrap gap-2 align-items-end">
+                        <Avatar label="P" size="xlarge" shape="circle"></Avatar>
+                        <Avatar label="V" size="large" style={{ backgroundColor: '#2196F3', color: '#ffffff' }} shape="circle"></Avatar>
+                        <Avatar label="U" style={{ backgroundColor: '#9c27b0', color: '#ffffff' }} shape="circle"></Avatar>
+                    </div>
 
                     <h5>Icon - Badge</h5>
                     <Avatar className="p-overlay-badge" icon="pi pi-user" size="xlarge">
@@ -127,59 +136,65 @@ const MiscDemo = () => {
                 <div className="card">
                     <h4>Tag</h4>
                     <h5>Tags</h5>
-                    <Tag className="mr-2" value="Primary"></Tag>
-                    <Tag className="mr-2" severity="success" value="Success"></Tag>
-                    <Tag className="mr-2" severity="info" value="Info"></Tag>
-                    <Tag className="mr-2" severity="warning" value="Warning"></Tag>
-                    <Tag severity="danger" value="Danger"></Tag>
+                    <div className="flex flex-wrap gap-2">
+                        <Tag value="Primary"></Tag>
+                        <Tag severity="success" value="Success"></Tag>
+                        <Tag severity="info" value="Info"></Tag>
+                        <Tag severity="warning" value="Warning"></Tag>
+                        <Tag severity="danger" value="Danger"></Tag>
+                    </div>
 
                     <h5>Pills</h5>
-                    <Tag className="mr-2" value="Primary" rounded></Tag>
-                    <Tag className="mr-2" severity="success" value="Success" rounded></Tag>
-                    <Tag className="mr-2" severity="info" value="Info" rounded></Tag>
-                    <Tag className="mr-2" severity="warning" value="Warning" rounded></Tag>
-                    <Tag severity="danger" value="Danger" rounded></Tag>
+                    <div className="flex flex-wrap gap-2">
+                        <Tag value="Primary" rounded></Tag>
+                        <Tag severity="success" value="Success" rounded></Tag>
+                        <Tag severity="info" value="Info" rounded></Tag>
+                        <Tag severity="warning" value="Warning" rounded></Tag>
+                        <Tag severity="danger" value="Danger" rounded></Tag>
+                    </div>
 
                     <h5>Icons</h5>
-                    <Tag className="mr-2" icon="pi pi-user" value="Primary"></Tag>
-                    <Tag className="mr-2" icon="pi pi-check" severity="success" value="Success"></Tag>
-                    <Tag className="mr-2" icon="pi pi-info-circle" severity="info" value="Info"></Tag>
-                    <Tag className="mr-2" icon="pi pi-exclamation-triangle" severity="warning" value="Warning"></Tag>
-                    <Tag icon="pi pi-times" severity="danger" value="Danger"></Tag>
+                    <div className="flex flex-wrap gap-2">
+                        <Tag icon="pi pi-user" value="Primary"></Tag>
+                        <Tag icon="pi pi-check" severity="success" value="Success"></Tag>
+                        <Tag icon="pi pi-info-circle" severity="info" value="Info"></Tag>
+                        <Tag icon="pi pi-exclamation-triangle" severity="warning" value="Warning"></Tag>
+                        <Tag icon="pi pi-times" severity="danger" value="Danger"></Tag>
+                    </div>
                 </div>
 
                 <div className="card">
                     <h4>Chip</h4>
                     <h5>Basic</h5>
-                    <div className="flex align-items-center flex-column sm:flex-row">
-                        <Chip label="Action" className="mr-2 mb-2" />
-                        <Chip label="Comedy" className="mr-2 mb-2" />
-                        <Chip label="Mystery" className="mr-2 mb-2" />
-                        <Chip label="Thriller" className="mb-2" removable />
+                    <div class="flex flex-wrap align-items-center gap-2">
+                        <Chip label="Action" />
+                        <Chip label="Comedy" />
+                        <Chip label="Mystery" />
+                        <Chip label="Thriller" removable />
                     </div>
 
                     <h5>Icon</h5>
-                    <div className="flex align-items-center flex-column sm:flex-row">
-                        <Chip label="Apple" icon="pi pi-apple" className="mr-2 mb-2" />
-                        <Chip label="Facebook" icon="pi pi-facebook" className="mr-2 mb-2" />
-                        <Chip label="Google" icon="pi pi-google" className="mr-2 mb-2" />
-                        <Chip label="Microsoft" icon="pi pi-microsoft" className="mb-2" removable />
+                    <div class="flex align-items-center flex-wrap gap-1">
+                        <Chip label="Apple" icon="pi pi-apple" />
+                        <Chip label="Facebook" icon="pi pi-facebook" />
+                        <Chip label="Google" icon="pi pi-google" />
+                        <Chip label="Microsoft" icon="pi pi-microsoft" removable />
                     </div>
 
                     <h5>Image</h5>
-                    <div className="flex align-items-center flex-column sm:flex-row">
-                        <Chip label="Amy Elsner" image={`${contextPath}/demo/images/avatar/amyelsner.png`} className="mr-2 mb-2" />
-                        <Chip label="Asiya Javayant" image={`${contextPath}/demo/images/avatar/asiyajavayant.png`} className="mr-2 mb-2" />
-                        <Chip label="Onyama Limba" image={`${contextPath}/demo/images/avatar/onyamalimba.png`} className="mr-2 mb-2" />
-                        <Chip label="Xuxue Feng" image={`${contextPath}/demo/images/avatar/xuxuefeng.png`} className="mb-2" removable />
+                    <div class="flex align-items-center flex-wrap gap-1">
+                        <Chip label="Amy Elsner" image={`${contextPath}/demo/images/avatar/amyelsner.png`} />
+                        <Chip label="Asiya Javayant" image={`${contextPath}/demo/images/avatar/asiyajavayant.png`} />
+                        <Chip label="Onyama Limba" image={`${contextPath}/demo/images/avatar/onyamalimba.png`} />
+                        <Chip label="Xuxue Feng" image={`${contextPath}/demo/images/avatar/xuxuefeng.png`} removable />
                     </div>
 
                     <h5>Styling</h5>
-                    <div className="flex align-items-center flex-column sm:flex-row">
-                        <Chip label="Action" className="mr-2 mb-2 custom-chip" />
-                        <Chip label="Apple" icon="pi pi-apple" className="mr-2 mb-2 custom-chip" />
-                        <Chip label="Onyama Limba" image={`${contextPath}/demo/images/avatar/onyamalimba.png`} className="mr-2 mb-2 custom-chip" />
-                        <Chip label="Xuxue Feng" image={`${contextPath}/demo/images/avatar/xuxuefeng.png`} className="custom-chip mb-2" removable />
+                    <div class="flex align-items-center flex-wrap gap-1 custom-chip">
+                        <Chip label="Action" />
+                        <Chip label="Apple" icon="pi pi-apple" />
+                        <Chip label="Onyama Limba" image={`${contextPath}/demo/images/avatar/onyamalimba.png`} />
+                        <Chip label="Xuxue Feng" image={`${contextPath}/demo/images/avatar/xuxuefeng.png`} removable />
                     </div>
                 </div>
 

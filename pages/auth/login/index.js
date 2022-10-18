@@ -14,7 +14,7 @@ const LoginPage = () => {
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
     return (
         <div className="surface-0 flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
-            <div className="grid justify-content-center p-2 lg:p-0" style={{ minWidth: '80%' }}>
+            <div className="flex flex-column align-items-center justify-content-center" style={{ minWidth: '80%' }}>
                 <div className="col-12 mt-5 xl:mt-0 text-center">
                     <img src={`${contextPath}/layout/images/logo-${layoutConfig.colorScheme === 'light' ? 'dark' : 'white'}.svg`} alt="Sakai logo" className="mb-5" style={{ width: '81px', height: '60px' }} />
                 </div>

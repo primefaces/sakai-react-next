@@ -71,7 +71,7 @@ const ListDemo = () => {
                     <img src={`${contextPath}/demo/images/product/${data.image}`} alt={data.name} className="my-4 md:my-0 w-9 md:w-10rem shadow-2 mr-5" />
                     <div className="flex-1 text-center md:text-left">
                         <div className="font-bold text-2xl">{data.name}</div>
-                        <div className="mb-3">{data.description}</div>
+                        <div className="mb-2">{data.description}</div>
                         <Rating value={data.rating} readOnly cancel={false} className="mb-2"></Rating>
                         <div className="flex align-items-center">
                             <i className="pi pi-tag mr-2"></i>
@@ -92,14 +92,14 @@ const ListDemo = () => {
         return (
             <div className="col-12 md:col-4">
                 <div className="card m-3 border-1 surface-border">
-                    <div className="flex align-items-center justify-content-between">
+                    <div className="flex align-items-center justify-content-between mb-2">
                         <div className="flex align-items-center">
                             <i className="pi pi-tag mr-2" />
                             <span className="font-semibold">{data.category}</span>
                         </div>
                         <span className={`product-badge status-${data.inventoryStatus.toLowerCase()}`}>{data.inventoryStatus}</span>
                     </div>
-                    <div className="text-center">
+                    <div className="text-center mb-3">
                         <img src={`${contextPath}/demo/images/product/${data.image}`} alt={data.name} className="w-9 shadow-2 my-3 mx-0" />
                         <div className="text-2xl font-bold">{data.name}</div>
                         <div className="mb-3">{data.description}</div>

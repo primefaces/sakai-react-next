@@ -7,7 +7,7 @@ import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import { OverlayPanel } from 'primereact/overlaypanel';
 import { InputText } from 'primereact/inputtext';
-import { confirmPopup } from 'primereact/confirmpopup';
+import { confirmPopup, ConfirmPopup } from 'primereact/confirmpopup';
 import { ProductService } from '../../../demo/service/ProductService';
 import getConfig from 'next/config';
 
@@ -66,7 +66,7 @@ const OverlayDemo = () => {
         toast.current.show({ severity: 'info', summary: 'Product Selected', detail: event.data.name, life: 3000 });
     };
 
-    const basicDialogFooter = <Button type="button" label="Dismiss" onClick={() => setDisplayBasic(false)} icon="pi pi-check" className="p-button-secondary" />;
+    const basicDialogFooter = <Button type="button" label="OK" onClick={() => setDisplayBasic(false)} icon="pi pi-check" className="p-button-secondary" />;
     const imageBodyTemplate = (data) => <img src={`${contextPath}/demo/images/product/${data.image}`} alt={data.image} className="product-image" width="100" style={{ boxShadow: '0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)' }} />;
     const priceBodyTemplate = (data) => formatCurrency(data.price);
     const confirmationDialogFooter = (
@@ -98,14 +98,14 @@ const OverlayDemo = () => {
                     </div>
                     <div className="card p-fluid">
                         <h5>Overlay Panel</h5>
-                        <div className="grid formgrid">
-                            <div className="col-6">
+                        <div className="flex flex-wrap gap-2">
+                            <div>
                                 <Button type="button" label="Image" onClick={toggle} className="p-button-success" />
                                 <OverlayPanel ref={op} appendTo={typeof window !== 'undefined' ? document.body : null} showCloseIcon>
                                     <img src={`${contextPath}/demo/images/nature/nature9.jpg`} alt="nature1" />
                                 </OverlayPanel>
                             </div>
-                            <div className="col-6">
+                            <div>
                                 <Button type="button" label="DataTable" onClick={toggleDataTable} className="p-button-success" />
                                 <OverlayPanel ref={op2} appendTo={typeof window !== 'undefined' ? document.body : null} showCloseIcon id="overlay_panel" style={{ width: '450px' }}>
                                     <DataTable value={products} selection={selectedProduct} onSelectionChange={(e) => setSelectedProduct(e.value)} selectionMode="single" responsiveLayout="scroll" paginator rows={5} onRowSelect={onProductSelect}>
@@ -163,10 +163,10 @@ const OverlayDemo = () => {
                 <div className="col-12 lg:col-6">
                     <div className="card">
                         <h5>Tooltip</h5>
-                        <div className="formgroup-inline">
-                            <div className="field">
+                        <div className="flex align-items-center gap-2">
+                            <span>
                                 <InputText type="text" placeholder="Username" tooltip="Your username" />
-                            </div>
+                            </span>
 
                             <Button type="button" label="Save" icon="pi pi-check" tooltip="Click to proceed" />
                         </div>
@@ -177,7 +177,8 @@ const OverlayDemo = () => {
 
                     <div className="card">
                         <h5>ConfirmPopup</h5>
-                        <Button onClick={confirm} icon="pi pi-check" label="Confirm" className="mr-2"></Button>
+                        <ConfirmPopup />
+                        <Button onClick={confirm} icon="pi pi-check" label="Confirm"></Button>
                     </div>
                 </div>
             </div>
