@@ -18,6 +18,7 @@
     margin: 0;
     padding: 0;
     list-style-type: none;
+    user-select: none;
 
     .layout-root-menuitem {
         >.layout-menuitem-root-text {
@@ -28,18 +29,8 @@
             margin: .75rem 0;
         }
 
-        >a {
+        > a {
             display: none;
-        }
-    }
-
-    a {
-        user-select: none;
-
-        &.active-menuitem {
-            >.layout-submenu-toggler {
-                transform: rotate(-180deg);
-            }
         }
     }
 
@@ -48,6 +39,10 @@
             .layout-submenu-toggler {
                 transform: rotate(-180deg);
             }
+        }
+
+        > ul {
+            max-height: auto;
         }
     }
 
@@ -99,6 +94,7 @@
 
         ul {
             overflow: hidden;
+            max-height: 0;
             border-radius: $borderRadius;
 
             li {
@@ -138,4 +134,23 @@
             }
         }
     }
+}
+
+.layout-submenu-enter-active {
+    max-height: 1000px !important;
+    transition: max-height 1s ease-in-out;
+}
+
+.layout-submenu-enter-done {
+    max-height: 1000px !important;
+}
+
+.layout-submenu-exit {
+    max-height: 1000px !important;
+}
+
+.layout-submenu-exit-active {
+    overflow: hidden;
+    max-height: 0 !important;
+    transition: max-height 0.45s cubic-bezier(0, 1, 0, 1);
 }

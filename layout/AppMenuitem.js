@@ -2,43 +2,35 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Ripple } from 'primereact/ripple';
 import { classNames } from 'primereact/utils';
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { MenuContext } from './context/menucontext';
 
 const AppMenuitem = (props) => {
-    const [active, setActive] = useState(false);
-    const [key, setKey] = useState('');
-    const { contextKey, routeEvent, onMenuStateChange } = useContext(MenuContext);
+    const { activeMenu, setActiveMenu } = useContext(MenuContext);
     const router = useRouter();
+    const item = props.item;
+    const key = props.parentKey ? props.parentKey + '-' + props.index : String(props.index);
+    const isActiveRoute = item.to && router.pathname === item.to;
+    const active = (activeMenu === key || activeMenu.startsWith(key + '-'));
+    
+    useEffect(() => {
+        if (item.to && router.pathname === item.to) {
+            setActiveMenu(key);
+        }
 
-    let item = props.item;
-    let root = props.root;
-
-    /*useEffect(() => {
-        setKey(props.parentKey ? props.parentKey + '-' + props.index : String(props.index));
-        router.events.on('routeChangeStart', () => {
-            if (item.routerLink) {
-                updateActiveStateFromRoute();
-            }
-        });
-
-        if (routeEvent) {
-            setActive(contextKey === key || contextKey.startsWith(key + '-') ? true : false);
-        } else {
-            if (contextKey !== key && !contextKey.startsWith(key + '-')) {
-                setActive(false);
+        const onRouteChange = (url) => {
+            if (item.to && item.to === url) {
+                setActiveMenu(key);
             }
         }
-    }, [router]);
 
-    const updateActiveStateFromRoute = () => {
-        let activeRoute = router.pathname === item.routerLink[0];
+        router.events.on('routeChangeComplete', onRouteChange);
 
-        if (activeRoute) {
-            onMenuStateChange({ key: key, routeEvent: true });
+        return () => {
+            router.events.off('routeChangeComplete', onRouteChange)
         }
-    };*/
+    }, []);
 
     const itemClick = (event) => {
         //avoid processing disabled items
@@ -54,14 +46,12 @@ const AppMenuitem = (props) => {
 
         // toggle active state
         if (item.items) {
-            setActive((prevState) => !prevState);
+            setActiveMenu(active ? props.parentKey : key);
         }
-
-        onMenuStateChange({ key: key });
     };
 
     const subMenu = item.items && item.visible !== false && (
-        <CSSTransition timeout={{ enter: 1000, exit: 450 }} classNames="p-toggleable-content" in={props.root ? true : active} unmountOnExit key={item.label}>
+        <CSSTransition timeout={{ enter: 1000, exit: 450 }} classNames="layout-submenu" in={props.root ? true : active} key={item.label}>
             <ul>
                 {
                     item.items.map((child, i) => {
@@ -74,7 +64,7 @@ const AppMenuitem = (props) => {
 
     return (
         <li className={classNames({'layout-root-menuitem': props.root, 'active-menuitem': active })}>
-            {root && item.visible !== false && <div className="layout-menuitem-root-text">{item.label}</div>}
+            {props.root && item.visible !== false && <div className="layout-menuitem-root-text">{item.label}</div>}
             {(!item.to || item.items) && item.visible !== false ? (
                 <a href={item.url} onClick={(e) => itemClick(e)} className={item.class} target={item.target} tabIndex="0">
                     <i className={classNames('layout-menuitem-icon', item.icon)}></i>
@@ -86,7 +76,7 @@ const AppMenuitem = (props) => {
 
             {item.to && !item.items && item.visible !== false ? (
                 <Link href={item.to} replace={item.replaceUrl} target={item.target}>
-                    <a onClick={(e) => itemClick(e)} className={item.class} target={item.target} tabIndex="0">
+                    <a onClick={(e) => itemClick(e)} className={classNames(item.class, {'active-route': isActiveRoute})} target={item.target} tabIndex="0">
                         <i className={classNames('layout-menuitem-icon', item.icon)}></i>
                         <span className="layout-menuitem-text">{item.label}</span>
                         {item.items && <i className="pi pi-fw pi-angle-down layout-submenu-toggler"></i>}

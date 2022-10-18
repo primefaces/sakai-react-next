@@ -4,6 +4,7 @@ import AppMenuitem from './AppMenuitem';
 import { LayoutContext } from './context/layoutcontext';
 import { MenuProvider } from './context/menucontext';
 import Link from 'next/link';
+
 const AppMenu = () => {
     const { layoutConfig } = useContext(LayoutContext);
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
@@ -112,8 +113,8 @@ const AppMenu = () => {
                             icon: 'pi pi-fw pi-bookmark',
                             items: [
                                 { label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-bookmark' },
-                                { label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-bookmark' },
-                                { label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-bookmark' }
+                                { label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-bookmark', to: '/pages/sample' },
+                                { label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-bookmark' },
                             ]
                         },
                         {
