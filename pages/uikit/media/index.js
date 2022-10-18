@@ -58,20 +58,18 @@ const MediaDemo = () => {
 
     const carouselItemTemplate = (product) => {
         return (
-            <div className="product-item">
-                <div className="product-item-content">
-                    <div className="mb-3">
-                        <img src={`${contextPath}/demo/images/product/${product.image}`} alt={product.name} className="product-image" />
-                    </div>
-                    <div>
-                        <h4 className="p-mb-1">{product.name}</h4>
-                        <h6 className="mt-0 mb-3">${product.price}</h6>
-                        <span className={`product-badge status-${product.inventoryStatus.toLowerCase()}`}>{product.inventoryStatus}</span>
-                        <div className="car-buttons mt-5">
-                            <Button type="button" className="p-button p-button-rounded mr-2" icon="pi pi-search"></Button>
-                            <Button type="button" className="p-button-success p-button-rounded mr-2" icon="pi pi-star"></Button>
-                            <Button type="button" className="p-button-help p-button-rounded" icon="pi pi-cog"></Button>
-                        </div>
+            <div className="border-1 surface-border border-round m-1 text-center py-5">
+                <div className="mb-3">
+                    <img src={`${contextPath}/demo/images/product/${product.image}`} alt={product.name} className="w-6 shadow-2" />
+                </div>
+                <div>
+                    <h4 className="p-mb-1">{product.name}</h4>
+                    <h6 className="mt-0 mb-3">${product.price}</h6>
+                    <span className={`product-badge status-${product.inventoryStatus.toLowerCase()}`}>{product.inventoryStatus}</span>
+                    <div className="car-buttons mt-5">
+                        <Button type="button" className="p-button p-button-rounded mr-2" icon="pi pi-search"></Button>
+                        <Button type="button" className="p-button-success p-button-rounded mr-2" icon="pi pi-star"></Button>
+                        <Button type="button" className="p-button-help p-button-rounded" icon="pi pi-cog"></Button>
                     </div>
                 </div>
             </div>
@@ -82,7 +80,7 @@ const MediaDemo = () => {
     const galleriaThumbnailTemplate = (item) => <img src={`${contextPath}/${item.thumbnailImageSrc}`} alt={item.alt} style={{ width: '100%', display: 'block' }} />;
 
     return (
-        <div className="grid p-fluid media-demo">
+        <div className="grid p-fluid">
             <div className="col-12">
                 <div className="card">
                     <h5>Carousel</h5>
