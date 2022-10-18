@@ -9,6 +9,7 @@ import AppSidebar from './AppSidebar';
 import AppTopbar from './AppTopbar';
 import AppConfig from './AppConfig';
 import { LayoutContext } from './context/layoutcontext';
+import PrimeReact from 'primereact/api';
 
 const Layout = (props) => {
     const { layoutConfig, layoutState, setLayoutState } = useContext(LayoutContext);
@@ -82,6 +83,8 @@ const Layout = (props) => {
             hideProfileMenu();
         });
     }, []);
+
+    PrimeReact.ripple = true;
 
     useUnmountEffect(() => {
         unbindMenuOutsideClickListener();

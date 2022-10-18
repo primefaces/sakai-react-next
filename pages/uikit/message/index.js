@@ -48,7 +48,7 @@ const MessagesDemo = () => {
             <div className="col-12 lg:col-6">
                 <div className="card">
                     <h5>Toast</h5>
-                    <div class="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2">
                         <Toast ref={toast} />
                         <Button type="button" onClick={showSuccess} label="Success" className="p-button-success" />
                         <Button type="button" onClick={showInfo} label="Info" className="p-button-info" />
@@ -61,7 +61,7 @@ const MessagesDemo = () => {
             <div className="col-12 lg:col-6">
                 <div className="card">
                     <h5>Messages</h5>
-                    <div class="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2">
                         <Button label="Success" type="button" onClick={addSuccessMessage} className="p-button-success" />
                         <Button label="Info" type="button" onClick={addInfoMessage} className="p-button-info" />
                         <Button label="Warn" type="button" onClick={addWarnMessage} className="p-button-warning" />

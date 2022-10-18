@@ -55,7 +55,7 @@ const MiscDemo = () => {
                 <div className="card">
                     <h4>Badge</h4>
                     <h5>Numbers</h5>
-                    <div class="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2">
                         <Badge value="2"></Badge>
                         <Badge value="8" severity="success"></Badge>
                         <Badge value="4" severity="info"></Badge>
@@ -106,7 +106,7 @@ const MiscDemo = () => {
                     </AvatarGroup>
 
                     <h5>Label - Circle</h5>
-                    <div class="flex flex-wrap gap-2 align-items-end">
+                    <div className="flex flex-wrap gap-2 align-items-end">
                         <Avatar label="P" size="xlarge" shape="circle"></Avatar>
                         <Avatar label="V" size="large" style={{ backgroundColor: '#2196F3', color: '#ffffff' }} shape="circle"></Avatar>
                         <Avatar label="U" style={{ backgroundColor: '#9c27b0', color: '#ffffff' }} shape="circle"></Avatar>
@@ -166,7 +166,7 @@ const MiscDemo = () => {
                 <div className="card">
                     <h4>Chip</h4>
                     <h5>Basic</h5>
-                    <div class="flex flex-wrap align-items-center gap-2">
+                    <div className="flex flex-wrap align-items-center gap-2">
                         <Chip label="Action" />
                         <Chip label="Comedy" />
                         <Chip label="Mystery" />
@@ -174,7 +174,7 @@ const MiscDemo = () => {
                     </div>
 
                     <h5>Icon</h5>
-                    <div class="flex align-items-center flex-wrap gap-1">
+                    <div className="flex align-items-center flex-wrap gap-1">
                         <Chip label="Apple" icon="pi pi-apple" />
                         <Chip label="Facebook" icon="pi pi-facebook" />
                         <Chip label="Google" icon="pi pi-google" />
@@ -182,7 +182,7 @@ const MiscDemo = () => {
                     </div>
 
                     <h5>Image</h5>
-                    <div class="flex align-items-center flex-wrap gap-1">
+                    <div className="flex align-items-center flex-wrap gap-1">
                         <Chip label="Amy Elsner" image={`${contextPath}/demo/images/avatar/amyelsner.png`} />
                         <Chip label="Asiya Javayant" image={`${contextPath}/demo/images/avatar/asiyajavayant.png`} />
                         <Chip label="Onyama Limba" image={`${contextPath}/demo/images/avatar/onyamalimba.png`} />
@@ -190,7 +190,7 @@ const MiscDemo = () => {
                     </div>
 
                     <h5>Styling</h5>
-                    <div class="flex align-items-center flex-wrap gap-1 custom-chip">
+                    <div className="flex align-items-center flex-wrap gap-1 custom-chip">
                         <Chip label="Action" />
                         <Chip label="Apple" icon="pi pi-apple" />
                         <Chip label="Onyama Limba" image={`${contextPath}/demo/images/avatar/onyamalimba.png`} />

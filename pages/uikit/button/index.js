@@ -69,7 +69,7 @@ const ButtonDemo = () => {
 
                 <div className="card">
                     <h5>Severities</h5>
-                    <div class="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2">
                         <Button label="Primary" />
                         <Button label="Secondary" className="p-button-secondary" />
                         <Button label="Success" className="p-button-success" />
@@ -203,7 +203,7 @@ const ButtonDemo = () => {
 
                 <div className="card">
                     <h5>Loading</h5>
-                    <div class="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2">
                         <Button label="Search" icon="pi pi-search" loading={loading1} onClick={onLoadingClick1} />
                         <Button label="Search" icon="pi pi-search" iconPos="right" loading={loading2} onClick={onLoadingClick2} />
                         <Button icon="pi pi-search" loading={loading3} onClick={onLoadingClick3} />

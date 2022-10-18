@@ -22,7 +22,7 @@ const PanelDemo = () => {
         },
         {
             label: 'Update',
-            icon: 'pi pi-upload'
+            icon: 'pi pi-sync'
         },
         {
             label: 'Delete',
@@ -58,7 +58,8 @@ const PanelDemo = () => {
                 popup
                 model={[
                     { label: 'Add New', icon: 'pi pi-fw pi-plus' },
-                    { label: 'Remove', icon: 'pi pi-fw pi-minus' }
+                    { label: 'Remove', icon: 'pi pi-fw pi-minus' },
+                    { label: 'Update', icon: 'pi pi-fw pi-sync' }
                 ]}
             />
         </div>
