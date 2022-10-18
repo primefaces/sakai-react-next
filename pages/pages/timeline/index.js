@@ -46,51 +46,52 @@ const TimelineDemo = () => {
     };
 
     return (
-        <div className="grid">
-            <div className="col-12 md:col-6">
-                <div className="card">
-                    <h5>Left Align</h5>
-                    <Timeline value={customEvents} content={(item) => item.status} />
+        <div>
+            <div className="grid">
+                <div className="col-12 md:col-6">
+                    <div className="card">
+                        <h5>Left Align</h5>
+                        <Timeline value={customEvents} content={(item) => item.status} />
+                    </div>
                 </div>
-            </div>
-            <div className="col-12 md:col-6">
-                <div className="card">
-                    <h5>Right Align</h5>
-                    <Timeline value={customEvents} align="right" content={(item) => item.status} />
+                <div className="col-12 md:col-6">
+                    <div className="card">
+                        <h5>Right Align</h5>
+                        <Timeline value={customEvents} align="right" content={(item) => item.status} />
+                    </div>
                 </div>
-            </div>
-            <div className="col-12 md:col-6">
-                <div className="card">
-                    <h5>Alternate Align</h5>
-                    <Timeline value={customEvents} align="alternate" content={(item) => item.status} />
+                <div className="col-12 md:col-6">
+                    <div className="card">
+                        <h5>Alternate Align</h5>
+                        <Timeline value={customEvents} align="alternate" content={(item) => item.status} />
+                    </div>
                 </div>
-            </div>
 
-            <div className="col-12 md:col-6">
-                <div className="card">
-                    <h5>Opposite Content</h5>
-                    <Timeline value={customEvents} opposite={(item) => item.status} content={(item) => <small className="p-text-secondary">{item.date}</small>} />
+                <div className="col-12 md:col-6">
+                    <div className="card">
+                        <h5>Opposite Content</h5>
+                        <Timeline value={customEvents} opposite={(item) => item.status} content={(item) => <small className="p-text-secondary">{item.date}</small>} />
+                    </div>
                 </div>
-            </div>
 
-            <div className="timeline-demo">
-                <div className="card">
-                    <h5>Customized</h5>
-                    <Timeline value={customEvents} align="alternate" className="customized-timeline" marker={customizedMarker} content={customizedContent} />
+                <div className="col-12">
+                    <div className="card timeline-demo">
+                        <h5>Customized</h5>
+                        <Timeline value={customEvents} align="alternate" className="customized-timeline" marker={customizedMarker} content={customizedContent} />
+                    </div>
                 </div>
-            </div>
+                <div className="col-12">
+                    <div className="card">
+                        <h5>Horizontal</h5>
+                        <h6>Top Align</h6>
+                        <Timeline value={horizontalEvents} layout="horizontal" align="top" content={(item) => item} />
 
-            <div className="col-12 ">
-                <div className="card">
-                    <h5>Horizontal</h5>
-                    <h6>Top Align</h6>
-                    <Timeline value={horizontalEvents} layout="horizontal" align="top" content={(item) => item} />
+                        <h6>Bottom Align</h6>
+                        <Timeline value={horizontalEvents} layout="horizontal" align="bottom" content={(item) => item} />
 
-                    <h6>Bottom Align</h6>
-                    <Timeline value={horizontalEvents} layout="horizontal" align="bottom" content={(item) => item} />
-
-                    <h6>Alternate Align</h6>
-                    <Timeline value={horizontalEvents} layout="horizontal" align="alternate" content={(item) => item} opposite={<span>&nbsp;</span>} />
+                        <h6>Alternate Align</h6>
+                        <Timeline value={horizontalEvents} layout="horizontal" align="alternate" content={(item) => item} opposite={<span>&nbsp;</span>} />
+                    </div>
                 </div>
             </div>
         </div>
