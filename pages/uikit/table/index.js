@@ -280,7 +280,7 @@ const TableDemo = () => {
         return (
             <React.Fragment>
                 <img alt={data.representative.name} src={`/demo/images/avatar/${data.representative.image}`} width="32" style={{ verticalAlign: 'middle' }} />
-                <span className="font-bold">{data.representative.name}</span>
+                <span className="font-bold ml-2">{data.representative.name}</span>
             </React.Fragment>
         );
     };

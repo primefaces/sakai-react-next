@@ -8,7 +8,7 @@ import { classNames } from 'primereact/utils';
 import React, { useContext, useEffect, useState } from 'react';
 import { LayoutContext } from './context/layoutcontext';
 
-const AppConfig = () => {
+const AppConfig = (props) => {
     const [scales] = useState([12, 13, 14, 15, 16]);
     const { layoutConfig, setLayoutConfig, layoutState, setLayoutState } = useContext(LayoutContext);
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
@@ -103,15 +103,19 @@ const AppConfig = () => {
                     <Button icon="pi pi-plus" type="button" onClick={incrementScale} className="p-button-text p-button-rounded w-2rem h-2rem ml-2" disabled={layoutConfig.scale === scales[scales.length - 1]}></Button>
                 </div>
 
-                <h5>Menu Type</h5>
-                <div className="field-radiobutton">
-                    <RadioButton name="menuMode" value={'static'} checked={layoutConfig.menuMode === 'static'} onChange={(e) => changeMenuMode(e)} inputId="mode1"></RadioButton>
-                    <label htmlFor="mode1">Static</label>
-                </div>
-                <div className="field-radiobutton">
-                    <RadioButton name="menuMode" value={'overlay'} checked={layoutConfig.menuMode === 'overlay'} onChange={(e) => changeMenuMode(e)} inputId="mode2"></RadioButton>
-                    <label htmlFor="mode2">Overlay</label>
-                </div>
+                { !props.simple &&
+                    <>
+                        <h5>Menu Type</h5>
+                        <div className="field-radiobutton">
+                            <RadioButton name="menuMode" value={'static'} checked={layoutConfig.menuMode === 'static'} onChange={(e) => changeMenuMode(e)} inputId="mode1"></RadioButton>
+                            <label htmlFor="mode1">Static</label>
+                        </div>
+                        <div className="field-radiobutton">
+                            <RadioButton name="menuMode" value={'overlay'} checked={layoutConfig.menuMode === 'overlay'} onChange={(e) => changeMenuMode(e)} inputId="mode2"></RadioButton>
+                            <label htmlFor="mode2">Overlay</label>
+                        </div>
+                    </>
+                }
 
                 <h5>Input Style</h5>
                 <div className="flex">

@@ -7,6 +7,7 @@ import { Button } from 'primereact/button';
 import { Password } from 'primereact/password';
 import { LayoutContext } from '../../../layout/context/layoutcontext';
 import { InputText } from 'primereact/inputtext';
+import { classNames } from 'primereact/utils';
 
 const LoginPage = () => {
     const [password, setPassword] = useState('');
@@ -14,9 +15,10 @@ const LoginPage = () => {
     const { layoutConfig } = useContext(LayoutContext);
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
     const router = useRouter();
+    const containerClassName = classNames('surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden', {'p-input-filled': layoutConfig.inputStyle === 'filled'});
 
     return (
-        <div className="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
+        <div className={containerClassName}>
             <div className="flex flex-column align-items-center justify-content-center">
                 <img src={`${contextPath}/layout/images/logo-${layoutConfig.colorScheme === 'light' ? 'dark' : 'white'}.svg`} alt="Sakai logo" className="mb-5 w-6rem flex-shrink-0"/>
                 <div style={{ borderRadius: '56px', padding: '0.3rem', background: 'linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%)' }}>
@@ -62,7 +64,7 @@ LoginPage.getLayout = function getLayout(page) {
     return (
         <React.Fragment>
             {page}
-            <AppConfig />
+            <AppConfig simple />
         </React.Fragment>
     );
 };

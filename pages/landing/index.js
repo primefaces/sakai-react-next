@@ -461,7 +461,7 @@ LandingPage.getLayout = function getLayout(page) {
     return (
         <React.Fragment>
             {page}
-            <AppConfig />
+            <AppConfig simple />
         </React.Fragment>
     );
 };
