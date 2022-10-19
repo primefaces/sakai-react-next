@@ -38,7 +38,7 @@ const AppMenu = () => {
             label: 'Prime Blocks',
             items: [
                 { label: 'Free Blocks', icon: 'pi pi-fw pi-eye', to: '/blocks', badge: 'NEW' },
-                { label: 'All Blocks', icon: 'pi pi-fw pi-globe', url: 'https://www.primefaces.org/primeblocks-ng', target: '_blank' }
+                { label: 'All Blocks', icon: 'pi pi-fw pi-globe', url: 'https://www.primefaces.org/primeblocks-react', target: '_blank' }
             ]
         },
         {
@@ -113,7 +113,7 @@ const AppMenu = () => {
                             icon: 'pi pi-fw pi-bookmark',
                             items: [
                                 { label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-bookmark' },
-                                { label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-bookmark', to: '/pages/sample' },
+                                { label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-bookmark' },
                                 { label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-bookmark' },
                             ]
                         },
@@ -156,7 +156,7 @@ const AppMenu = () => {
                 {
                     label: 'View Source',
                     icon: 'pi pi-fw pi-search',
-                    url: 'https://github.com/primefaces/sakai-ng',
+                    url: 'https://github.com/primefaces/sakai-react-next',
                     target: '_blank'
                 }
             ]
@@ -171,11 +171,9 @@ const AppMenu = () => {
                 })}
 
                 <Link href="https://www.primefaces.org/primeblocks-react" passHref>
-                    <li style={{ cursor: 'pointer' }}>
-                        <a>
-                            <img alt="Prime Blocks" className="w-full mt-3" src={`${contextPath}/layout/images/banner-primeblocks${layoutConfig.colorScheme === 'light' ? '' : '-dark'}.png`} />
-                        </a>
-                    </li>
+                    <a target="_blank" style={{ cursor: 'pointer' }}>
+                        <img alt="Prime Blocks" className="w-full mt-3" src={`${contextPath}/layout/images/banner-primeblocks${layoutConfig.colorScheme === 'light' ? '' : '-dark'}.png`} />
+                    </a>
                 </Link>
             </ul>
         </MenuProvider>
