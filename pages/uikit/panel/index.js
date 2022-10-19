@@ -160,13 +160,13 @@ const PanelDemo = () => {
                     <div className="grid">
                         <div className="col-5 flex align-items-center justify-content-center">
                             <div className="p-fluid">
-                                <div className="field">
+                                <div className="field mb-5">
                                     <span className="p-float-label">
                                         <InputText id="username" type="text" />
                                         <label htmlFor="username">Username</label>
                                     </span>
                                 </div>
-                                <div className="field">
+                                <div className="field mb-5">
                                     <span className="p-float-label">
                                         <Password id="password" type="password" />
                                         <label htmlFor="password">Password</label>
