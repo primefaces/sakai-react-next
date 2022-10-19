@@ -1,17 +1,10 @@
 /* eslint-disable @next/next/no-sync-scripts */
 import React from 'react';
-import Head from 'next/head';
 import { CodeHighlight } from '../../demo/components/CodeHighlight';
-import getConfig from 'next/config';
 
 const Documentation = () => {
-    const contextPath = getConfig().publicRuntimeConfig.contextPath;
-
     return (
         <>
-            <Head>
-                <script src={`${contextPath}/layout/scripts/prism/prism.js`} data-manual></script>
-            </Head>
             <div className="grid">
                 <div className="col-12">
                     <div className="card docs">

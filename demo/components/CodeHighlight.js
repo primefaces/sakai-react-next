@@ -1,18 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 
 export function CodeHighlight(props) {
-    const codeElement = useRef();
-    const languageClassName = `language-${props.lang || 'jsx'}`;
-
-    useEffect(() => {
-        window.Prism.highlightElement(codeElement.current);
-    }, []);
-
     return (
-        <pre style={props.style}>
-            <code ref={codeElement} className={languageClassName}>
-                {props.children}&nbsp;
-            </code>
+        <pre {...props} className="border-round surface-ground text-700 p-5">
+            <code className="-mt-4 p-0 line-height-3 block">{props.children}</code>
         </pre>
     );
 }
