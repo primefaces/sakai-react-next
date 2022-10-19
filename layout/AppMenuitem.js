@@ -45,9 +45,10 @@ const AppMenuitem = (props) => {
         }
 
         // toggle active state
-        if (item.items) {
+        if (item.items)
             setActiveMenu(active ? props.parentKey : key);
-        }
+        else
+            setActiveMenu(key);
     };
 
     const subMenu = item.items && item.visible !== false && (
