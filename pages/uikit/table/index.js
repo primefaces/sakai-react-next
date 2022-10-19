@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { classNames } from 'primereact/utils';
 import { FilterMatchMode, FilterOperator } from 'primereact/api';
 import { DataTable } from 'primereact/datatable';
@@ -16,6 +16,7 @@ import { Rating } from 'primereact/rating';
 import { CustomerService } from '../../../demo/service/CustomerService';
 import { ProductService } from '../../../demo/service/ProductService';
 import getConfig from 'next/config';
+import { InputText } from 'primereact/inputtext';
 
 const TableDemo = () => {
     const [customers1, setCustomers1] = useState(null);
@@ -26,6 +27,7 @@ const TableDemo = () => {
     const [loading2, setLoading2] = useState(true);
     const [idFrozen, setIdFrozen] = useState(false);
     const [products, setProducts] = useState([]);
+    const [globalFilterValue1, setGlobalFilterValue1] = useState('');
     const [expandedRows, setExpandedRows] = useState(null);
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
 
@@ -46,6 +48,31 @@ const TableDemo = () => {
 
     const customerService = new CustomerService();
     const productService = new ProductService();
+
+    const clearFilter1 = () => {
+        initFilters1();
+    };
+
+    const onGlobalFilterChange1 = (e) => {
+        const value = e.target.value;
+        let _filters1 = { ...filters1 };
+        _filters1['global'].value = value;
+
+        setFilters1(_filters1);
+        setGlobalFilterValue1(value);
+    };
+
+    const renderHeader1 = () => {
+        return (
+            <div className="flex justify-content-between">
+                <Button type="button" icon="pi pi-filter-slash" label="Clear" className="p-button-outlined" onClick={clearFilter1} />
+                <span className="p-input-icon-left">
+                    <i className="pi pi-search" />
+                    <InputText value={globalFilterValue1} onChange={onGlobalFilterChange1} placeholder="Keyword Search" />
+                </span>
+            </div>
+        );
+    };
 
     useEffect(() => {
         setLoading2(true);
@@ -103,15 +130,14 @@ const TableDemo = () => {
             activity: { value: null, matchMode: FilterMatchMode.BETWEEN },
             verified: { value: null, matchMode: FilterMatchMode.EQUALS }
         });
+        setGlobalFilterValue1('');
     };
 
     const countryBodyTemplate = (rowData) => {
         return (
             <React.Fragment>
                 <img alt="flag" src={`${contextPath}/demo/images/flag/flag_placeholder.png`} className={`flag flag-${rowData.country.code}`} width={30} />
-                <span style={{ marginLeft: '.5em', verticalAlign: 'middle' }}>
-                    {rowData.country.name}
-                </span>
+                <span style={{ marginLeft: '.5em', verticalAlign: 'middle' }}>{rowData.country.name}</span>
             </React.Fragment>
         );
     };
@@ -135,9 +161,7 @@ const TableDemo = () => {
                     width={32}
                     style={{ verticalAlign: 'middle' }}
                 />
-                <span style={{ marginLeft: '.5em', verticalAlign: 'middle' }}>
-                    {representative.name}
-                </span>
+                <span style={{ marginLeft: '.5em', verticalAlign: 'middle' }}>{representative.name}</span>
             </React.Fragment>
         );
     };
@@ -155,9 +179,7 @@ const TableDemo = () => {
         return (
             <div className="p-multiselect-representative-option">
                 <img alt={option.name} src={`${contextPath}/demo/images/avatar/${option.image}`} width={32} style={{ verticalAlign: 'middle' }} />
-                <span style={{ marginLeft: '.5em', verticalAlign: 'middle' }}>
-                    {option.name}
-                </span>
+                <span style={{ marginLeft: '.5em', verticalAlign: 'middle' }}>{option.name}</span>
             </div>
         );
     };
@@ -310,6 +332,8 @@ const TableDemo = () => {
         return total;
     };
 
+    const header1 = renderHeader1();
+
     return (
         <div className="grid">
             <div className="col-12">
@@ -327,6 +351,7 @@ const TableDemo = () => {
                         loading={loading1}
                         responsiveLayout="scroll"
                         emptyMessage="No customers found."
+                        header={header1}
                     >
                         <Column field="name" header="Name" filter filterPlaceholder="Search by name" style={{ minWidth: '12rem' }} />
                         <Column header="Country" filterField="country.name" style={{ minWidth: '12rem' }} body={countryBodyTemplate} filter filterPlaceholder="Search by country" filterClear={filterClearTemplate} filterApply={filterApplyTemplate} />
@@ -356,7 +381,7 @@ const TableDemo = () => {
 
                     <DataTable value={customers2} scrollable scrollHeight="400px" loading={loading2} scrollDirection="both" className="mt-3">
                         <Column field="name" header="Name" style={{ flexGrow: 1, flexBasis: '160px' }} frozen className="font-bold"></Column>
-                        <Column field="id" header="Id" style={{ flexGrow: 1, flexBasis: '100px' }} frozen={idFrozen} alignFrozen="left" bodyClassName={classNames({'font-bold': idFrozen})}></Column>
+                        <Column field="id" header="Id" style={{ flexGrow: 1, flexBasis: '100px' }} frozen={idFrozen} alignFrozen="left" bodyClassName={classNames({ 'font-bold': idFrozen })}></Column>
                         <Column field="country.name" header="Country" style={{ flexGrow: 1, flexBasis: '200px' }} body={countryBodyTemplate}></Column>
                         <Column field="date" header="Date" style={{ flexGrow: 1, flexBasis: '200px' }} body={dateBodyTemplate}></Column>
                         <Column field="company" header="Company" style={{ flexGrow: 1, flexBasis: '200px' }}></Column>
