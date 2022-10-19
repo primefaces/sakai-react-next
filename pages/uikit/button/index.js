@@ -126,6 +126,44 @@ const ButtonDemo = () => {
                         <SplitButton label="Save" icon="pi pi-check" model={items} className="p-button-danger"></SplitButton>
                     </div>
                 </div>
+
+                <div className="card">
+                    <h5>Template</h5>
+                    <div className='template-button'>
+                    <Button className="google" aria-label="Google">
+                        <i className="pi pi-google px-2"></i>
+                        <span>Google</span>
+                    </Button>
+                    <Button className="youtube" aria-label="Youtube">
+                        <i className="pi pi-youtube px-2"></i>
+                        <span>Youtube</span>
+                    </Button>
+                    <Button className="vimeo" aria-label="Vimeo">
+                        <i className="pi pi-vimeo px-2"></i>
+                        <span>Vimeo</span>
+                    </Button>
+                    <Button className="facebook" aria-label="Facebook">
+                        <i className="pi pi-facebook px-2"></i>
+                        <span>Facebook</span>
+                    </Button>
+                    <Button className="twitter" aria-label="Twitter">
+                        <i className="pi pi-twitter px-2"></i>
+                        <span>Twitter</span>
+                    </Button>
+                    <Button className="slack" aria-label="Slack">
+                        <i className="pi pi-slack px-2"></i>
+                        <span>Slack</span>
+                    </Button>
+                    <Button className="amazon" aria-label="Amazon">
+                        <i className="pi pi-amazon px-2"></i>
+                        <span>Amazon</span>
+                    </Button>
+                    <Button className="discord" aria-label="Discord">
+                        <i className="pi pi-discord px-2"></i>
+                        <span>Discord</span>
+                    </Button>
+                </div>
+                </div>
             </div>
 
             <div className="col-12 md:col-6">
