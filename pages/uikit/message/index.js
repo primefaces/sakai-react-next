@@ -66,8 +66,8 @@ const MessagesDemo = () => {
                         <Button label="Info" type="button" onClick={addInfoMessage} className="p-button-info" />
                         <Button label="Warn" type="button" onClick={addWarnMessage} className="p-button-warning" />
                         <Button label="Error" type="button" onClick={addErrorMessage} className="p-button-danger" />
-                        <Messages ref={message} />
                     </div>
+                    <Messages ref={message} />
                 </div>
             </div>
 
