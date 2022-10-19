@@ -17,7 +17,7 @@ const LandingPage = () => {
         <div className="surface-0 flex justify-content-center">
             <div id="home" className="landing-wrapper overflow-hidden">
                 <div className="py-4 px-4 mx-0 md:mx-6 lg:mx-8 lg:px-8 flex align-items-center justify-content-between relative lg:static mb-3">
-                    <Link href={`${contextPath}/`}>
+                    <Link href="/">
                         <a className="flex align-items-center">
                             <img src={`${contextPath}/layout/images/${layoutConfig.colorScheme === 'light' ? 'logo-dark' : 'logo-white'}.svg`} alt="Sakai Logo" height="50" className="mr-0 lg:mr-2" />
                             <span className="text-900 font-medium text-2xl line-height-3 mr-8">SAKAI</span>
@@ -90,8 +90,7 @@ const LandingPage = () => {
                                     padding: '2px',
                                     borderRadius: '10px',
                                     background: 'linear-gradient(90deg, rgba(253, 228, 165, 0.2), rgba(187, 199, 205, 0.2)), linear-gradient(180deg, rgba(253, 228, 165, 0.2), rgba(187, 199, 205, 0.2))'
-                                }}
-                            >
+                                }}>
                                 <div className="p-3 surface-card h-full" style={{ borderRadius: '8px' }}>
                                     <div className="flex align-items-center justify-content-center bg-yellow-200 mb-3" style={{ width: '3.5rem', height: '3.5rem', borderRadius: '10px' }}>
                                         <i className="pi pi-fw pi-users text-2xl text-yellow-700"></i>
@@ -109,8 +108,7 @@ const LandingPage = () => {
                                     padding: '2px',
                                     borderRadius: '10px',
                                     background: 'linear-gradient(90deg, rgba(145,226,237,0.2),rgba(251, 199, 145, 0.2)), linear-gradient(180deg, rgba(253, 228, 165, 0.2), rgba(172, 180, 223, 0.2))'
-                                }}
-                            >
+                                }}>
                                 <div className="p-3 surface-card h-full" style={{ borderRadius: '8px' }}>
                                     <div className="flex align-items-center justify-content-center bg-cyan-200 mb-3" style={{ width: '3.5rem', height: '3.5rem', borderRadius: '10px' }}>
                                         <i className="pi pi-fw pi-palette text-2xl text-cyan-700"></i>
@@ -128,8 +126,7 @@ const LandingPage = () => {
                                     padding: '2px',
                                     borderRadius: '10px',
                                     background: 'linear-gradient(90deg, rgba(145, 226, 237, 0.2), rgba(172, 180, 223, 0.2)), linear-gradient(180deg, rgba(172, 180, 223, 0.2), rgba(246, 158, 188, 0.2))'
-                                }}
-                            >
+                                }}>
                                 <div className="p-3 surface-card h-full" style={{ borderRadius: '8px' }}>
                                     <div className="flex align-items-center justify-content-center bg-indigo-200" style={{ width: '3.5rem', height: '3.5rem', borderRadius: '10px' }}>
                                         <i className="pi pi-fw pi-map text-2xl text-indigo-700"></i>
@@ -147,8 +144,7 @@ const LandingPage = () => {
                                     padding: '2px',
                                     borderRadius: '10px',
                                     background: 'linear-gradient(90deg, rgba(187, 199, 205, 0.2),rgba(251, 199, 145, 0.2)), linear-gradient(180deg, rgba(253, 228, 165, 0.2),rgba(145, 210, 204, 0.2))'
-                                }}
-                            >
+                                }}>
                                 <div className="p-3 surface-card h-full" style={{ borderRadius: '8px' }}>
                                     <div className="flex align-items-center justify-content-center bg-bluegray-200 mb-3" style={{ width: '3.5rem', height: '3.5rem', borderRadius: '10px' }}>
                                         <i className="pi pi-fw pi-id-card text-2xl text-bluegray-700"></i>
@@ -166,8 +162,7 @@ const LandingPage = () => {
                                     padding: '2px',
                                     borderRadius: '10px',
                                     background: 'linear-gradient(90deg, rgba(187, 199, 205, 0.2),rgba(246, 158, 188, 0.2)), linear-gradient(180deg, rgba(145, 226, 237, 0.2),rgba(160, 210, 250, 0.2))'
-                                }}
-                            >
+                                }}>
                                 <div className="p-3 surface-card h-full" style={{ borderRadius: '8px' }}>
                                     <div className="flex align-items-center justify-content-center bg-orange-200 mb-3" style={{ width: '3.5rem', height: '3.5rem', borderRadius: '10px' }}>
                                         <i className="pi pi-fw pi-star text-2xl text-orange-700"></i>
@@ -185,8 +180,7 @@ const LandingPage = () => {
                                     padding: '2px',
                                     borderRadius: '10px',
                                     background: 'linear-gradient(90deg, rgba(251, 199, 145, 0.2), rgba(246, 158, 188, 0.2)), linear-gradient(180deg, rgba(172, 180, 223, 0.2), rgba(212, 162, 221, 0.2))'
-                                }}
-                            >
+                                }}>
                                 <div className="p-3 surface-card h-full" style={{ borderRadius: '8px' }}>
                                     <div className="flex align-items-center justify-content-center bg-pink-200 mb-3" style={{ width: '3.5rem', height: '3.5rem', borderRadius: '10px' }}>
                                         <i className="pi pi-fw pi-moon text-2xl text-pink-700"></i>
@@ -204,8 +198,7 @@ const LandingPage = () => {
                                     padding: '2px',
                                     borderRadius: '10px',
                                     background: 'linear-gradient(90deg, rgba(145, 210, 204, 0.2), rgba(160, 210, 250, 0.2)), linear-gradient(180deg, rgba(187, 199, 205, 0.2), rgba(145, 210, 204, 0.2))'
-                                }}
-                            >
+                                }}>
                                 <div className="p-3 surface-card h-full" style={{ borderRadius: '8px' }}>
                                     <div className="flex align-items-center justify-content-center bg-teal-200 mb-3" style={{ width: '3.5rem', height: '3.5rem', borderRadius: '10px' }}>
                                         <i className="pi pi-fw pi-shopping-cart text-2xl text-teal-700"></i>
@@ -223,8 +216,7 @@ const LandingPage = () => {
                                     padding: '2px',
                                     borderRadius: '10px',
                                     background: 'linear-gradient(90deg, rgba(145, 210, 204, 0.2), rgba(212, 162, 221, 0.2)), linear-gradient(180deg, rgba(251, 199, 145, 0.2), rgba(160, 210, 250, 0.2))'
-                                }}
-                            >
+                                }}>
                                 <div className="p-3 surface-card h-full" style={{ borderRadius: '8px' }}>
                                     <div className="flex align-items-center justify-content-center bg-blue-200 mb-3" style={{ width: '3.5rem', height: '3.5rem', borderRadius: '10px' }}>
                                         <i className="pi pi-fw pi-globe text-2xl text-blue-700"></i>
@@ -242,8 +234,7 @@ const LandingPage = () => {
                                     padding: '2px',
                                     borderRadius: '10px',
                                     background: 'linear-gradient(90deg, rgba(160, 210, 250, 0.2), rgba(212, 162, 221, 0.2)), linear-gradient(180deg, rgba(246, 158, 188, 0.2), rgba(212, 162, 221, 0.2))'
-                                }}
-                            >
+                                }}>
                                 <div className="p-3 surface-card h-full" style={{ borderRadius: '8px' }}>
                                     <div className="flex align-items-center justify-content-center bg-purple-200 mb-3" style={{ width: '3.5rem', height: '3.5rem', borderRadius: '10px' }}>
                                         <i className="pi pi-fw pi-eye text-2xl text-purple-700"></i>
@@ -256,8 +247,7 @@ const LandingPage = () => {
 
                         <div
                             className="col-12 mt-8 mb-8 p-2 md:p-8"
-                            style={{ borderRadius: '20px', background: 'linear-gradient(0deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), radial-gradient(77.36% 256.97% at 77.36% 57.52%, #EFE1AF 0%, #C3DCFA 100%)' }}
-                        >
+                            style={{ borderRadius: '20px', background: 'linear-gradient(0deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), radial-gradient(77.36% 256.97% at 77.36% 57.52%, #EFE1AF 0%, #C3DCFA 100%)' }}>
                             <div className="flex flex-column justify-content-center align-items-center text-center px-3 py-3 md:py-0">
                                 <h3 className="text-gray-900 mb-2">Joséphine Miller</h3>
                                 <span className="text-gray-600 text-2xl">Peak Interactive</span>
@@ -418,7 +408,7 @@ const LandingPage = () => {
                             <Link href={`${contextPath}/`} passHref>
                                 <a className="flex flex-wrap align-items-center justify-content-center md:justify-content-start md:mb-0 mb-3 cursor-pointer">
                                     <img src={`${contextPath}/layout/images/${layoutConfig.colorScheme === 'light' ? 'logo-dark' : 'logo-white'}.svg`} alt="footer sections" width="50" height="50" className="mr-2" />
-                                    <h4 className="font-medium text-3xl text-900">SAKAI</h4>
+                                    <span className="font-medium text-3xl text-900">SAKAI</span>
                                 </a>
                             </Link>
                         </div>

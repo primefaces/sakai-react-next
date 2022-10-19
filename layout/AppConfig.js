@@ -49,11 +49,7 @@ const AppConfig = () => {
             return;
         }
 
-        if (isIE()) {
-            linkElement.setAttribute('href', href);
-            onComplete && onComplete();
-        } else {
-            const id = linkElement.getAttribute('id');
+        const id = linkElement.getAttribute('id');
             const cloneLinkElement = linkElement.cloneNode(true);
 
             cloneLinkElement.setAttribute('href', href);
@@ -70,7 +66,6 @@ const AppConfig = () => {
                 cloneLinkElement.setAttribute('id', id);
                 onComplete && onComplete();
             });
-        }
     };
 
     const decrementScale = () => {
@@ -85,9 +80,6 @@ const AppConfig = () => {
         document.documentElement.style.fontSize = layoutConfig.scale + 'px';
     };
 
-    const isIE = () => {
-        return /(MSIE|Trident\/|Edge\/)/i.test(window.navigator.userAgent);
-    };
 
     useEffect(() => {
         applyScale();

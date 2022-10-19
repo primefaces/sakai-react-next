@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: false,
-    swcMinify: true,
+    trailingSlash: true,
     basePath: process.env.NODE_ENV === 'production' ? '/sakai-react' : '',
     publicRuntimeConfig: {
-        // Will be available on both server and client
-        contextPath: process.env.NODE_ENV === 'production' ? '/sakai-react' : ''
+        contextPath: process.env.NODE_ENV === 'production' ? '/sakai-react' : '',
+        uploadPath: process.env.NODE_ENV === 'production' ? '/sakai-react/upload.php' : '/api/upload'
     }
 };
 

@@ -40,7 +40,7 @@ const NotFound = () => {
                                     </div>
                                 </a>
                             </Link>
-                            <Link href={`${contextPath}/`}>
+                            <Link href="/">
                                 <a className="col-12 flex align-items-center py-5 border-300 border-bottom-1">
                                     <div className="flex justify-content-center align-items-center bg-indigo-400 border-round" style={{ height: '3.5rem', width: '3.5rem' }}>
                                         <i className="pi pi-fw pi-unlock text-50 text-2xl"></i>
