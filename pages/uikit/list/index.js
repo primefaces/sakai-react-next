@@ -25,7 +25,7 @@ const ListDemo = () => {
     const [orderlistValue, setOrderlistValue] = useState(listValue);
     const [dataViewValue, setDataViewValue] = useState(null);
     const [globalFilterValue, setGlobalFilterValue] = useState('');
-    const [filteredValue, setFilteredValue] = useState([]);
+    const [filteredValue, setFilteredValue] = useState(null);
     const [layout, setLayout] = useState('grid');
     const [sortKey, setSortKey] = useState(null);
     const [sortOrder, setSortOrder] = useState(null);
@@ -46,10 +46,15 @@ const ListDemo = () => {
     const onFilter = (e) => {
         const value = e.target.value;
         setGlobalFilterValue(value);
-        const filtered = dataViewValue.filter((product) => {
-            return product.name.toLowerCase().includes(value);
-        });
-        setFilteredValue(filtered);
+        if (value.length === 0) {
+            setFilteredValue(null);
+        }
+        else {
+            const filtered = dataViewValue.filter((product) => {
+                return product.name.toLowerCase().includes(value);
+            });
+            setFilteredValue(filtered);
+        }
     };
 
     const onSortChange = (event) => {
@@ -144,11 +149,7 @@ const ListDemo = () => {
             <div className="col-12">
                 <div className="card">
                     <h5>DataView</h5>
-                    {globalFilterValue ? (
-                        <DataView value={filteredValue} layout={layout} paginator rows={9} sortOrder={sortOrder} sortField={sortField} itemTemplate={itemTemplate} header={dataViewHeader}></DataView>
-                    ) : (
-                        <DataView value={dataViewValue} layout={layout} paginator rows={9} sortOrder={sortOrder} sortField={sortField} itemTemplate={itemTemplate} header={dataViewHeader}></DataView>
-                    )}
+                    <DataView value={filteredValue || dataViewValue} layout={layout} paginator rows={9} sortOrder={sortOrder} sortField={sortField} itemTemplate={itemTemplate} header={dataViewHeader}></DataView>
                 </div>
             </div>
 
