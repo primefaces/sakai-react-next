@@ -30,8 +30,6 @@ const TableDemo = () => {
     const [globalFilterValue1, setGlobalFilterValue1] = useState('');
     const [expandedRows, setExpandedRows] = useState(null);
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
-    const [isExpanded, setIsExpanded] = useState(false);
-    const [checked, setChecked] = useState(true);
 
     const representatives = [
         { name: 'Amy Elsner', image: 'amyelsner.png' },
@@ -249,17 +247,6 @@ const TableDemo = () => {
         setExpandedRows(null);
     };
 
-    const handleExpand = (e) => {
-        console.log('saygıszlık olmasn', isExpanded);
-        if (!isExpanded) {
-            expandAll();
-        } else {
-            collapseAll();
-        }
-        setIsExpanded((prevState) => !prevState);
-        setChecked(e.target.value);
-    };
-
     const amountBodyTemplate = (rowData) => {
         return formatCurrency(rowData.amount);
     };
@@ -306,7 +293,8 @@ const TableDemo = () => {
 
     const header = (
         <div className="table-header-container">
-            <ToggleButton checked={checked} onChange={handleExpand} onLabel="Expand All" offLabel="Collapse All" onIcon="pi pi-plus" offIcon="pi pi-minus" className="mb-2" />
+            <Button icon="pi pi-plus" label="Expand All" onClick={expandAll} className="mr-2 mb-2" />
+            <Button icon="pi pi-minus" label="Collapse All" onClick={collapseAll} className="mb-2" />
         </div>
     );
 
