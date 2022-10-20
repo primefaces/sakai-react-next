@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from 'primereact/button';
 import { SplitButton } from 'primereact/splitbutton';
+import styles from './index.module.scss';
 
 const ButtonDemo = () => {
     const [loading1, setLoading1] = useState(false);
@@ -129,40 +130,26 @@ const ButtonDemo = () => {
 
                 <div className="card">
                     <h5>Template</h5>
-                    <div className='template-button'>
-                    <Button className="google" aria-label="Google">
-                        <i className="pi pi-google px-2"></i>
-                        <span>Google</span>
-                    </Button>
-                    <Button className="youtube" aria-label="Youtube">
-                        <i className="pi pi-youtube px-2"></i>
-                        <span>Youtube</span>
-                    </Button>
-                    <Button className="vimeo" aria-label="Vimeo">
-                        <i className="pi pi-vimeo px-2"></i>
-                        <span>Vimeo</span>
-                    </Button>
-                    <Button className="facebook" aria-label="Facebook">
-                        <i className="pi pi-facebook px-2"></i>
-                        <span>Facebook</span>
-                    </Button>
-                    <Button className="twitter" aria-label="Twitter">
-                        <i className="pi pi-twitter px-2"></i>
-                        <span>Twitter</span>
-                    </Button>
-                    <Button className="slack" aria-label="Slack">
-                        <i className="pi pi-slack px-2"></i>
-                        <span>Slack</span>
-                    </Button>
-                    <Button className="amazon" aria-label="Amazon">
-                        <i className="pi pi-amazon px-2"></i>
-                        <span>Amazon</span>
-                    </Button>
-                    <Button className="discord" aria-label="Discord">
-                        <i className="pi pi-discord px-2"></i>
-                        <span>Discord</span>
-                    </Button>
-                </div>
+                    <div className="flex flex-wrap gap-2">
+                        <Button className={styles.google} aria-label="Google">
+                            <span class="flex align-items-center px-2 bg-purple-700 text-white">
+                                <i className="pi pi-google"></i>
+                            </span>
+                            <span className="px-3 py-2 flex align-items-center text-white">Google</span>
+                        </Button>
+                        <Button className={styles.twitter} aria-label="Twitter">
+                            <span class="flex align-items-center px-2 bg-blue-500 text-white">
+                                <i className="pi pi-twitter"></i>
+                            </span>
+                            <span className="px-3 py-2 flex align-items-center text-white">Google</span>
+                        </Button>
+                        <Button className={styles.discord} aria-label="Discord">
+                            <span class="flex align-items-center px-2 bg-bluegray-800 text-white">
+                                <i className="pi pi-discord"></i>
+                            </span>
+                            <span className="px-3 py-2 flex align-items-center text-white">Discord</span>
+                        </Button>
+                    </div>
                 </div>
             </div>
 
