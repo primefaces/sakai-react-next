@@ -13,8 +13,8 @@ const Documentation = () => {
 
                         <h5>Getting Started</h5>
                         <p>
-                            Sakai is an application template for React based on the popular <a href="https://github.com/facebook/create-react-app">create-react-app</a> that allows creating React apps with no configuration. To get started, clone the{' '}
-                            <a href="https://github.com/primefaces/sakai-react">repository</a> from GitHub and install the dependencies with npm or yarn.
+                            Sakai is an application template for React based on the popular <a href="https://nextjs.org/" className="font-medium hover:underline">NextJS</a> framework. To get started, clone the <a href="https://github.com/primefaces/sakai-react-next" className="font-medium hover:underline">repository</a> from 
+                            GitHub and install the dependencies with npm or yarn.
                         </p>
                         <CodeHighlight>
                         {`
@@ -29,17 +29,7 @@ const Documentation = () => {
 
                         <CodeHighlight>
                         {`
-"npm start" or "yarn start"
-`}
-                        </CodeHighlight>
-
-                        <h5>React Scripts</h5>
-                        <p>Following commands are derived from create-app-app.</p>
-                        <CodeHighlight>
-                        {`
-"npm start" or "yarn start": Starts the development server
-"npm test" or "yarn test": Runs the tests.
-"npm run build" or "yarn run build": Creates a production build.
+"npm run dev" or "yarn dev"
 `}
                         </CodeHighlight>
 
@@ -50,28 +40,60 @@ const Documentation = () => {
                         {`
 "primereact": "...",                    //required: PrimeReact components
 "primeicons": "...",                    //required: Icons
-"primeflex": "...",                     //optional: Sample pages
+"primeflex": "...",                     //required: Utility CSS classes
 "react-transition-group": "^4.4.1",     //required: PrimeReact animations
 `}
                         </CodeHighlight>
 
                         <h5>Structure</h5>
-                        <p>
-                            Sakai consists of 2 main parts; the application layout and the resources. <b>App.js</b> inside src folder is the main component containing the template for the base layout whereas required resources such as SASS structure for
-                            the layout are placed inside the <b>src/layout</b> folder.
-                        </p>
+                        <p>Sakai consists of a couple folders, demos and core has been separated so that you can easily remove what is not necessary for your application.</p>
+                        <ul class="line-height-3">
+                            <li><span class="text-primary font-medium">layout</span>: Main layout files, needs to be present</li>
+                            <li><span class="text-primary font-medium">demo</span>: Contains demo related utilities and helpers</li>
+                            <li><span class="text-primary font-medium">pages</span>: Demo pages</li>
+                            <li><span class="text-primary font-medium">public/demo</span>: Assets used in demos</li>
+                            <li><span class="text-primary font-medium">public/layout</span>: Assets used in layout such as logo</li>
+                            <li><span class="text-primary font-medium">styles/demo</span>: CSS files only used in demos</li>
+                            <li><span class="text-primary font-medium">styles/layout</span>: SCSS files of the core layout</li>
+                        </ul>
 
-                        <h5>Application Template</h5>
-                        <p>
-                            Main layout is the JSX template of the App.js, it is divided into a couple of child components such as topbar, profile, menu and footer. Here is render method of the App.js component that implements the logic such as menu
-                            state, layout modes and so on.
-                        </p>
+                        <h5>Integration with Existing NextJS Applications</h5>
+                        <p>Only the folders that are related to the layout needs to move in to your project.</p>
+                        <ul class="line-height-3">
+                            <li>Copy <span class="text-primary font-medium">./layout</span> folder to the root of your application.</li> 
+                            <li>Copy <span class="text-primary font-medium">./styles/layout</span> folder to the styles folder in your application.</li> 
+                            <li>Move <span class="text-primary font-medium">./public/layout</span> and <span class="text-primary font-medium">./public/layout/themes</span> to the public folder in your application.</li> 
+                            <li>Move <span class="text-primary font-medium">./pages/_document.js</span> to the pages folder in your application.</li>
+                            <li>Open <span class="text-primary font-medium">./pages/_app.js</span>, import the required css files and change the rendering part to use the layout.</li>
+                        </ul>
+                        <CodeHighlight lang="js">
+                        {`
+import React from 'react';
+import { LayoutProvider } from '../layout/context/layoutcontext';
+import Layout from '../layout/layout';
+import 'primereact/resources/primereact.css';
+import 'primeflex/primeflex.css';
+import 'primeicons/primeicons.css';
 
-                        <h5>Menu</h5>
-                        <p>
-                            Menu is a separate component defined in AppMenu.js file based on PrimeReact MenuModel API. In order to define the menuitems, navigate to App.js file and define your own model as a nested structure. Here is the menu component
-                            from the demo application.
-                        </p>
+export default function MyApp({ Component, pageProps }) {
+    if (Component.getLayout) {
+        return (
+            <LayoutProvider>
+                {Component.getLayout(<Component {...pageProps} />)}
+            </LayoutProvider>
+        )
+    } else {
+        return (
+            <LayoutProvider>
+                <Layout>
+                    <Component {...pageProps} />
+                </Layout>
+            </LayoutProvider>
+        );
+    }
+}
+`}
+                        </CodeHighlight>
 
                         <h5>PrimeReact Theme</h5>
                         <p>
@@ -87,9 +109,9 @@ const Documentation = () => {
                         <CodeHighlight lang="scss">
                         {`
 /* General */
-$fontSize:14px;
-$borderRadius:12px;
-$transitionDuration:.2s;
+$scale:14px;                    /* initial font size */ 
+$borderRadius:12px;             /* border radius of layout element e.g. card, sidebar */ 
+$transitionDuration:.2s;        /* transition duration of layout elements e.g. sidebar */ 
 `}
                         </CodeHighlight>
                     </div>

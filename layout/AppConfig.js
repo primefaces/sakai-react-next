@@ -106,13 +106,15 @@ const AppConfig = (props) => {
                 { !props.simple &&
                     <>
                         <h5>Menu Type</h5>
-                        <div className="field-radiobutton">
-                            <RadioButton name="menuMode" value={'static'} checked={layoutConfig.menuMode === 'static'} onChange={(e) => changeMenuMode(e)} inputId="mode1"></RadioButton>
-                            <label htmlFor="mode1">Static</label>
-                        </div>
-                        <div className="field-radiobutton">
-                            <RadioButton name="menuMode" value={'overlay'} checked={layoutConfig.menuMode === 'overlay'} onChange={(e) => changeMenuMode(e)} inputId="mode2"></RadioButton>
-                            <label htmlFor="mode2">Overlay</label>
+                        <div class="flex">
+                            <div className="field-radiobutton flex-1">
+                                <RadioButton name="menuMode" value={'static'} checked={layoutConfig.menuMode === 'static'} onChange={(e) => changeMenuMode(e)} inputId="mode1"></RadioButton>
+                                <label htmlFor="mode1">Static</label>
+                            </div>
+                            <div className="field-radiobutton flex-1">
+                                <RadioButton name="menuMode" value={'overlay'} checked={layoutConfig.menuMode === 'overlay'} onChange={(e) => changeMenuMode(e)} inputId="mode2"></RadioButton>
+                                <label htmlFor="mode2">Overlay</label>
+                            </div>
                         </div>
                     </>
                 }
