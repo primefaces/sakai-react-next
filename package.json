@@ -1,6 +1,6 @@
 {
-    "name": "sakai-react-nextjs",
-    "version": "0.1.0",
+    "name": "sakai-react",
+    "version": "8.0.0-SNAPSHOT",
     "private": false,
     "scripts": {
         "dev": "next dev",
