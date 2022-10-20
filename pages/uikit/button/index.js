@@ -141,7 +141,7 @@ const ButtonDemo = () => {
                             <span class="flex align-items-center px-2 bg-blue-500 text-white">
                                 <i className="pi pi-twitter"></i>
                             </span>
-                            <span className="px-3 py-2 flex align-items-center text-white">Google</span>
+                            <span className="px-3 py-2 flex align-items-center text-white">Twitter</span>
                         </Button>
                         <Button className={styles.discord} aria-label="Discord">
                             <span class="flex align-items-center px-2 bg-bluegray-800 text-white">
