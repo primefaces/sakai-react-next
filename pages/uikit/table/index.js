@@ -292,9 +292,9 @@ const TableDemo = () => {
     };
 
     const header = (
-        <div className="table-header-container">
-            <Button icon="pi pi-plus" label="Expand All" onClick={expandAll} className="mr-2 mb-2" />
-            <Button icon="pi pi-minus" label="Collapse All" onClick={collapseAll} className="mb-2" />
+        <div className="flex gap-2">
+            <Button icon="pi pi-plus" label="Expand All" onClick={expandAll} />
+            <Button icon="pi pi-minus" label="Collapse All" onClick={collapseAll} />
         </div>
     );
 
