@@ -29,6 +29,7 @@ const TableDemo = () => {
     const [products, setProducts] = useState([]);
     const [globalFilterValue1, setGlobalFilterValue1] = useState('');
     const [expandedRows, setExpandedRows] = useState(null);
+    const [allExpanded, setAllExpanded] = useState(false);
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
 
     const representatives = [
@@ -236,15 +237,24 @@ const TableDemo = () => {
         return <TriStateCheckbox value={options.value} onChange={(e) => options.filterCallback(e.value)} />;
     };
 
+    const toggleAll = () => {
+        if (allExpanded)
+            collapseAll();
+        else
+            expandAll();
+    }
+
     const expandAll = () => {
         let _expandedRows = {};
         products.forEach((p) => (_expandedRows[`${p.id}`] = true));
 
         setExpandedRows(_expandedRows);
+        setAllExpanded(true);
     };
 
     const collapseAll = () => {
         setExpandedRows(null);
+        setAllExpanded(false);
     };
 
     const amountBodyTemplate = (rowData) => {
@@ -292,10 +302,7 @@ const TableDemo = () => {
     };
 
     const header = (
-        <div className="flex gap-2">
-            <Button icon="pi pi-plus" label="Expand All" onClick={expandAll} />
-            <Button icon="pi pi-minus" label="Collapse All" onClick={collapseAll} />
-        </div>
+        <Button icon={allExpanded ? 'pi pi-minus' : 'pi pi-plus'} label={allExpanded ? 'Collapse All' : 'Expand All'} onClick={toggleAll} className="w-11rem"/>
     );
 
     const headerTemplate = (data) => {
