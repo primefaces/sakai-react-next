@@ -23,6 +23,8 @@ const FloatLabelDemo = () => {
     const [value8, setValue8] = useState('');
     const [value9, setValue9] = useState([]);
     const [value10, setValue10] = useState(null);
+    const [value11, setValue11] = useState('');
+    const [value12, setValue12] = useState('');
 
     const cities = [
         { name: 'New York', code: 'NY' },
@@ -67,6 +69,20 @@ const FloatLabelDemo = () => {
                     <span className="p-float-label">
                         <AutoComplete id="autocomplete" value={value6} onChange={(e) => setValue6(e.value)} suggestions={filteredCountries} completeMethod={searchCountry} field="name"></AutoComplete>
                         <label htmlFor="autocomplete">AutoComplete</label>
+                    </span>
+                </div>
+                <div className="field col-12 md:col-4">
+                    <span className="p-float-label p-input-icon-left">
+                        <i className="pi pi-search" />
+                        <InputText id="lefticon" value={value11} onChange={(e) => setValue11(e.target.value)} />
+                        <label htmlFor="lefticon">Left Icon</label>
+                    </span>
+                </div>
+                <div className="field col-12 md:col-4">
+                    <span className="p-float-label p-input-icon-right">
+                        <i className="pi pi-spin pi-spinner" />
+                        <InputText id="righticon" value={value12} onChange={(e) => setValue12(e.target.value)} />
+                        <label htmlFor="righticon">Right Icon</label>
                     </span>
                 </div>
                 <div className="field col-12 md:col-4">
