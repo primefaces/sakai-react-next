@@ -6,6 +6,7 @@ import { Rating } from 'primereact/rating';
 import { PickList } from 'primereact/picklist';
 import { OrderList } from 'primereact/orderlist';
 import { ProductService } from '../../../demo/service/ProductService';
+import { InputText } from 'primereact/inputtext';
 import getConfig from 'next/config';
 
 const ListDemo = () => {
@@ -23,6 +24,8 @@ const ListDemo = () => {
     const [picklistTargetValue, setPicklistTargetValue] = useState([]);
     const [orderlistValue, setOrderlistValue] = useState(listValue);
     const [dataViewValue, setDataViewValue] = useState(null);
+    const [globalFilterValue, setGlobalFilterValue] = useState('');
+    const [filteredValue, setFilteredValue] = useState([]);
     const [layout, setLayout] = useState('grid');
     const [sortKey, setSortKey] = useState(null);
     const [sortOrder, setSortOrder] = useState(null);
@@ -37,7 +40,17 @@ const ListDemo = () => {
     useEffect(() => {
         const productService = new ProductService();
         productService.getProducts().then((data) => setDataViewValue(data));
+        setGlobalFilterValue('');
     }, []);
+
+    const onFilter = (e) => {
+        const value = e.target.value;
+        setGlobalFilterValue(value);
+        const filtered = dataViewValue.filter((product) => {
+            return product.name.toLowerCase().includes(value);
+        });
+        setFilteredValue(filtered);
+    };
 
     const onSortChange = (event) => {
         const value = event.value;
@@ -54,13 +67,13 @@ const ListDemo = () => {
     };
 
     const dataViewHeader = (
-        <div className="grid grid-nogutter">
-            <div className="col-6" style={{ textAlign: 'left' }}>
-                <Dropdown value={sortKey} options={sortOptions} optionLabel="label" placeholder="Sort By Price" onChange={onSortChange} />
-            </div>
-            <div className="col-6" style={{ textAlign: 'right' }}>
-                <DataViewLayoutOptions layout={layout} onChange={(e) => setLayout(e.value)} />
-            </div>
+        <div className="flex flex-column md:flex-row md:justify-content-between">
+            <Dropdown value={sortKey} options={sortOptions} optionLabel="label" placeholder="Sort By Price" onChange={onSortChange} className="mb-2 md:mb-0" />
+            <span className="p-input-icon-left mb-2 md:mb-0">
+                <i className="pi pi-search" />
+                <InputText value={globalFilterValue} onChange={onFilter} placeholder="Search by Name" />
+            </span>
+            <DataViewLayoutOptions layout={layout} onChange={(e) => setLayout(e.value)} />
         </div>
     );
 
@@ -131,7 +144,11 @@ const ListDemo = () => {
             <div className="col-12">
                 <div className="card">
                     <h5>DataView</h5>
-                    <DataView value={dataViewValue} layout={layout} paginator rows={9} sortOrder={sortOrder} sortField={sortField} itemTemplate={itemTemplate} header={dataViewHeader}></DataView>
+                    {globalFilterValue ? (
+                        <DataView value={filteredValue} layout={layout} paginator rows={9} sortOrder={sortOrder} sortField={sortField} itemTemplate={itemTemplate} header={dataViewHeader}></DataView>
+                    ) : (
+                        <DataView value={dataViewValue} layout={layout} paginator rows={9} sortOrder={sortOrder} sortField={sortField} itemTemplate={itemTemplate} header={dataViewHeader}></DataView>
+                    )}
                 </div>
             </div>
 
